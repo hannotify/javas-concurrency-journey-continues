@@ -1,0 +1,84 @@
+.slides img {
+	border:0 !important; 
+	box-shadow: none !important;
+}
+.reveal section img.no-background {
+	background: none;
+}
+.stroke {
+    color: white !important;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    text-transform: none;
+}
+input { font-size: 27px; }
+
+tr:hover {
+	background-color: #333;
+}
+
+tr .popup-image {
+	display: none ;
+}
+
+tr:hover .popup-image {
+	display: inline; 
+	width: 100px;
+}
+
+a {
+    color: #e29e2f !important;
+}
+
+.reveal .progress span {
+    background: #e29e2f !important;
+}
+
+.reveal ::selection {
+    color: black;
+    background: #e29e2f;
+    text-shadow: none; 
+}
+  
+.reveal ::-moz-selection {
+    color: black;
+    background: #e29e2f;
+    text-shadow: none; 
+}
+
+.reveal blockquote.explanation {
+    font-style: normal;
+    background: rgba(15, 15, 15, 0.7);
+}
+
+.reveal a.attribution {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 0.3em;
+    text-shadow: none;
+}
+
+.print-pdf .reveal section .attribution {
+    bottom: -50px;
+    position: absolute;
+}
+
+.reveal .rightFooter {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-size: 0.5em;
+}
+
+.reveal .leftFooter {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  font-size: 0.5em;
+}
