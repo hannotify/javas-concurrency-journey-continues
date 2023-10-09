@@ -5,9 +5,9 @@
 
 <table>
     <tr>
-        <td style="vertical-align: middle;" width="35.3%">Hanno Embregts</td>
-        <td style="text-align: left; vertical-align: middle; padding: 0 0 0 0"><img width="14%" data-src="img/logos/ace-associate-spade.png" class="no-background" style="margin-top: 30px"/></td>
-        <td style="text-align: right;"><img width="25%" data-src="img/icons/twitter-white.png" class="no-background" style="margin-top: 35px"/></td>
+        <td style="text-align: right; vertical-align: middle;" width="45.3%">Hanno Embregts</td>
+        <td style="text-align: left; vertical-align: middle; padding: 0 0 0 0"><img width="16%" data-src="img/logos/ace-associate-spade.png" class="no-background" style="margin-top: 30px"/><img width="22%" data-src="img/logos/java-champion.png" class="no-background" style="margin-top: 30px"/></td>
+        <td style="text-align: right;"><img width="45%" data-src="img/icons/twitter-white.png" class="no-background" style="margin-top: 35px"/></td>
         <td style="vertical-align: middle; padding: 0 0 0 0"><a href="https://www.twitter.com/hannotify">@hannotify</a></td>
     </tr>
 </table>
@@ -38,13 +38,10 @@ TODO: also add JC logo to the title slide
 
 ---
 
-<!-- .slide: data-background="img/background/bar-with-drinks.jpg" data-background-color="black" data-background-opacity="1.0"-->
-
-<https://www.pexels.com/photo/stylish-interior-of-bar-in-restaurant-5490965/> <!-- .element: class="attribution" -->
-
+<!-- .slide: data-background="img/background/the-illusion-of-multitasking.jpeg" data-background-color="black" data-background-opacity="1.0" data-background-size="contain" -->
 
 note:
 
 *Storytelling*
-Ordering a drink with my Java Community coworkers
 
+> A workshop that leads to a discussion about focus, focus span, disturbing factors, limit active work.
