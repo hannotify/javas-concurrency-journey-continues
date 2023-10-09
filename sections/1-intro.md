@@ -12,7 +12,7 @@
     </tr>
 </table>
 <img data-src="img/logos/java-community-logo.png" width="9%" class="no-background" style="margin-right: 2em">
-<img data-src="img/logos/devoxx-pl.png" width="38%" class="no-background"/>
+<img data-src="img/logos/arnhemjug.png" width="30%" class="no-background"/>
 <br/>
 
 note:
@@ -21,12 +21,29 @@ note:
 *Voorbereidingen*:
 
 * TODO
+* Watch your pronounciation (British English is your _superpower_, so act like it)
 
 Hi, my name is Hanno. 
 From the Netherlands, and I work at Info Support as an IT consultant.
-Recently I've received the Oracle ACE Associate award in the 'Java' category.
-I am @hannotify at Twitter or Mastodon, I post about things I like.
-Which is Java Development, Version Control, Sustainability and making music.
-If you like that stuff, by all means give me a follow!
+I'm a Java Champion and an Oracle ACE.
+I am @hannotify on Twitter, Mastodon or Bluesky.
+(It'll always be called Twitter to me)
+(About the handle: get notified of everything Hanno does. I thought it was rather clever - my wife disagrees with me though, she thinks I'm an major geek!)
+I post about things I like, as everyone does I suppose.
+Java Development, Version Control, Sustainability and making music.
+If you're into that stuff, by all means give me a follow!
 
-TODO
+TODO: move this part to later in the talk
+TODO: also add JC logo to the title slide
+
+---
+
+<!-- .slide: data-background="img/background/bar-with-drinks.jpg" data-background-color="black" data-background-opacity="1.0"-->
+
+<https://www.pexels.com/photo/stylish-interior-of-bar-in-restaurant-5490965/> <!-- .element: class="attribution" -->
+
+
+note:
+
+*Storytelling*
+Ordering a drink with my Java Community coworkers
