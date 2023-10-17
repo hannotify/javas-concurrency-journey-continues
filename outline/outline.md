@@ -143,6 +143,7 @@ TODO: toon de single-threaded-versie, omdat de syntactic structure van die code 
 
 - 'invoke all'
 - short-circuiting
+- cancellation?
 - TODO
 
 ### Sorting M&M's, Revisited
@@ -254,6 +255,12 @@ note:
 - a new thread cancellation mechanism
 
 > It is not a goal to replace the existing thread interruption mechanism with a new thread cancellation mechanism. We might propose to do so in the future.
+
+- solving thread pinning when virtual threads are executing a synchronized code block.
+
+> Virtual threads not releasing the underlying operating system thread when working on a synchronized method 
+> is a limitation in JDK 19. It could be addressed in a future release of Java.
+
 
 - what alternative features do languages like Go, C# and Kotlin offer, that might inspire Java language designers?
 - TODO: even more?

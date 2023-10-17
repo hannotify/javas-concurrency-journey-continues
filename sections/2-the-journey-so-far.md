@@ -173,7 +173,32 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ### Cons ❌
 
-* will wait for all tasks to finish (even if one of them would fail) <!-- .element: class="fragment fade-in-then-semi-out" -->
+* will wait for all tasks to terminate (even if one of them would fail or is cancelled) <!-- .element: class="fragment fade-in-then-semi-out" -->
+* allows unrestricted patterns of concurrency
+
+note:
+
+**task can directly return a value**
+
+because of the support for `Callable`.
+
+**unit-of-work and run mechanism are separated**
+
+making it easy to run the workload on a different thread configuration
+
+**will wait for all tasks to terminate**
+
+even when we know for sure the desired result won't be achieved
+
+**allows unrestricted patterns of concurrency**
+
+* it's very hard with ExecutorService to create relationships among tasks and subtasks
+* but that's a valid use case that occurs quite often!
+* But ExecutorService doesn't enforce any task structure
+* In theory, one thread could create an ExecutorService, a second thread could submit work to it.
+* And the threads which actually execute the work would have no relationship to either the first or second thread. 
+* On top of that: a completely different thread can await the results of execution.
+* To summarize: **ExecutorService allows unrestricted patterns of concurrency.**
 
 ---
 

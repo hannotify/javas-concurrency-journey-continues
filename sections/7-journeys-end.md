@@ -4,4 +4,6 @@
 
 <https://www.pexels.com/photo/sign-arrow-direction-travel-52526/> <!-- .element: class="attribution" -->
 
+**Time Elapsed:** `45:00`.
+
 ---
