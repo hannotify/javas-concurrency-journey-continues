@@ -13,6 +13,8 @@
 
 note:
 
+Upcoming Station: Structured Concurrency.
+
 *Storytelling*
 Ordering a drink with my Java Community coworkers
 

@@ -64,6 +64,10 @@ a {
     text-shadow: none;
 }
 
+.reveal code {
+    font-family: 'Jetbrains Mono', monospace;
+}
+
 .print-pdf .reveal section .attribution {
     bottom: -50px;
     position: absolute;

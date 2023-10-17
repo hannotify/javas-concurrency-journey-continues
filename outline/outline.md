@@ -4,10 +4,12 @@
 
 > A workshop that leads to a discussion about focus, focus span, disturbing factors, limit active work.
 
-- introduce the results of the three scenarios one-by-one (you have to split up the picture)
+- [ITP] ("If Time Permits") introduce the results of the three scenarios one-by-one (you have to split up the picture)
 - fortunately Java's concurrency features are more sophisticated!
 
 ## Sneak Preview
+
+- [ITP] Section postponed for now (couldn't fit it in nicely), but introduce it if time permits and you still see the value in it.
 
 This talk will be about: 
 
@@ -16,9 +18,11 @@ This talk will be about:
 * [ ] ordering a meal
 * [ ] brown M&M's
 
-## The Journey So Far
+# The Journey So Far
 
 > Style this part as station announcement signs
+
+- [ITP] Design a graphic that looks like a train itinerary and that I can use to indicate progress.
 
 ### Domain Introduction, Part 1
 
@@ -28,19 +32,19 @@ This talk will be about:
 ### Threads
 
 * example code: serving meals
-* pros: TODO
+* pros: 
 * cons: unit-of-work and mechanism to run it are one and the same.
 
 ### ExecutorService
 
 * example code: serving meals
-* pros: TODO
+* pros: 
 * cons: error propagation, communicating cancellation intent
 
 ### ThreadLocal
 
 * example code: pass a value that is bound to a thread (waiterId) and that doesn't pollute any method signatures
-* pros: TODO
+* pros: 
 * cons: unconstrained mutability, unbounded lifetime, expensive inheritance
 
 > Few applications tend to use ThreadLocal variables. In a nutshell, Java ThreadLocal variables are created and stored as variables within the scope of a particular thread alone, and they cannot be accessed by other threads. If your application creates millions of virtual threads, and each virtual thread has its own ThreadLocal variable, then it can quickly consume java heap memory space. Thus, you want to be cautious of the size of data that is stored as ThreadLocal variables.
@@ -51,34 +55,54 @@ This talk will be about:
 
 Bottom line: ThreadLocals are memory-intensive & always mutable
 
-### ForkJoinPool
-
-* purpose description
+- [ITP]: demo the behavior of the ThreadLocal that holds the `announcementId`.
 
 ### Honourable Mentions
 
+* ForkJoinPool
 * CompletableFuture
-* Synchronization
-* Semaphore
-* CountDownLatch
 * ReentrantLock
 * AtomicReference<T>
+* Semaphore
+* CountDownLatch
+
+[ITP] Convert the slides in this section to the title-slide-with-background-and-opaque-description style.
 
 ## Why Does This Interest Me?
 
-* Introduction of Hanno & Info Support
+* Introduction of Hanno & Info Support.
+* Include the following speaker notes:
+
+  So, my name is Hanno. 
+  From the Netherlands, and I work at Info Support as an IT consultant.
+  I'm a Java Champion and an Oracle ACE.
+  I am @hannotify on Twitter, Mastodon or Bluesky.
+  (It'll always be called Twitter to me)
+  (About the handle: get notified of everything Hanno does. I thought it was rather clever - my wife disagrees with me though, she thinks I'm an major geek!)
+  I post about things I like, as everyone does I suppose.
+  Java Development, Version Control, Sustainability and making music.
+  If you're into that stuff, by all means give me a follow on your favourite social network!
+
+* Reintroduce is-duke, award icons and social handle there
 * Training "Concurrency in Java"
 
 # Current Station: Virtual Threads
 
 - Code: ExecutorService with virtual threads
+- 
 - Pros: millions of threads can run, allows thread-per-request style instead of thread-sharing style, can significantly improve application throughput when the number of concurrent tasks is high (> a few thousand) and the workload is not CPU-bound
 - Cons: pinned threads with synchronization blocks, error propagation, communicating cancellation intent, thread-local variables perform badly with many (virtual) threads
 
 * LockSupport, Semaphores enable _parking_ virtual threads.
 * Now that virtual threads are available, what problems are getting worse?
-* 
+  
 > This is an important part of the talk, because these are the reasons why Java's support for concurrency is being extended.
+
+> Few applications tend to use ThreadLocal variables. In a nutshell, Java ThreadLocal variables are created and stored as variables within the scope of a particular thread alone, and they cannot be accessed by other threads. If your application creates millions of virtual threads, and each virtual thread has its own ThreadLocal variable, then it can quickly consume java heap memory space. Thus, you want to be cautious of the size of data that is stored as ThreadLocal variables.
+>
+> You might wonder why ThreadLocal variables are not problematic in platform threads. The difference is that in platform threads, we don’t create millions of threads, whereas, in virtual threads, we do. Millions of threads, each with its own copy of ThreadLocal variables, can quickly fill up memory. They say small drops of water make an ocean. It’s very true here.
+
+* Is this the final station?
 
 # Next Station: Structured Concurrency
 
@@ -200,6 +224,8 @@ note:
 - graphics contexts
 
 > In general, we advise migration to scoped values when the purpose of a thread-local variable aligns with the goal of a scoped value: one-way transmission of unchanging data.
+>
+> Thread-local variables retain their values until explicitly removed using the "remove" method or until the thread terminates. Developers often forget to remove them, causing data to persist longer than necessary. This can be a security risk, especially in thread pools where data may unintentionally transfer between tasks. For programs relying on mutable thread-local variables, finding a safe point to call "remove" can be challenging, potentially causing long-term memory leaks. It is preferable to limit data access to a specific execution period to prevent these issues.
 
 ## Demo ideas
 
