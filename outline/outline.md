@@ -126,6 +126,8 @@ Structured concurrency derives from the simple principle that
 
 ### Sorting M&M's
 
+[ITP] Overweeg deze werkvorm er een volgende keer in te stoppen, als de talk fysiek is. En beslis dan welk deel van het bar-restaurantdomein deze oefening moet vervangen.
+
 > Laat vier mensen parallel M&M's sorteren, maar stop er ook 1 Skittle in. Degene die de Skittle heeft, moet zich komen melden met de mededeling dat die subtaak niet voltooid kan worden. De andere drie maken de taak onafhankelijk van elkaar af.
 
 - M & M's (WARNING: ABSOLUTELY NO BROWN ONES)
@@ -147,6 +149,8 @@ TODO: toon de single-threaded-versie, omdat de syntactic structure van die code 
 - TODO
 
 ### Sorting M&M's, Revisited
+
+[ITP] Overweeg deze werkvorm er een volgende keer in te stoppen, als de talk fysiek is.
 
 > Laat opnieuw vier mensen parallel M&M's sorteren. Degene met de Skittle moet nu ook anderen informeren dat hun taak gestaakt moet worden.
 > Grappige twist: iemand zou de Skittle ongemerkt kunnen opeten en alsnog veinzen dat het goed is gegaan. Dat kan ook een leuke live demo zijn.
@@ -263,6 +267,8 @@ note:
 
 
 - what alternative features do languages like Go, C# and Kotlin offer, that might inspire Java language designers?
+  - in what ways are coroutines and virtual threads / structured concurrency different & similar?
+  - see: https://auroratide.com/posts/understanding-kotlin-coroutines
 - TODO: even more?
 
 # Wrap-Up And Q&A

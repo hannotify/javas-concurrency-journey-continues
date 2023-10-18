@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/man-with-yellow-and-black-backpack-standing-near-train-1170181/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `5:00`.
+**Time Elapsed:** `4:00`.
 
 * Let's take a quick look at what concurrency features Java currently offers.
 * Now, Java has been on a journey towards better concurrency features since the very beginning of the language.
@@ -15,9 +15,9 @@ note:
 
 ## Thread
 
-* models a thread of execution in a program <!-- .element: class="fragment fade-in-then-semi-out" -->
-* allows doing multiple things at the same time <!-- .element: class="fragment fade-in-then-semi-out" -->
-* since Java 1.0 <!-- .element: class="fragment fade-in-then-semi-out" -->
+* models a thread of execution in a program; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* allows doing multiple things at the same time; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* since Java 1.0. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
@@ -85,12 +85,12 @@ class WaiterAnnounceCourseThread extends Thread {
 
 ### Pros ✅
 
-* we can announce multiple courses at the same time <!-- .element: class="fragment fade-in-then-semi-out" -->
+* we can announce multiple courses at the same time. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ### Cons ❌
 
-* we can't return a value directly <!-- .element: class="fragment fade-in-then-semi-out" -->
-* unit-of-work and mechanism to run it are one and the same <!-- .element: class="fragment fade-in-then-semi-out" -->
+* we can't return a value directly; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* unit-of-work and mechanism to run it are one and the same. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -102,9 +102,9 @@ Of course, this situation has improved in Java 1.5 with the introduction of `Cal
 
 ## ExecutorService
 
-* executes tasks submitted to it <!-- .element: class="fragment fade-in-then-semi-out" -->
-* supports task queuing <!-- .element: class="fragment fade-in-then-semi-out" -->
-* since Java 1.5 <!-- .element: class="fragment fade-in-then-semi-out" -->
+* executes tasks submitted to it; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* supports task queuing; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* since Java 1.5. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
@@ -164,17 +164,137 @@ public class MultiWaiterRestaurant implements Restaurant {
 }
 </code></pre>
 
+note:
+
+**line 8**
+
+using 3 threads here (but we can easily change it, so we've now separated the unit-of-work and the run mechanism)
+
+**line 9-11**
+
+submitting three 'announceCourse' tasks here, that return Futures.
+
+**line 13**
+
+calling a blocking 'get' on the Futures will yield the 3 results and allow us to construct a `MultiCourseMeal`.
+
+Looks good enough, right?
+
+---
+
+<!-- .slide: data-background="img/background/summer-dinner.jpg" data-background-color="black" data-background-opacity="0.6"-->
+
+<https://www.pexels.com/photo/chairs-dining-room-food-furniture-460537/> <!-- .element: class="attribution" -->
+
+note: 
+
+**Storytelling**
+
+Sitting down for a three-course dinner, but some ingredients are out of stock.
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with ExecutorService
+
+<pre data-id="restaurant-executorservice"><code class="java stretch" data-trim data-line-numbers="1-16|10|9|13|10|13|9|1-16|9-11">
+public class MultiWaiterRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        try (var executor = Executors.newFixedThreadPool(3)) {
+            Future&lt;Course&gt; starter = executor.submit(() -> grover.announceCourse(CourseType.STARTER));
+            Future&lt;Course&gt; main = executor.submit(() -> zoe.announceCourse(CourseType.MAIN));
+            Future&lt;Course&gt; dessert = executor.submit(() -> rosita.announceCourse(CourseType.DESSERT));
+
+            return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+        }
+    }
+}
+</code></pre>
+
+note:
+
+This means that the `announceCourse` method can throw an `OutOfStockException`!
+Do we still think this piece of code is good enough?
+
+**line 10**
+* If `zoe.announceCourse(CourseType.MAIN)` takes a long time to execute...
+
+**line 9**
+* but `grover.announceCourse(CourseType.STARTER)` fails in the meantime... 
+* the entire `announceMenu(..)` method will unnecessarily wait for the main course announcement by...
+
+**line 13**
+* blocking on `main.get()`, instead of canceling it (which would be the sensible thing to do).
+
+<hr/>
+
+**line 10**
+* If an exception happens in `zoe.announceCourse(CourseType.MAIN)`...
+
+**line 13**
+* `main.get()` will throw it, but...
+
+**line 9**
+* `grover.announceCourse(CourseType.STARTER)` will continue to run even after `announceMenu()` has failed.
+
+<hr/>
+
+**all lines**
+* If the thread executing `announceMenu(...)` is interrupted, the interruption will not propagate to the subtasks: 
+
+**line 9-11**
+* all threads that run an `announceCourse(..)` invocation will leak, continuing to run even after `announceMenu()` has failed.
+
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with ExecutorService
+
+<pre data-id="restaurant-executorservice"><code class="java stretch" data-trim data-line-numbers>
+public class MultiWaiterRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        try (var executor = Executors.newFixedThreadPool(3)) {
+            Future&lt;Course&gt; starter = executor.submit(() -> grover.announceCourse(CourseType.STARTER));
+            Future&lt;Course&gt; main = executor.submit(() -> zoe.announceCourse(CourseType.MAIN));
+            Future&lt;Course&gt; dessert = executor.submit(() -> rosita.announceCourse(CourseType.DESSERT));
+
+            return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+        }
+    }
+}
+</code></pre>
+
+note:
+
+* Ultimately the problem here is that our program is logically structured with task-subtask relationships, 
+* (we need three completely assembled courses to return a multi-course meal)
+* but these relationships exist only in the mind of the developer. 
+* We just have to accept the fact that Java's ExecutorService is based on *unstructured concurrency*.
+
 ---
 
 ### Pros ✅
 
-* task can directly return a value <!-- .element: class="fragment fade-in-then-semi-out" -->
-* unit-of-work and run mechanism are separated <!-- .element: class="fragment fade-in-then-semi-out" -->
+* task can directly return a value; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* unit-of-work and run mechanism are separated. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ### Cons ❌
 
-* will wait for all tasks to terminate (even if one of them would fail or is cancelled) <!-- .element: class="fragment fade-in-then-semi-out" -->
-* allows unrestricted patterns of concurrency
+* will wait for all tasks to terminate (even if one of them would fail or is cancelled); <!-- .element: class="fragment fade-in-then-semi-out" -->
+* based on *unstructured concurrency*, allowing unrestricted patterns of concurrency. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -190,7 +310,7 @@ making it easy to run the workload on a different thread configuration
 
 even when we know for sure the desired result won't be achieved
 
-**allows unrestricted patterns of concurrency**
+**based on unstructured concurrency, allowing unrestricted patterns of concurrency**
 
 * it's very hard with ExecutorService to create relationships among tasks and subtasks
 * but that's a valid use case that occurs quite often!
@@ -204,10 +324,10 @@ even when we know for sure the desired result won't be achieved
 
 ## ThreadLocal
 
-* a variable that is unique to its thread <!-- .element: class="fragment fade-in-then-semi-out" -->
-* each thread has its own, independently initialized copy of the variable <!-- .element: class="fragment fade-in-then-semi-out" -->
-* can be used as the equivalent of a global variable in the threaded world <!-- .element: class="fragment fade-in-then-semi-out" -->
-* since Java 1.2 <!-- .element: class="fragment fade-in-then-semi-out" -->
+* a variable that is unique to its thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* each thread has its own, independently initialized copy of the variable; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* can be used as the equivalent of a global variable in the threaded world; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* since Java 1.2. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -237,6 +357,7 @@ public class AnnouncementId {
 </code></pre>
 
 note:
+[ITP] Replace this by a live demo.
 
 This class generates a unique `announcementId` local to each thread. 
 An announcementId is assigned the first time it invokes ThreadId.get() and remains unchanged on subsequent calls by the same thread.
@@ -277,14 +398,14 @@ public static Course pickCourse(String waiterName, CourseType courseType) {
 
 ### Pros ✅
 
-* avoids cluttering method signatures <!-- .element: class="fragment fade-in-then-semi-out" -->
-* elegant way to bind data that is unique to the current thread <!-- .element: class="fragment fade-in-then-semi-out" -->
+* avoids cluttering method signatures; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* elegant way to bind data that is unique to the current thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ### Cons ❌
 
-* always mutable <!-- .element: class="fragment fade-in-then-semi-out" -->
-* unbounded lifetime <!-- .element: class="fragment fade-in-then-semi-out" -->
-* memory-intensive, especially with many threads, or when inherited <!-- .element: class="fragment fade-in-then-semi-out" -->
+* always mutable; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* unbounded lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* memory-intensive, especially with many threads, or when inherited. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -392,6 +513,7 @@ An elegant way to wait until all threads have completed their work, without the 
 <br/>
 
 note:
+[ITP] Foto van Hanno als achtergrond met opacity and the whole shebang.
 
 But why does this stuff interest me?
 

@@ -1,11 +1,11 @@
-<!-- .slide: data-background="img/background/current-station.jpg" data-background-color="black" data-background-opacity="0.7"-->
+<!-- .slide: data-background="img/background/current-station.jpg" data-background-color="black" data-background-opacity="0.5"-->
 
 # Virtual Threads <!-- .element: class="stroke" -->
 
 <https://www.pexels.com/photo/photo-of-train-station-1824169/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `15:00`.
+**Time Elapsed:** `12:00`.
 
 * The features I covered so far have been a part of Java for a while now.
 * They were part of 'our journey so far'.
@@ -47,10 +47,10 @@ note:
 
 ## Virtual Thread
 
-* lightweight thread implementation <!-- .element: class="fragment fade-in-then-semi-out" -->
-* no explicit mapping to an OS thread <!-- .element: class="fragment fade-in-then-semi-out" -->
-* intended to run only a single task over their lifetime <!-- .element: class="fragment fade-in-then-semi-out" -->
-* scheduled by the JVM to run on a *carrier thread* <!-- .element: class="fragment fade-in-then-semi-out" -->
+* lightweight thread implementation; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* no explicit mapping to an OS thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* intended to run only a single task over their lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* scheduled by the JVM to run on a *carrier thread*. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
@@ -105,7 +105,7 @@ This means that virtual threads can offer *higher throughput*.
 <pre data-id="restaurant-virtual-threads"><code class="java stretch" data-trim data-line-numbers>
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
-    public MultiCourseMeal announceMenu() {
+    public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
         Waiter grover = new Waiter("Grover");
         Waiter zoe = new Waiter("Zoe");
         Waiter rosita = new Waiter("Rosita");
@@ -130,7 +130,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 <pre data-id="restaurant-virtual-threads"><code class="java stretch" data-trim data-line-numbers="1-16|8">
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
-    public MultiCourseMeal announceMenu() {
+    public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
         Waiter grover = new Waiter("Grover");
         Waiter zoe = new Waiter("Zoe");
         Waiter rosita = new Waiter("Rosita");
@@ -151,16 +151,16 @@ public class MultiWaiterRestaurant implements Restaurant {
 ### Pros ✅
 
 <ul>
-    <li class="fragment fade-in-then-semi-out" data-fragment-index="1">millions of threads can run</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="1">millions of threads can run;</li>
     <small class="fragment fade-in-then-semi-out" data-fragment-index="1">(allowing the <em>thread-per-request</em> style instead of the <em>thread-sharing</em> style)</small>
-    <li class="fragment fade-in-then-semi-out">creating them and disposing of them is cheap and fast</li>
-    <li class="fragment fade-in-then-semi-out">better throughput with high number of concurrent I/O-heavy tasks</li>
+    <li class="fragment fade-in-then-semi-out">creating them and disposing of them is cheap and fast;</li>
+    <li class="fragment fade-in-then-semi-out">better throughput with high number of concurrent I/O-heavy tasks.</li>
 </ul>
 
 ### Cons ❌
 
-* pinned threads <!-- .element: class="fragment fade-in-then-semi-out" -->
-* thread-local variables don't perform well with many threads <!-- .element: class="fragment fade-in" -->
+* pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* thread-local variables don't perform well with many threads. <!-- .element: class="fragment fade-in" -->
 
 <small class="fragment fade-in-then-semi-out">system property <code>jdk.traceVirtualThreadLocals</code> can help</small>
 
@@ -188,7 +188,7 @@ We saw this in the sequence diagram, and it results in better throughput when ta
 
 There are two scenarios in which a virtual thread cannot be unmounted during blocking operations because it is pinned to its carrier:
 
-* When it executes code inside a `synchronized` block or method, or
+* When it executes code inside a `synchronized` block or method, or;
 * When it executes a native method or a foreign function.
 
 ...harming scalability in the process.
@@ -209,8 +209,8 @@ This is because the `LockSupport` class now supports *parking* and *unparking* v
 ### What Drawbacks Are Amplified 
 ### Now That Virtual Threads Are Available?
 
-* ExecutorService allows unrestricted patterns of concurrency <!-- .element: class="fragment fade-in-then-semi-out" -->
-* memory-intensity of thread-locals <!-- .element: class="fragment fade-in-then-semi-out" -->
+* `ExecutorService` allows unrestricted patterns of concurrency; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* memory-intensity of thread-locals. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note: 
 
