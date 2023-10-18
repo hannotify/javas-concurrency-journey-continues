@@ -215,8 +215,7 @@ note:
 
 > JEP 446
 
-- Scoped values (JEP 446), TODO intro, live demo
-- how do these features compare to their counterparts in Go, C# and Kotlin?
+- Scoped values (JEP 446)
 - rebinding scoped values
 - inheriting scoped values
 - preferable over ThreadLocals

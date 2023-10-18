@@ -297,7 +297,7 @@ Use cases for a custom shutdown policy:
 
 <!-- .slide: data-background="https://media3.giphy.com/media/35DmSDIGveFaNoBffM/giphy.gif?cid=ecf05e47rnpqbg3pe1bk2pidk7twfqqawsexv72qsvcp8g50&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.6"-->
 
-## ...Wait A Minute! <!-- .element: class="stroke" -->
+## ...wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
 At least <code>ExecutorService</code> allowed me to pass a thread configuration. Does Structured Concurrency support that at all?
@@ -316,7 +316,7 @@ In a way, yes.
 
 <!-- .slide: data-background="https://media3.giphy.com/media/Wgb2FpSXxhXLVYNnUr/giphy.gif?cid=ecf05e47cvfnmtykpjag4gqjo08clspaduvrztyb3huaanrm&ep=v1_gifs_search&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.6"-->
 
-## ...But Wait A Minute! <!-- .element: class="stroke" -->
+## ...but wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
 Why do we need all these new 'scope' classes? Why didn't they just enhance the <code>ExecutorService</code> to support Structured Concurrency?
@@ -335,7 +335,7 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 
 <!-- .slide: data-background="https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif?cid=ecf05e47sk6l7mtj7g0a6ezkktriqotxwju48ep1ydb2vkdw&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.6"-->
 
-## ...Now Wait A Minute! <!-- .element: class="stroke" -->
+## ...now wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
 <code>ExecutorService</code> already supports <code>invokeAll(..)</code> and <code>invokeAny(..)</code>. Why would I still need Structured Concurrency then? 
@@ -356,9 +356,9 @@ TODO
 
 ---
 
-<!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif?cid=ecf05e47nzety4zj5qzhoe66og8xnltlk13aymuubq6jyhj6&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.6"-->
+<!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif?cid=ecf05e47nzety4zj5qzhoe66og8xnltlk13aymuubq6jyhj6&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.5" data-background-size="75%"-->
 
-## ...No Really, Wait A Minute! <!-- .element: class="stroke" -->
+## ...no really, wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
 Doesn't <code>ForkJoinPool</code> also impose structure on concurrent tasks? Why would I still need Structured Concurrency then?

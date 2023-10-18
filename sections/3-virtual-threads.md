@@ -87,14 +87,22 @@ Like taxis.
 
 ---
 
-TODO: create two sequence diagrams with PUML - similar to the ones in:
-https://medium.com/@viraj_63415/java-virtual-threads-and-enterprise-scalability-603fce70930d
+<!-- .slide: data-background="out/puml/platform-threads/platform-threads.puml.svg" data-background-color="black" data-background-opacity="1.0" data-background-size="48%" -->
 
 note:
 
 When a platform thread performs I/O (like doing a database call or network request), it is blocked until the response comes in.
+It is unnecessarily taking up resources during blocking.
+
+---
+
+<!-- .slide: data-background="out/puml/virtual-threads/virtual-threads.puml.svg" data-background-color="black" data-background-opacity="1.0" data-background-size="70%" -->
+
+note:
+
 Virtual threads offer a huge improvement over platform threads by returning thet carrier thread to the pool when blocking.
-This means that virtual threads can offer *higher throughput*.
+This is the reason why the performance gain when using virtual threads will be especially large when your tasks do much I/O work.
+In these situations, virtual threads can offer significantly *higher throughput*.
 
 ---
 

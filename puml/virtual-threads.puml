@@ -1,0 +1,48 @@
+@startuml virtual-threads.puml
+
+!include https://raw.githubusercontent.com/patrik-csak/one-dark-plantuml-theme/v1.0.1/theme.puml
+
+skinparam backgroundColor transparent
+skinparam NoteBackgroundColor #DarkRed
+skinparam NoteFontColor #LightGrey
+
+participant "Virtual Thread" as VirtualThread
+
+[-> VirtualThread : start virtual thread
+activate VirtualThread #Green
+
+participant "Carrier Thread 1" as PlatformThread1
+activate PlatformThread1 #Green
+VirtualThread ->] : fetch database data
+deactivate VirtualThread
+destroy PlatformThread1
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : database data
+
+participant "Carrier Thread 2" as PlatformThread2
+activate PlatformThread2 #Green
+activate VirtualThread #Green
+VirtualThread ->] : fetch data from service
+deactivate VirtualThread
+destroy PlatformThread2
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : service data
+
+activate PlatformThread1 #Green
+activate VirtualThread #Green
+VirtualThread ->] : send data to service
+deactivate VirtualThread
+destroy PlatformThread1
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : 200 OK
+
+activate PlatformThread2 #Green
+activate VirtualThread #Green
+[<- VirtualThread : virtual thread terminated
+destroy VirtualThread
+destroy PlatformThread2
+
+@enduml

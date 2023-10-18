@@ -86,11 +86,24 @@ TODO
 
 ---
 
+## Useful for:
+
+- hidden method arguments
+- re-entrant code
+- nested transactions
+- graphics contexts
+
+> In general, we advise migration to scoped values when the purpose of a thread-local variable aligns with the goal of a scoped value: one-way transmission of unchanging data.
+>
+> Thread-local variables retain their values until explicitly removed using the "remove" method or until the thread terminates. Developers often forget to remove them, causing data to persist longer than necessary. This can be a security risk, especially in thread pools where data may unintentionally transfer between tasks. For programs relying on mutable thread-local variables, finding a safe point to call "remove" can be challenging, potentially causing long-term memory leaks. It is preferable to limit data access to a specific execution period to prevent these issues.
+
+---
+
 <!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
 
 ## Demo, Part 3
 
-- Let's migrate `AnnouncementId` from a Thread Local to a Scoped Value
+- Let's migrate `AnnouncementId` from a thread-local to a scoped value
 
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
@@ -99,13 +112,14 @@ note:
 
 Let's see scoped values in action!
 
-- Let's migrate `AnnouncementId` from a Thread Local to a Scoped Value
+- Let's migrate `AnnouncementId` from a thread-local to a scoped value
 - TODO: explain some stuff
 
 ---
 
 ## Wait A Minute!
 
+- How To Use In Conjunction With Structured Concurrency?
 TODO (1-x times)
 
 ---

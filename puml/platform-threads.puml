@@ -1,0 +1,31 @@
+@startuml platform-threads.puml
+
+!include https://raw.githubusercontent.com/patrik-csak/one-dark-plantuml-theme/v1.0.1/theme.puml
+
+skinparam backgroundColor transparent
+skinparam NoteBackgroundColor #DarkRed
+skinparam NoteFontColor #LightGrey
+
+participant "Platform Thread" as PlatformThread
+
+[-> PlatformThread : thread pulled from pool
+activate PlatformThread #Green
+PlatformThread ->] : fetch database data
+deactivate PlatformThread
+hnote over PlatformThread : blocks
+PlatformThread <-] : database data
+activate PlatformThread #Green
+PlatformThread ->] : fetch data from service
+deactivate PlatformThread #Blue
+hnote over PlatformThread : blocks
+PlatformThread <-] : service data
+activate PlatformThread #Green
+PlatformThread ->] : send data to service
+deactivate PlatformThread
+hnote over PlatformThread : blocks
+PlatformThread <-] : 200 OK
+activate PlatformThread #Green
+[<- PlatformThread : thread released from pool
+destroy PlatformThread
+
+@enduml

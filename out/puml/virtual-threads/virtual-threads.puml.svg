@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="426px" preserveAspectRatio="none" style="width:523px;height:426px;background:#00000000;" version="1.1" viewBox="0 0 523 426" width="523px" zoomAndPan="magnify"><defs/><g><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="67.7988"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="159.7305"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="251.6621"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="343.5938"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="305" y="67.7988"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="305" y="251.6621"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="443" y="159.7305"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="443" y="343.5938"/><line style="stroke:#61AFEF;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="180" x2="180" y1="36.4883" y2="390.9043"/><line style="stroke:#61AFEF;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="310" x2="310" y1="36.4883" y2="390.9043"/><line style="stroke:#61AFEF;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="448" x2="448" y1="36.4883" y2="390.9043"/><rect fill="#424856" height="30.4883" rx="2.5" ry="2.5" style="stroke:#61AFEF;stroke-width:0.5;" width="112" x="124" y="5"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="14" lengthAdjust="spacing" textLength="98" x="131" y="25.5352">Virtual Thread</text><rect fill="#424856" height="30.4883" rx="2.5" ry="2.5" style="stroke:#61AFEF;stroke-width:0.5;" width="112" x="124" y="389.9043"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="14" lengthAdjust="spacing" textLength="98" x="131" y="410.4395">Virtual Thread</text><rect fill="#424856" height="30.4883" rx="2.5" ry="2.5" style="stroke:#61AFEF;stroke-width:0.5;" width="128" x="246" y="5"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="14" lengthAdjust="spacing" textLength="114" x="253" y="25.5352">Carrier Thread 1</text><rect fill="#424856" height="30.4883" rx="2.5" ry="2.5" style="stroke:#61AFEF;stroke-width:0.5;" width="128" x="246" y="389.9043"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="14" lengthAdjust="spacing" textLength="114" x="253" y="410.4395">Carrier Thread 1</text><rect fill="#424856" height="30.4883" rx="2.5" ry="2.5" style="stroke:#61AFEF;stroke-width:0.5;" width="128" x="384" y="5"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="14" lengthAdjust="spacing" textLength="114" x="391" y="25.5352">Carrier Thread 2</text><rect fill="#424856" height="30.4883" rx="2.5" ry="2.5" style="stroke:#61AFEF;stroke-width:0.5;" width="128" x="384" y="389.9043"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="14" lengthAdjust="spacing" textLength="114" x="391" y="410.4395">Carrier Thread 2</text><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="67.7988"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="159.7305"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="251.6621"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="175" y="343.5938"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="305" y="67.7988"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="305" y="251.6621"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="443" y="159.7305"/><rect fill="#008000" height="29.3105" style="stroke:#61AFEF;stroke-width:1.0;" width="10" x="443" y="343.5938"/><polygon fill="#61AFEF" points="163,63.7988,173,67.7988,163,71.7988,167,67.7988" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="0" x2="169" y1="67.7988" y2="67.7988"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="117" x="7" y="63.0566">start virtual thread</text><polygon fill="#61AFEF" points="505,93.1094,515,97.1094,505,101.1094,509,97.1094" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="180" x2="511" y1="97.1094" y2="97.1094"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="123" x="187" y="92.3672">fetch database data</text><line style="stroke:#61AFEF;stroke-width:2.0;" x1="301" x2="319" y1="88.1094" y2="106.1094"/><line style="stroke:#61AFEF;stroke-width:2.0;" x1="301" x2="319" y1="106.1094" y2="88.1094"/><polygon fill="#8B0000" points="157,110.1094,203,110.1094,213,121.1094,203,133.1094,157,133.1094,147,121.1094,157,110.1094" style="stroke:#181818;stroke-width:0.5;"/><text fill="#D3D3D3" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="42" x="159" y="126.6777">blocks</text><polygon fill="#61AFEF" points="196,155.7305,186,159.7305,196,163.7305,192,159.7305" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="190" x2="516" y1="159.7305" y2="159.7305"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="87" x="202" y="154.9883">database data</text><polygon fill="#61AFEF" points="505,185.041,515,189.041,505,193.041,509,189.041" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="180" x2="511" y1="189.041" y2="189.041"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="145" x="187" y="184.2988">fetch data from service</text><line style="stroke:#61AFEF;stroke-width:2.0;" x1="439" x2="457" y1="180.041" y2="198.041"/><line style="stroke:#61AFEF;stroke-width:2.0;" x1="439" x2="457" y1="198.041" y2="180.041"/><polygon fill="#8B0000" points="157,202.041,203,202.041,213,213.041,203,225.041,157,225.041,147,213.041,157,202.041" style="stroke:#181818;stroke-width:0.5;"/><text fill="#D3D3D3" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="42" x="159" y="218.6094">blocks</text><polygon fill="#61AFEF" points="196,247.6621,186,251.6621,196,255.6621,192,251.6621" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="190" x2="516" y1="251.6621" y2="251.6621"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="75" x="202" y="246.9199">service data</text><polygon fill="#61AFEF" points="505,276.9727,515,280.9727,505,284.9727,509,280.9727" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="180" x2="511" y1="280.9727" y2="280.9727"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="126" x="187" y="276.2305">send data to service</text><line style="stroke:#61AFEF;stroke-width:2.0;" x1="301" x2="319" y1="271.9727" y2="289.9727"/><line style="stroke:#61AFEF;stroke-width:2.0;" x1="301" x2="319" y1="289.9727" y2="271.9727"/><polygon fill="#8B0000" points="157,293.9727,203,293.9727,213,304.9727,203,316.9727,157,316.9727,147,304.9727,157,293.9727" style="stroke:#181818;stroke-width:0.5;"/><text fill="#D3D3D3" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="42" x="159" y="310.541">blocks</text><polygon fill="#61AFEF" points="196,339.5938,186,343.5938,196,347.5938,192,343.5938" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="190" x2="516" y1="343.5938" y2="343.5938"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="46" x="202" y="338.8516">200 OK</text><polygon fill="#61AFEF" points="11,368.9043,1,372.9043,11,376.9043,7,372.9043" style="stroke:#61AFEF;stroke-width:1.0;"/><line style="stroke:#61AFEF;stroke-width:1.0;" x1="5" x2="179" y1="372.9043" y2="372.9043"/><text fill="#ABB2BF" font-family="-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" font-size="13" lengthAdjust="spacing" textLength="156" x="17" y="368.1621">virtual thread terminated</text><line style="stroke:#61AFEF;stroke-width:2.0;" x1="171" x2="189" y1="363.9043" y2="381.9043"/><line style="stroke:#61AFEF;stroke-width:2.0;" x1="171" x2="189" y1="381.9043" y2="363.9043"/><line style="stroke:#61AFEF;stroke-width:2.0;" x1="439" x2="457" y1="363.9043" y2="381.9043"/><line style="stroke:#61AFEF;stroke-width:2.0;" x1="439" x2="457" y1="381.9043" y2="363.9043"/><!--MD5=[f3c65494a19cf72718223423c0c5da4a]
+@startuml virtual-threads.puml
+
+!include https://raw.githubusercontent.com/patrik-csak/one-dark-plantuml-theme/v1.0.1/theme.puml
+
+skinparam backgroundColor transparent
+skinparam NoteBackgroundColor #DarkRed
+skinparam NoteFontColor #LightGrey
+
+participant "Virtual Thread" as VirtualThread
+
+[-> VirtualThread : start virtual thread
+activate VirtualThread #Green
+
+participant "Carrier Thread 1" as PlatformThread1
+activate PlatformThread1 #Green
+VirtualThread ->] : fetch database data
+deactivate VirtualThread
+destroy PlatformThread1
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : database data
+
+participant "Carrier Thread 2" as PlatformThread2
+activate PlatformThread2 #Green
+activate VirtualThread #Green
+VirtualThread ->] : fetch data from service
+deactivate VirtualThread
+destroy PlatformThread2
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : service data
+
+activate PlatformThread1 #Green
+activate VirtualThread #Green
+VirtualThread ->] : send data to service
+deactivate VirtualThread
+destroy PlatformThread1
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : 200 OK
+
+activate PlatformThread2 #Green
+activate VirtualThread #Green
+[<- VirtualThread : virtual thread terminated
+destroy VirtualThread
+destroy PlatformThread2
+
+@enduml
+
+@startuml virtual-threads.puml
+
+
+
+
+
+
+
+skinparam backgroundColor #282c34
+
+skinparam {
+  ActivityBackgroundColor        #424856
+  ActivityBarColor               #abb2bf
+  ActivityBorderColor            #61afef
+  ActivityDiamondBackgroundColor #424856
+  ActivityDiamondBorderColor     #61afef
+  ActivityEndColor               #e06c75
+  ActivityStartColor             #98c379
+  ActivityStopColor              #e06c75
+
+  ActorBackgroundColor        #424856
+  ActorBorderColor            #61afef
+  ActorStereotypeFontColor    #abb2bf
+
+  AgentBackgroundColor       #424856
+  AgentBorderColor           #61afef
+
+  
+  ArrowColor #61afef
+
+  ArtifactBackgroundColor     #424856
+  ArtifactBorderColor         #61afef
+
+  BackgroundColor #282c34
+  
+
+  BoundaryBackgroundColor     #424856
+  BoundaryBorderColor         #61afef
+  BoundaryStereotypeFontColor #abb2bf
+
+  
+  CaptionFontColor #abb2bf
+
+  CardBackgroundColor     #424856
+  CardBorderColor         #61afef
+  
+
+
+  ClassBackgroundColor   #424856
+  ClassBorderColor       #abb2bf
+  
+
+
+  CloudBackgroundColor        #424856
+  CloudBorderColor            #61afef
+  
+  CollectionsBackgroundColor #424856
+  CollectionsBorderColor     #61afef
+
+  
+  ComponentBackgroundColor       #424856
+  ComponentBorderColor           #61afef
+
+
+
+  ControlBackgroundColor #424856
+  ControlBorderColor     #61afef
+  ControlFontColor       #abb2bf
+  ControlStereotypeFontColor #abb2bf
+
+  DatabaseBackgroundColor       #424856
+  DatabaseBorderColor           #61afef
+
+  DefaultFontColor #abb2bf
+  DefaultFontName -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+
+
+  
+
+
+  
+
+
+  EntityBackgroundColor #424856
+  EntityBorderColor     #61afef
+  
+
+  FileBackgroundColor #424856
+  FileBorderColor     #61afef
+
+
+ 
+  FolderBackgroundColor #424856
+  FolderBorderColor     #61afef
+  
+
+  FrameBackgroundColor       #424856
+  FrameBorderColor           #61afef
+
+  HexagonBackgroundColor #424856
+  HexagonBorderColor     #61afef
+
+
+  InterfaceBackgroundColor       #424856
+  InterfaceBorderColor           #61afef
+
+  LegendBackgroundColor   #424856
+  LegendBorderColor       #abb2bf
+
+  
+  NodeBackgroundColor       #424856
+  NodeBorderColor           #61afef
+  
+
+  NoteBackgroundColor   #e5c07b
+  NoteBorderColor       #282c34
+  NoteFontColor         #282c34
+  
+  ObjectBackgroundColor       #424856
+  ObjectBorderColor           #61afef
+  
+  PackageBackgroundColor       #282c34
+  PackageBorderColor           #61afef
+
+  
+  ParticipantBackgroundColor #424856
+  ParticipantBorderColor     #61afef
+  
+  PartitionBackgroundColor transparent
+  PartitionBorderColor     #abb2bf
+  
+
+  PersonBackgroundColor #424856
+  PersonBorderColor     #61afef
+  
+  QueueBackgroundColor       #424856
+  QueueBorderColor           #61afef
+  
+  
+  RectangleBackgroundColor       #424856
+  RectangleBorderColor           #61afef
+
+
+
+  
+  SequenceBoxBackgroundColor #424856
+  SequenceBoxBorderColor     #61afef
+
+
+  SequenceDividerBackgroundColor   #424856
+  SequenceDividerBorderColor       #abb2bf
+  
+  SequenceGroupBackgroundColor       #424856
+  SequenceGroupBorderColor           #abb2bf
+
+  SequenceLifeLineBackgroundColor   #282c34
+  SequenceLifeLineBorderColor       #61afef
+
+  SequenceNewpageSeparatorColor  #abb2bf
+  
+  
+  SequenceReferenceBackgroundColor        transparent
+  SequenceReferenceBorderColor            #abb2bf
+  SequenceReferenceHeaderBackgroundColor #424856
+
+  
+  Shadowing false
+
+  StackBackgroundColor       #424856
+  StackBorderColor           #61afef
+
+  
+  StateBackgroundColor    #424856
+  StateBorderColor        #61afef
+  StateEndColor           #e06c75
+  StateStartColor         #98c379
+
+  
+  StorageBackgroundColor #424856
+  StorageBorderColor     #abb2bf
+  
+  
+  SwimlaneBorderColor            #abb2bf
+
+
+
+
+  UsecaseBackgroundColor       #424856
+  UsecaseBorderColor           #61afef
+  
+}
+
+
+skinparam backgroundColor transparent
+skinparam NoteBackgroundColor #DarkRed
+skinparam NoteFontColor #LightGrey
+
+participant "Virtual Thread" as VirtualThread
+
+[-> VirtualThread : start virtual thread
+activate VirtualThread #Green
+
+participant "Carrier Thread 1" as PlatformThread1
+activate PlatformThread1 #Green
+VirtualThread ->] : fetch database data
+deactivate VirtualThread
+destroy PlatformThread1
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : database data
+
+participant "Carrier Thread 2" as PlatformThread2
+activate PlatformThread2 #Green
+activate VirtualThread #Green
+VirtualThread ->] : fetch data from service
+deactivate VirtualThread
+destroy PlatformThread2
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : service data
+
+activate PlatformThread1 #Green
+activate VirtualThread #Green
+VirtualThread ->] : send data to service
+deactivate VirtualThread
+destroy PlatformThread1
+
+hnote over VirtualThread : blocks
+VirtualThread <-] : 200 OK
+
+activate PlatformThread2 #Green
+activate VirtualThread #Green
+[<- VirtualThread : virtual thread terminated
+destroy VirtualThread
+destroy PlatformThread2
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: NL
+--></g></svg>
