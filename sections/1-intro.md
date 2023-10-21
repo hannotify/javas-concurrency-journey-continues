@@ -22,13 +22,13 @@ note:
 
 * Watch your pronounciation (British English is your _superpower_, so act like it)
 * Set the appropriate browser zoom level (80% will fit all code onto the MacBook screen).
-* TODO: more preparations
+* Slides and IDE on projector screen
+* Speaker notes on second screen
+* Code in IntelliJ checked out to the right Git tag (`TODO`)
 
 *Intro*
 
-* Hello, my name is Hanno.
-* Welcome to this talk!
-* Great to see so many of you here.
+* Hello, my name is Hanno, welcome to this talk!
 * Today I want to talk about concurrency.
 * A topic that has always interested me, but that has also *scared* me from time to time.
 * Because of:

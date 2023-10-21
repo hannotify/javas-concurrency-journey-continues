@@ -50,7 +50,7 @@ note:
 * lightweight thread implementation; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * no explicit mapping to an OS thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * intended to run only a single task over their lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* scheduled by the JVM to run on a *carrier thread*. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<li class="fragment fade-in-then-semi-out">scheduled by the JVM to run on a <em>carrier thread</em>.
 
 ---
 
@@ -87,7 +87,7 @@ Like taxis.
 
 ---
 
-<!-- .slide: data-background="out/puml/platform-threads/platform-threads.puml.svg" data-background-color="black" data-background-opacity="1.0" data-background-size="48%" -->
+<!-- .slide: data-background="out/puml/platform-threads/platform-threads.puml.svg" data-background-color="#222" data-background-opacity="1.0" data-background-size="48%" -->
 
 note:
 
@@ -96,7 +96,7 @@ It is unnecessarily taking up resources during blocking.
 
 ---
 
-<!-- .slide: data-background="out/puml/virtual-threads/virtual-threads.puml.svg" data-background-color="black" data-background-opacity="1.0" data-background-size="70%" -->
+<!-- .slide: data-background="out/puml/virtual-threads/virtual-threads.puml.svg" data-background-color="#222" data-background-opacity="1.0" data-background-size="70%" -->
 
 note:
 
@@ -135,7 +135,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ### Modeling a Restaurant with Virtual Threads
 
-<pre data-id="restaurant-virtual-threads"><code class="java stretch" data-trim data-line-numbers="1-16|8">
+<pre data-id="restaurant-virtual-threads"><code class="java stretch" data-trim data-line-numbers="8">
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
@@ -164,13 +164,15 @@ public class MultiWaiterRestaurant implements Restaurant {
     <li class="fragment fade-in-then-semi-out">creating them and disposing of them is cheap and fast;</li>
     <li class="fragment fade-in-then-semi-out">better throughput with high number of concurrent I/O-heavy tasks.</li>
 </ul>
+<br/>
+<br/>
+<br/>
 
 ### Cons ❌
 
 * pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * thread-local variables don't perform well with many threads. <!-- .element: class="fragment fade-in" -->
-
-<small class="fragment fade-in-then-semi-out">system property <code>jdk.traceVirtualThreadLocals</code> can help</small>
+<small class="fragment fade-in-then-semi-out">(the system property <code>jdk.traceVirtualThreadLocals</code> can help)</small>
 
 note: 
 
@@ -217,8 +219,8 @@ This is because the `LockSupport` class now supports *parking* and *unparking* v
 ### What Drawbacks Are Amplified 
 ### Now That Virtual Threads Are Available?
 
-* `ExecutorService` allows unrestricted patterns of concurrency; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* memory-intensity of thread-locals. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<li class="fragment fade-in-then-semi-out"><code>ExecutorService</code> allows unrestricted patterns of concurrency;
+<li class="fragment fade-in-then-semi-out">memory-intensity of thread-locals.
 
 note: 
 
@@ -237,7 +239,9 @@ These drawbacks all have to do with the increase in thread count that virtual th
 
 **memory-intensity of thread-locals**
 
-* thread-local variables perform badly with many threads
+* virtual threads are plentiful and cheap enough to create for any concurrent unit-of-work.
+* so there might be millions of them
+* then, if each of those virtual threads has its own copy of thread-local variables, the memory footprint may be significant.
 
 ---
 
@@ -245,6 +249,6 @@ These drawbacks all have to do with the increase in thread count that virtual th
 
 ## Is This The Final Station? <!-- .element: class="stroke" -->
 
-<blockquote class="explanation"><strong>No.</strong>These drawbacks are exactly the reason why Java's concurrency journey is continuing.</blockquote>
+<blockquote class="explanation"><strong>No.</strong> These drawbacks are exactly the reason why Java's concurrency journey is continuing.</blockquote>
 
 <https://www.pexels.com/photo/wood-man-hands-love-3838318/> <!-- .element: class="attribution" -->

@@ -86,6 +86,9 @@ class WaiterAnnounceCourseThread extends Thread {
 ### Pros ✅
 
 * we can announce multiple courses at the same time. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<br/>
+<br/>
+<br/>
 
 ### Cons ❌
 
@@ -290,11 +293,16 @@ note:
 
 * task can directly return a value; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * unit-of-work and run mechanism are separated. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<br/>
+<br/>
+<br/>
 
 ### Cons ❌
 
-* will wait for all tasks to terminate (even if one of them would fail or is cancelled); <!-- .element: class="fragment fade-in-then-semi-out" -->
-* based on *unstructured concurrency*, allowing unrestricted patterns of concurrency. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<ul>
+    <li class="fragment fade-in-then-semi-out">will wait for all tasks to terminate (even if one of them would fail or is cancelled);</li>
+    <li class="fragment fade-in-then-semi-out">based on <em>unstructured concurrency</em>, allowing unrestricted patterns of concurrency.</li>
+</ul>
 
 note:
 
@@ -399,7 +407,10 @@ public static Course pickCourse(String waiterName, CourseType courseType) {
 ### Pros ✅
 
 * avoids cluttering method signatures; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* elegant way to bind data that is unique to the current thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* elegant way to bind data that is unique to the current thread. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<br/>
+<br/>
+<br/>
 
 ### Cons ❌
 
@@ -428,7 +439,7 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 * But if threads live longer, ThreadLocals also live longer in memory.
 * Developers might forget to call `remove()`, causing data to persist longer than necessary.
 * This can be a security risk, especially in thread pools where data may unintentionally transfer between tasks. 
-* For programs relying on mutable thread-local variables, finding a safe point to call "remove" can be challenging, 
+* For programs relying on mutable thread-local variables, finding a safe point to call "remove" can be challenging. This can cause a long-term memory leak.
 
 **memory-intensive**
 
@@ -461,7 +472,7 @@ These might not be stations, but they certainly have been landmarks during Java'
 
 ---
 
-## Honourable Mentions
+## More Honourable Mentions
 
 <dl class="fragment fade-in-then-semi-out">
     <dt>AtomicReference</dt>

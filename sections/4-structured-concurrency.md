@@ -268,6 +268,27 @@ note:
 
 ---
 
+## Modeling a Bar With Structured Concurrency
+
+<pre><code class="java stretch" data-trim data-line-numbers>
+public class StructuredConcurrencyBar implements Bar {
+    @Override
+    public DrinkOrder determineDrinkOrder(Guest guest) throws InterruptedException, ExecutionException {
+        Waiter zoe = new Waiter("Zoe");
+        Waiter elmo = new Waiter("Elmo");
+
+        try (var scope = new StructuredTaskScope.ShutdownOnSuccess&lt;DrinkOrder&gt;()) {
+            scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
+            scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
+
+            return scope.join().result();
+        }
+    }
+}
+</code></pre>
+
+---
+
 ## ShutdownOnSuccess
 
 - Shuts down the scope and returns the result when the first subtask succeeds;
@@ -281,17 +302,18 @@ It effectively cancels any remaining tasks in the scope.
 
 ## Custom Shutdown Policies
 
-* create your own shutdown policies by extending the class `StructuredTaskScope`; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* implement the `handleComplete(..)` method; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* this allows you to have full control over when the scope shuts down and what results will be collected. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<ul>
+    <li class="fragment fade-in-then-semi-out">create your own shutdown policies by extending the class <code>StructuredTaskScope</code>;</li>
+    <li class="fragment fade-in-then-semi-out">then implement the <code>handleComplete(..)</code> method;</li>
+    <li class="fragment fade-in-then-semi-out">this allows you to have full control over when the scope shuts down and what results will be collected.</li>
+</ul>
 
 note:
 
-Use cases for a custom shutdown policy:
+Use case for a custom shutdown policy:
 
 * collect results that succeed, ignore results that fail;
-* .. TODO (from JEP)
-* ..
+* more use cases are listed in the JEP.
 
 ---
 
@@ -338,7 +360,7 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 ## ...now wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
-<code>ExecutorService</code> already supports <code>invokeAll(..)</code> and <code>invokeAny(..)</code>. Why would I still need Structured Concurrency then? 
+<code>ExecutorService</code> already supports <code>invokeAll(..)</code> and <code>invokeAny(..)</code>. Why would I need Structured Concurrency? 
 </blockquote>
 
 <https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif> <!-- .element: class="attribution" -->
@@ -361,7 +383,7 @@ TODO
 ## ...no really, wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
-Doesn't <code>ForkJoinPool</code> also impose structure on concurrent tasks? Why would I still need Structured Concurrency then?
+Doesn't <code>ForkJoinPool</code> also impose structure on concurrent tasks? Why would I need Structured Concurrency?
 </blockquote>
 
 <https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif> <!-- .element: class="attribution" -->
@@ -379,9 +401,6 @@ However, that API is designed for compute-intensive tasks, whereas Structured Co
     <li class="fragment fade-in-then-semi-out"><em>Virtual threads</em> deliver an abundance of threads;</li>
     <li class="fragment fade-in-then-semi-out"><em>Structured concurrency</em> can correctly and robustly coordinate them.</li>
 </ul>
-
-* *Virtual threads* deliver an abundance of threads; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* *Structured concurrency* can correctly and robustly coordinate them. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 notes: 
 

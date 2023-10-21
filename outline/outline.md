@@ -246,6 +246,7 @@ note:
 # Practical Implications
 
 - How will these features change the day-to-day life of a Java developer?
+- Refer to the web framework example from <https://openjdk.org/jeps/446>.
 - TODO
 
 # Have We Come To Journey’s End?
