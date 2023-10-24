@@ -136,9 +136,6 @@ Structured concurrency derives from the simple principle that
 
 ## Task-Subtask Relation
 
-TODO: toon een diagram van de ober-taken en laat zien hoe daar een 'task-subtask'-relatie tussen bestaat. 
-TODO: toon de single-threaded-versie, omdat de syntactic structure van die code 1-op-1 mapt op dit diagram.
-
 - because task structure should reflect code structure, like single-threaded code
 
 ## ShutdownOnFailure
@@ -146,7 +143,6 @@ TODO: toon de single-threaded-versie, omdat de syntactic structure van die code 
 - 'invoke all'
 - short-circuiting
 - cancellation?
-- TODO
 
 ### Sorting M&M's, Revisited
 
@@ -174,17 +170,12 @@ TODO: toon de single-threaded-versie, omdat de syntactic structure van die code 
 
 - 'invoke any'
 - again, short-circuiting
-- TODO
 
 ## Demo, Part 2
-
-TODO
 
 ## Custom Shutdown Policies
 
 ## Sanity Check: Configuring Threads, With Structured Concurrency
-
-- TODO: Hoe kun je beïnvloeden welke threadconfiguratie wordt gebruikt bij Structured Concurrency?
 
 ## Sanity Check: Why Didn't They 'Just' Enhance the ExecutorService Interface?
 
@@ -200,14 +191,6 @@ note:
 * Try using `cancel()` in the ExecutorService example, to make it clear how hard it is to get it spot-on.
 
 > Like the JEP states: "We might attempt to do better by explicitly cancelling other subtasks when an error occurs, for example by wrapping tasks with try-finally and calling the cancel(boolean) methods of the futures of the other tasks in the catch block for the failing task. We would also need to use the ExecutorService inside a try-with-resources statement, as shown in the examples in JEP 425, because Future does not offer a way to wait for a task that has been cancelled. But all this can be very tricky to get right, and it often makes the logical intent of the code harder to discern. Keeping track of the inter-task relationships, and manually adding back the required inter-task cancellation edges, is asking a lot of developers."
-
-* Try using `invokeAny()` and `invokeAll()`.
-  * TODO: pros?
-  * TODO: cons?
-  * TODO: Hoe is `ShutdownOnFailure` beter of leesbaarder dan `ExecutorService.invokeAll()`?
-    - lees: https://davidvlijmincx.com/posts/loom/invoke-all-with-virtual-threads/ 
-    - lees: https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3
-  * TODO: Hoe is `ShutdownOnSuccess` beter of leesbaarder dan `ExecutorService.invokeAny()`?
 
 * ForkJoinPool also imposes structure on concurrent tasks. However, that API is designed for compute-intensive tasks rather than tasks which involve I/O.
 
@@ -237,17 +220,10 @@ note:
 
 ## Sanity Check: How To Use In Conjunction With Structured Concurrency
 
-* TODO (see JEP)
-
-## Sanity Check: TODO
-
-* TODO
-
 # Practical Implications
 
 - How will these features change the day-to-day life of a Java developer?
 - Refer to the web framework example from <https://openjdk.org/jeps/446>.
-- TODO
 
 # Have We Come To Journey’s End?
 
@@ -269,21 +245,10 @@ note:
 - what alternative features do languages like Go, C# and Kotlin offer, that might inspire Java language designers?
   - in what ways are coroutines and virtual threads / structured concurrency different & similar?
   - see: https://auroratide.com/posts/understanding-kotlin-coroutines
-- TODO: even more?
 
 # Wrap-Up And Q&A
 
-TODO
-
 # Meta-inhoud
-
-## Grappen & Grollen
-
-- TODO All aboard!
-- TODO Choo choo!
-- TODO The hype train
-- TODO Grover die de blauwe meneer met snor moet bedienen in Sesamstraat
-- TODO Treinachtergrond (of stationsachtergrond) voor elke titelslide.
 
 ## Referenties
 

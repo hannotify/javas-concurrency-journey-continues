@@ -8,7 +8,7 @@ note:
 
 **Time Elapsed:** `32:00`.
 
-Upcoming Station: Scoped Values
+Another station that we'll visit today on our continued journey is 'Scoped Values'.
 
 ---
 
@@ -39,7 +39,7 @@ Upcoming Station: Scoped Values
 note:
 
 Also an *upcoming station*, because it's in 'preview' in Java 21.
-Note that you need to pass the compiler option `--enable-preview` to be able to work with it.
+Again: you need to pass the compiler option `--enable-preview` to be able to work with it.
 
 ---
 

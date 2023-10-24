@@ -8,7 +8,9 @@ note:
 
 **Time Elapsed:** `20:00`.
 
-Upcoming Station: Structured Concurrency
+As we're leaving our current station 'Virtual Threads', let's see what the rest of the journey has in store for us.
+It looks like 'Structured Concurrency' is one of the upcoming stations.
+So all aboard! And let's check out what Structured Concurrency is all about.
 
 ---
 
@@ -366,15 +368,46 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 <https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif> <!-- .element: class="attribution" -->
 
 note:
-TODO
 
-* Try using `invokeAny()` and `invokeAll()`.
-  * TODO: pros?
-  * TODO: cons?
-  * TODO: Hoe is `ShutdownOnFailure` beter of leesbaarder dan `ExecutorService.invokeAll()`?
-    - lees: https://davidvlijmincx.com/posts/loom/invoke-all-with-virtual-threads/ 
-    - lees: https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3
-  * TODO: Hoe is `ShutdownOnSuccess` beter of leesbaarder dan `ExecutorService.invokeAny()`?
+This is true, ExecutorService does support these operations:
+
+**`List<Future<T>> ExecutorService.invokeAll(Collection<Callable>)`**
+
+Executes the given tasks, returning a list of Futures when all complete (or failed).
+
+**`T ExecutorService.invokeAny(Collection<Callable>)`**
+
+Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled.
+
+---
+
+### These two operations don't support:
+
+* creating a task hierarchy and limiting the scope of tasks; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* making the created tasks return to the same place and limiting resource leaks in the process; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* custom shutdown policies; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* virtual threads by default. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+<br/>
+<br/>
+<small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: <a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
+</small>
+
+note:
+These two operations don't support:
+
+**creating a task hierarchy and limiting the scope of tasks** 
+parent tasks waiting for child tasks to complete
+
+**making the created tasks return to the same place**
+ES is still 'unstructured'
+
+**custom shutdown policies**
+**virtual threads by default**
+although you could configure ES to use them
+
+More info on this topic:
+https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3
 
 ---
 

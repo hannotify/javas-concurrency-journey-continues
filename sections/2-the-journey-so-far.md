@@ -9,7 +9,7 @@ note:
 
 * Let's take a quick look at what concurrency features Java currently offers.
 * Now, Java has been on a journey towards better concurrency features since the very beginning of the language.
-* Taking that analogy a bit further, let's see where this journey began and through what stations we have traveled so far.
+* Taking that analogy a bit further, let's see where this journey began and through what stations we have traveled so far!
 
 ---
 
@@ -18,6 +18,16 @@ note:
 * models a thread of execution in a program; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * allows doing multiple things at the same time; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * since Java 1.0. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+---
+
+note:
+
+* An easy-to-relate example domain always helps me to understand complex technical concepts.
+* Today we're using a restaurant and bar as example domain.
+* TODO: introduce the "Structured Concurrency Restaurant and Bar"
+- TODO: Rianne: plaatje met Grover die de blauwe meneer met snor moet bedienen in Sesamstraat
+]
 
 ---
 

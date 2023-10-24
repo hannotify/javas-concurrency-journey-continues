@@ -56,8 +56,8 @@ note:
   * All managers formed a line and, when it was their turn, demanded the writing of a single letter on the sticky note that they bring.
   * All managers formed a line and, when it was their turn, spelled out the entire name they wanted me to write.
 * Metrics:
-  * Time-to-first (T 1e.)
-  * Time-to-done (T tot.)
+  * Time-to-first (T 1e.) (response time)
+  * Time-to-done (T tot.) (throughput)
 * Conclusions:
   * Almost nothing gets done when the manager:worker ratio is 5:1. :)
   * A lot of time can be lost on context switching (see scenario 2).
