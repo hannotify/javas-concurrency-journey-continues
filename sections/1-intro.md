@@ -24,7 +24,7 @@ note:
 * Set the appropriate browser zoom level (80% will fit all code onto the MacBook screen).
 * Slides and IDE on projector screen
 * Speaker notes on second screen
-* Code in IntelliJ checked out to the right Git tag (`TODO`)
+* Code in IntelliJ checked out to the right Git tag (`0-demo-start`)
 
 *Intro*
 

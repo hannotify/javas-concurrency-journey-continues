@@ -199,7 +199,7 @@ To summarize:
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
 note:
-[TODO] Rehearse demo and sets appropriate Git tags.
+*(tag `0-demo-start`)*
 
 Let's see structured concurrency in action!
 
@@ -207,6 +207,8 @@ Let's see structured concurrency in action!
 - explain that `join()` blocks, `throwIfFailed` optionally throws, `get()` always returns a valid result
 - explain the introduction of `Subtask` (meant for calling 'get()'s after a result is already known, unlike (Completable)Future)
 - Compare the behavior of `MultiWaiterRestaurant` with this new one
+
+*(tag `1-created-sc-restaurant`)*
 
 ---
 
@@ -271,12 +273,14 @@ Ordering a drink with my Java Community coworkers, but no menu available.
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
 note:
-[TODO] Rehearse demo and sets appropriate Git tags.
+*(tag `1-created-sc-restaurant`)*
 
 - Let's create a `StructuredConcurrencyBar`
 - Again: `join()` blocks
 - `result()` returns the result of the first subtask that completed
 - Run it and explain the behavior.
+
+*(tag `2-created-sc-bar`)*
 
 ---
 
