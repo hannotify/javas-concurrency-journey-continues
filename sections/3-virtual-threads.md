@@ -71,8 +71,12 @@ When a virtual thread executes multiple CPU operations, they may be executed by 
 
 note:
 
-Classic or platform threads are expensive to create and quite slow to start and stop.
+Classic or platform threads are expensive to create and slow to start and stop.
 Like passenger trains.
+
+---
+
+<!-- .slide: data-background="img/background/java-concurrency-in-practice.jpeg" data-background-size="contain" data-background-color="white" -->
 
 ---
 
@@ -82,7 +86,7 @@ Like passenger trains.
 
 note: 
 
-Virtual threads are cheap to create and fast to start and stop.
+In contrast, virtual threads are cheap to create and fast to start and stop.
 Like taxis.
 
 ---
@@ -233,8 +237,9 @@ These drawbacks all have to do with the increase in thread count that virtual th
 * But ExecutorService doesn't enforce any task structure
 * In theory, one thread could create an ExecutorService, a second thread could submit work to it.
 * And the threads which actually execute the work would have no relationship to either the first or second thread. 
-* On top of that: a completely different thread can await the results of execution.
-* To summarize: **ExecutorService allows unrestricted patterns of concurrency.**
+* They are *one-way jumps*, just like the notorious `goto` statement from the `BASIC` language.
+* If threads are spawned in an unstructured way, they are like the concurrent equivalent of `goto`!
+* To conclude: **ExecutorService allows unrestricted patterns of concurrency.**
 * And this only gets worse when more threads are involved.
 
 **memory-intensity of thread-locals**

@@ -335,8 +335,9 @@ even when we know for sure the desired result won't be achieved
 * But ExecutorService doesn't enforce any task structure
 * In theory, one thread could create an ExecutorService, a second thread could submit work to it.
 * And the threads which actually execute the work would have no relationship to either the first or second thread. 
-* On top of that: a completely different thread can await the results of execution.
-* To summarize: **ExecutorService allows unrestricted patterns of concurrency.**
+* They are *one-way jumps*, just like the notorious `goto` statement from the `BASIC` language.
+* If threads are spawned in an unstructured way, they are like the concurrent equivalent of `goto`!
+* To conclude: **ExecutorService allows unrestricted patterns of concurrency.**
 
 ---
 

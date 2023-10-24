@@ -143,18 +143,28 @@ So the feature is already prominent in both Go and Kotlin, and is now also avail
 
 ---
 
-## Structured Concurrency
+<!-- .slide: data-background="img/background/unstructured-vs-structured.png" data-background-size="contain" data-background-color="black" -->
 
-With structured concurrency, threads have:
-
-* a hierarchy; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* their own scope; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* clear entry and exit points. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<https://auroratide.com/assets/posts/understanding-kotlin-coroutines/unstructured-vs-structured.png> <!-- .element: class="attribution" -->
 
 note:
 
-In a structured concurrency approach, threads have a clear *hierarchy*, their own *scope*, and clear *entry and exit points*. 
-Just like with function calls, a tree of threads is created with parent-child relationships. 
+* I mentioned 'one-way jump' earlier.
+* Spawning a thread is a 'one-way jump'.
+* Structured Concurrency is a way to turn this into a 'two-way jump'.
+* Threads in a Structured Concurrency context run in their own *scope* (the grey area to the right).
+* They have clear *entry and exit points* (and only one of each).
+
+---
+
+<!-- .slide: data-background="img/background/concurrency-hierarchy.png" data-background-size="contain" data-background-color="black" -->
+
+<https://auroratide.com/assets/posts/understanding-kotlin-coroutines/concurrency-hierarchy.png> <!-- .element: class="attribution" -->
+
+note:
+
+* They can also be organized in a clear *hierarchy*.
+* Just like with function calls, a tree of threads can be created with parent-child relationships. 
 
 ---
 

@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `42:00`.
+**Time Elapsed:** `43:00`.
 
 So is Java's concurrency journey over now?
 Have we come to journey's end?
@@ -16,31 +16,36 @@ What new features are expected to be developed after these?
 
 ## Possible Future Features
 
-- sharing streams of data among threads ('channels') <!-- .element: class="fragment fade-in-then-semi-out" -->
-- a new thread cancellation mechanism <!-- .element: class="fragment fade-in-then-semi-out" -->
-- solving thread pinning when virtual threads are executing a synchronized code block <!-- .element: class="fragment fade-in-then-semi-out" -->
-- TODO: coroutines?
-- TODO: unfinished stuff from Project Loom?
-- TODO: even more?
+- sharing streams of data among threads ('channels'); <!-- .element: class="fragment fade-in-then-semi-out" data-fragment-index="1" -->
+- a new thread cancellation mechanism. <!-- .element: class="fragment fade-in-then-semi-out" data-fragment-index="2" -->
 
-note:
+<br/>
+<br/>
+<small class="fragment" data-fragment-index="2">
+(<a href="https://openjdk.org/jeps/453">https://openjdk.org/jeps/453</a>)
+</small>
+
+note: 
 
 - **sharing streams of data among threads** ('channels')
 
-> It is not a goal to define a means of sharing streams of data among threads (i.e., [channels](https://en.wikipedia.org/wiki/Channel_(programming) "‌")). We might propose to do so in the future.
+> It is not a goal to define a means of sharing streams of data among threads (i.e., [channels](https://en.wikipedia.org/wiki/Channel_(programming))). We might propose to do so in the future.
 
 - **a new thread cancellation mechanism**
 
 > It is not a goal to replace the existing thread interruption mechanism with a new thread cancellation mechanism. We might propose to do so in the future.
 
+Both topics were mentioned in JEP 453 ('Structured Concurrency') as possible future additions to the language.
+
+---
+
+## More Possible Future Features
+
+- solving thread pinning when virtual threads are executing a synchronized code block. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+note:
+
 - **solving thread pinning when virtual threads are executing a synchronized code block**
 
 > Virtual threads not releasing the underlying operating system thread when working on a synchronized method 
 > is a limitation in JDK 19. It could be addressed in a future release of Java.
-
-
-- what alternative features do languages like Go, C# and Kotlin offer, that might inspire Java language designers?
-  - in what ways are coroutines and virtual threads / structured concurrency different & similar?
-  - see: https://auroratide.com/posts/understanding-kotlin-coroutines
-- TODO: even more?
-
