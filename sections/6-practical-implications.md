@@ -11,23 +11,25 @@ note:
 How will these features change your day-to-day life?
 That depends on what kind of Java developer you are:
 
+* Developer Advocate / Trainer
 * Developer (Framework or Library)
 * Developer (Jakarta EE)
 * Developer (Spring)
 * Developer (Quarkus)
-* Developer Advocate / Trainer
+
+---
+
+## Developer Advocate / Trainer
+
+You can just get started trying them out and talking about them! ☺️
 
 ---
 
 ## Developer (framework or library)
 
-
-
-TODO: 
-
-- framework/library developers can try out these features, but keep in mind they are currently in preview.
-- Refer to the web framework example from <https://openjdk.org/jeps/446>.
-
+* You can start using the features to enhance your product; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* Keep in mind that Virtual Threads is the only feature that is finalized; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* Structured Concurrency and Scoped Values are both still in preview, so they're not permanent parts of the language yet. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -37,31 +39,80 @@ Ensures that features are "done right" before they become final and permanent pa
 
 * fully specified and implemented
 * impermanent
-* provoke developer feedback based on real world use
+* meant to provoke developer feedback based on real world use
 * may lead to it becoming permanent (but can in theory also be removed in the end)
 
 ---
 
+<!-- .slide: data-background-color="#222" -->
+
 ## Developer (Spring)
 
-TODO
+<ul>
+    <li class="fragment fade-in-then-semi-out"><code>SimpleTaskExecutor</code>can be configured to use virtual threads;</li>
+    <li class="fragment">This configuration will become a bit easier in the future
+        <small>through <code>SimpleTaskExecutor.setVirtualThreads(boolean virtual)</code><br/>This enhancement is currently scheduled for Spring 6.1.</small>
+    </li>
+</ul>
+
+<https://spring.io/blog/2022/10/11/embracing-virtual-threads> <!-- .element: class="attribution" -->
+
+note:
+When you use a Java application framework, you rarely create threads yourself. 
+It is done for you by the framework.
+So it is important to know how you can configure the framework you're using to benefit from the new concurrency features.
+
+This is how you can use Virtual Threads with Spring.
 
 --- 
 
+<!-- .slide: data-background-color="#222" -->
+
 ## Developer (Jakarta EE)
 
-TODO
+Replace 
+
+```java
+@Resource(lookup = "java:app/concurrent/myExecutor")
+private ManagedExecutorService managedExecutor;
+```
+by
+
+```java
+@ManagedExecutorDefinition(name = "java:app/concurrent/myExecutor", maxAsync = 3, virtual = true)
+private ManagedExecutorService managedExecutor;
+```
+to get a `ManagedExecutorService` with virtual threads.
+
+<https://blog.payara.fish/a-look-at-virtual-threads-in-a-jakarta-ee-managed-context> <!-- .element: class="attribution" -->
+
+---
+
+<!-- .slide: data-background-color="#222" -->
+
+## Developer (Jakarta EE)
+
+<pre data-id="restaurant-single-threaded"><code class="java stretch" data-trim data-line-numbers="1-6|1">
+try (var scope = new StructuredTaskScope<Object>("MyTaskScopeWithContext", managedThreadFactory) {
+    var subtask1 = scope.fork(task1);
+    var subtask2 = scope.fork(task2);
+    scope.join();
+    // ...
+}
+</code></pre>
+
+<https://blog.payara.fish/a-look-at-virtual-threads-in-a-jakarta-ee-managed-context> <!-- .element: class="attribution" -->
+
+note:
+Structured Concurrency in Jakarta EE is supported by using the `StructuredTaskScope` overloaded constructor, which allows you to (slide) pass a *scope name* and a custom *thread factory*.
+Which should be Jakarta EE's `ManagedThreadFactory` in this case.
 
 ---
 
 ## Developer (Quarkus)
 
-TODO
+<ul>
+    <li class="fragment fade-in-then-semi-out">Use the <code>@RunOnVirtualThread</code> annotation to invoke the annotated method on a virtual thread.</li>
+</ul>
 
----
-
-## Developer Advocate / Trainer
-
-TODO
-
-note: 
+<https://quarkus.io/blog/virtual-thread-1> <!-- .element: class="attribution" -->

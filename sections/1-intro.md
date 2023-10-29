@@ -21,7 +21,7 @@ note:
 *Preparations*
 
 * Watch your pronounciation (British English is your _superpower_, so act like it)
-* Set the appropriate browser zoom level (80% will fit all code onto the MacBook screen).
+* Set the appropriate browser zoom level (`80%` will fit all code onto the MacBook screen).
 * Slides and IDE on projector screen
 * Speaker notes on second screen
 * Code in IntelliJ checked out to the right Git tag (`0-demo-start`)

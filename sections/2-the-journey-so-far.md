@@ -51,7 +51,7 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
         var mainThread = new WaiterAnnounceCourseThread(zoe, CourseType.MAIN);
         var dessertThread = new WaiterAnnounceCourseThread(rosita, CourseType.DESSERT);
 
-        starterThread.start();
+        starterThread.start();  
         mainThread.start();
         dessertThread.start();
 

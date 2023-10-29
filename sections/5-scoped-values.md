@@ -144,7 +144,7 @@ Let's see scoped values in action!
 
 - Let's migrate `AnnouncementId` from a thread-local to a scoped value
 - We see that scoped values can only be accessed within the defined scope, leading to a limited lifetime ('how long is it accessible?') and access ('by who is it accessible?').
-
+g
 *(tag `3-introduced-scoped-value`)*
 
 ---
