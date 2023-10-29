@@ -110,7 +110,6 @@ Values unique to a thread that may be safely and efficiently shared to methods w
 
 note:
 (first read the definition out loud)
-> Values that may be safely and efficiently shared to methods without using method parameters.
 
 * They are effectively an implicit method parameter.
 * It is "as if" every method in a sequence of calls has an additional, invisible, parameter. 
@@ -239,7 +238,7 @@ Like we've seen before.
 **re-entrant code**
 
 A scoped value can be used to detect or limit recursion.
-You can use `ScopedValue.isBound()`  to check if the scoped value has a binding for the current thread.
+You can use `ScopedValue.isBound()` to check if the scoped value has a binding for the current thread.
 In such a case the scoped value can model a recursion counter by being repeatedly rebound.
 
 **nested transactions**

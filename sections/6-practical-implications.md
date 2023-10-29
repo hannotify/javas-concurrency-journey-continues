@@ -49,9 +49,9 @@ Ensures that features are "done right" before they become final and permanent pa
 ## Developer (Spring)
 
 <ul>
-    <li class="fragment fade-in-then-semi-out"><code>SimpleTaskExecutor</code>can be configured to use virtual threads;</li>
+    <li class="fragment fade-in-then-semi-out"><code>SimpleTaskExecutor</code> can be configured to use virtual threads;</li>
     <li class="fragment">This configuration will become a bit easier in the future
-        <small>through <code>SimpleTaskExecutor.setVirtualThreads(boolean virtual)</code><br/>This enhancement is currently scheduled for Spring 6.1.</small>
+        <small>through <code>SimpleTaskExecutor.setVirtualThreads(boolean virtual)</code><br/>(currently scheduled for Spring 6.1)</small>
     </li>
 </ul>
 
@@ -92,8 +92,8 @@ to get a `ManagedExecutorService` with virtual threads.
 
 ## Developer (Jakarta EE)
 
-<pre data-id="restaurant-single-threaded"><code class="java stretch" data-trim data-line-numbers="1-6|1">
-try (var scope = new StructuredTaskScope<Object>("MyTaskScopeWithContext", managedThreadFactory) {
+<pre><code class="java stretch" data-trim data-line-numbers="1-6|1">
+try (var scope = new StructuredTaskScope&lt;Object&gt;("MyTaskScopeWithContext", managedThreadFactory) {
     var subtask1 = scope.fork(task1);
     var subtask2 = scope.fork(task2);
     scope.join();
@@ -101,9 +101,10 @@ try (var scope = new StructuredTaskScope<Object>("MyTaskScopeWithContext", manag
 }
 </code></pre>
 
-<https://blog.payara.fish/a-look-at-virtual-threads-in-a-jakarta-ee-managed-context> <!-- .element: class="attribution" -->
+<a href="https://blog.payara.fish/a-look-at-virtual-threads-in-a-jakarta-ee-managed-context" class="attribution">https://blog.payara.fish/a-look-at-virtual-threads-in-a-jakarta-ee-managed-context</a>
 
 note:
+
 Structured Concurrency in Jakarta EE is supported by using the `StructuredTaskScope` overloaded constructor, which allows you to (slide) pass a *scope name* and a custom *thread factory*.
 Which should be Jakarta EE's `ManagedThreadFactory` in this case.
 

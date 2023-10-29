@@ -180,9 +180,10 @@ resulting in: <!-- .element: class="fragment" -->
 
 note:
 
-A scope continues until all child threads have completed. 
-Structured concurrency yields a strict nesting of the lifetimes of operations in a way that mirrors their syntactic nesting in the code. 
-This streamlined error and cancellation propagation ultimately leads to improved reliability and observability in concurrent code.
+A scope continues until all child threads have completed (slide)
+resulting in (slide)
+* a strict nesting of the lifetimes of operations in a way that mirrors their syntactic nesting in the code. (slide)
+* This streamlined error and cancellation propagation ultimately leads to (slide) improved reliability and observability in concurrent code.
 
 To summarize: 
 > Structured concurrency derives from the simple principle that: if a task splits into concurrent subtasks then they all return to the same place, namely the task's code block.
@@ -194,7 +195,6 @@ To summarize:
 ## Demo, Part 1
 
 - Let's create a `StructuredConcurrencyRestaurant`
-- Compare the behavior of `MultiWaiterRestaurant` with this new one
 
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
@@ -206,7 +206,6 @@ Let's see structured concurrency in action!
 - Let's create a `StructuredConcurrencyRestaurant`
 - explain that `join()` blocks, `throwIfFailed` optionally throws, `get()` always returns a valid result
 - explain the introduction of `Subtask` (meant for calling 'get()'s after a result is already known, unlike (Completable)Future)
-- Compare the behavior of `MultiWaiterRestaurant` with this new one
 
 *(tag `1-created-sc-restaurant`)*
 
@@ -345,6 +344,11 @@ At least <code>ExecutorService</code> allowed me to pass a thread configuration.
 
 note:
 
+Ah, we've come to the section I like to call "Sanity Checks".
+Containing a few questions that I can imagine you have after hearing about all this.
+
+(slide)
+
 In a way, yes.
 
 * StructuredTaskScope uses Virtual Threads by default, but you can pass a Platform Thread Factory to an overloaded StructuredTaskScope constructor.
@@ -364,6 +368,7 @@ Why do we need all these new 'scope' classes? Why didn't they just enhance the <
 
 note:
 
+(slide)
 The new class `StructuredTaskScope` enforces structure and order upon concurrent operations. 
 Thus it does not implement the ExecutorService or Executor interfaces since instances of those interfaces are commonly used in a non-structured way. 
 So they opted not to change the ExecutorService interface because of backwards compatibility.
@@ -383,6 +388,7 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 
 note:
 
+(slide)
 This is true, ExecutorService does support these operations:
 
 **`List<Future<T>> ExecutorService.invokeAll(Collection<Callable>)`**
@@ -404,7 +410,7 @@ Executes the given tasks, returning the result of one that has completed success
 
 <br/>
 <br/>
-<small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: <a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
+<small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: <br/><a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
 </small>
 
 note:
@@ -420,9 +426,6 @@ ES is still 'unstructured'
 **virtual threads by default**
 although you could configure ES to use them
 
-More info on this topic:
-https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3
-
 ---
 
 <!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif?cid=ecf05e47nzety4zj5qzhoe66og8xnltlk13aymuubq6jyhj6&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.5" data-background-size="75%"-->
@@ -436,7 +439,7 @@ Doesn't <code>ForkJoinPool</code> also impose structure on concurrent tasks? Why
 <https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif> <!-- .element: class="attribution" -->
 
 note:
-
+(slide)
 Indeed, `ForkJoinPool` also imposes structure on concurrent tasks. 
 However, that API is designed for compute-intensive tasks, whereas Structured Concurrency is meant for tasks which involve I/O.
 

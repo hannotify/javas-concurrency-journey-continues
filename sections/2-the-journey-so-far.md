@@ -21,13 +21,14 @@ note:
 
 ---
 
+<!-- .slide: data-background="img/background/grover.jpg" data-background-color="white" data-background-size="77%"-->
+
+<a href="#" class="attribution">(inspired by <em>Sesame Street</em>, hand-drawn by my wife Rianne)</a>
+
 note:
 
 * An easy-to-relate example domain always helps me to understand complex technical concepts.
 * Today we're using a restaurant and bar as example domain.
-* TODO: introduce the "Structured Concurrency Restaurant and Bar"
-- TODO: Rianne: plaatje met Grover die de blauwe meneer met snor moet bedienen in Sesamstraat
-]
 
 ---
 
@@ -65,6 +66,11 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
     }
 }
 </code></pre>
+
+note:
+
+* Our restaurant serves a three-course meal that is announced by three waiters in separate Threads.
+
 
 ---
 
@@ -379,7 +385,7 @@ note:
 [ITP] Replace this by a live demo.
 
 This class generates a unique `announcementId` local to each thread. 
-An announcementId is assigned the first time it invokes ThreadId.get() and remains unchanged on subsequent calls by the same thread.
+An announcementId is assigned the first time it invokes AnnouncementId.get() and remains unchanged on subsequent calls by the same thread.
 
 Each thread holds an implicit reference to its copy of a thread-local variable as long as the thread is alive and the ThreadLocal instance is accessible; after a thread goes away, all of its copies of thread-local instances are subject to garbage collection (unless other references to these copies exist).
 
@@ -475,7 +481,7 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 
 <dl class="fragment fade-in-then-semi-out">
     <dt>CompletableFuture</dt>
-    <dd>Simplifies asynchronous programming by defining a <em>chain</em> of operations. Each subsequent operation starts running after the first one has completed.</dl>
+    <dd>Simplifies asynchronous programming by defining a <em>chain</em> of operations.</dl>
 
 notes:
 
@@ -511,13 +517,13 @@ An elegant way to wait until all threads have completed their work, without the 
 ### Why Does This Stuff Interest Me?
 
 <ul>
-    <li class="fragment">Course: "Concurrency in Java"
+    <li class="fragment">Course: "Concurrency in Java"<br/>
         <small><a href="https://training.infosupport.com/en/trainingen/CONCURJAVA/concurrency-in-java/">training.infosupport.com/en/trainingen/CONCURJAVA/concurrency-in-java/</a></small>
     </li>
-    <li class="fragment">Article: "It's Java 20 Release Day! Here's What's New"
+    <li class="fragment">Article: "It's Java 20 Release Day! Here's What's New"<br/>
         <small><a href="https://foojay.io/today/its-java-20-release-day-heres-whats-new/">foojay.io/today/its-java-20-release-day-heres-whats-new/</a></small>
     </li>
-    <li class="fragment">Article: "Java 21 Is Available Today, And It's Quite The Update"
+    <li class="fragment">Article: "Java 21 Is Available Today, And It's Quite The Update"<br/>
         <small><a href="https://foojay.io/today/java-21-is-available-today-and-its-quite-the-update/">foojay.io/today/java-21-is-available-today-and-its-quite-the-update/</a></small>
     </li>
 </ul>

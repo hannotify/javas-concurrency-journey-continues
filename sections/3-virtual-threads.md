@@ -49,7 +49,7 @@ note:
 
 * lightweight thread implementation; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * no explicit mapping to an OS thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* intended to run only a single task over their lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* intended to run only a single task over its lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
 <li class="fragment fade-in-then-semi-out">scheduled by the JVM to run on a <em>carrier thread</em>.
 
 ---

@@ -25,6 +25,7 @@ note:
 * Slides and IDE on projector screen
 * Speaker notes on second screen
 * Code in IntelliJ checked out to the right Git tag (`0-demo-start`)
+* Terminal armed with `mirror` 
 
 *Intro*
 
@@ -54,7 +55,7 @@ note:
 * Three scenarios:
   * All managers shouted letters at me and use everything in their power to get my attention. 
   * All managers formed a line and, when it was their turn, demanded the writing of a single letter on the sticky note that they bring.
-  * All managers formed a line and, when it was their turn, spelled out the entire name they wanted me to write.
+  * All managers formed a line and, when it was their turn, spelled out the entire name for me to write down.
 * Metrics:
   * Time-to-first (T 1e.) (response time)
   * Time-to-done (T tot.) (throughput)
