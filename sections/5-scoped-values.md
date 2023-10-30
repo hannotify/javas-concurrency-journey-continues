@@ -6,7 +6,7 @@
 
 note: 
 
-**Time Elapsed:** `32:00`.
+**Time Elapsed:** `45:00`.
 
 Another station that we'll visit today on our continued journey is 'Scoped Values'.
 
@@ -183,7 +183,7 @@ note:
 
 ## Inheriting Scoped Values
 
-<pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-19|9|11-16|12-13|15">
+<pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-19|9|11-16|12-13">
 public class StructuredConcurrencyBar implements Bar {
     private static final ScopedValue&lt;Integer&gt; drinkOrderId = ScopedValue.newInstance();
 
@@ -215,40 +215,7 @@ note:
 * Scoped values in the parent thread are automatically inherited by child threads created with StructuredTaskScope.
 * Legacy thread management classes such as ForkJoinPool do not support inheritance of ScopedValues because they cannot guarantee that a child thread forked from some parent thread scope will exit before the parent leaves that scope.
 * With structured concurrency, this CAN be guaranteed, which is the reason scoped value inheriting is possible with this mechanism.
-
----
-
-<!-- .slide: data-background-color="#222" -->
-
-## Scoped Values Can Be Useful For...  
-
-- hidden method arguments; <!-- .element: class="fragment fade-in-then-semi-out" -->
-- re-entrant code; <!-- .element: class="fragment fade-in-then-semi-out" -->
-- nested transactions; <!-- .element: class="fragment fade-in-then-semi-out" -->
-- graphics contexts. <!-- .element: class="fragment fade-in-then-semi-out" -->
-
-<https://openjdk.org/jeps/446> <!-- .element: class="attribution" -->
-
-note:
-
-**hidden method arguments**
-
-Like we've seen before.
-
-**re-entrant code**
-
-A scoped value can be used to detect or limit recursion.
-You can use `ScopedValue.isBound()` to check if the scoped value has a binding for the current thread.
-In such a case the scoped value can model a recursion counter by being repeatedly rebound.
-
-**nested transactions**
-
-Detecting recursion can also be useful in the case of flattened transactions: Any transaction started while a transaction is in progress becomes part of the outermost transaction.
-
-**graphics contexts** 
-
-Another example occurs in graphics, where there is often a drawing context to be shared between parts of the program.
-Scoped values, because of their automatic cleanup and re-entrancy, are better suited to this than thread-local variables.
+* And I think it's nice to see these two new features work so well together.
 
 ---
 
@@ -276,7 +243,6 @@ Are scoped values always a better choice than thread-locals, or just in certain 
 
 <ul>
     <li class="fragment fade-in-then-semi-out" data-fragment-index="4">your thread-local is used in a two-way fashion.</li>
-    <small class="fragment fade-in-then-semi-out" data-fragment-index="4">(where a callee deep in the call stack transmits data to a faraway caller via <code>ThreadLocal.set</code>, or in a completely unstructured fashion)</small>
 </ul>
 
 ---

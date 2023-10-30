@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/man-with-yellow-and-black-backpack-standing-near-train-1170181/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `4:00`.
+**Time Elapsed:** `3:00`.
 
 * Let's take a quick look at what concurrency features Java currently offers.
 * Now, Java has been on a journey towards better concurrency features since the very beginning of the language.

@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `38:00`.
+**Time Elapsed:** `54:00`.
 
 How will these features change your day-to-day life?
 That depends on what kind of Java developer you are:
@@ -61,10 +61,9 @@ note:
 When you use a Java application framework, you rarely create threads yourself. 
 It is done for you by the framework.
 So it is important to know how you can configure the framework you're using to benefit from the new concurrency features.
-
 This is how you can use Virtual Threads with Spring.
 
---- 
+---
 
 <!-- .slide: data-background-color="#222" -->
 
@@ -109,6 +108,8 @@ Structured Concurrency in Jakarta EE is supported by using the `StructuredTaskSc
 Which should be Jakarta EE's `ManagedThreadFactory` in this case.
 
 ---
+
+<!-- .slide: data-background-color="#222" -->
 
 ## Developer (Quarkus)
 
