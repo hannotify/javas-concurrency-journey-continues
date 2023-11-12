@@ -148,6 +148,53 @@ g
 
 ---
 
+### AnnouncementId
+<pre><code class="java stretch" data-trim data-line-numbers="1-4|2,4">
+    private static final AtomicInteger nextId = new AtomicInteger(1);
+    private static final ScopedValue&lt;Integer&gt; scopedValue = ScopedValue.newInstance();
+    public static int nextId() { return nextId.getAndIncrement(); }
+    public static ScopedValue&lt;Integer&gt; scopedValue() { return scopedValue; }
+</code></pre>
+
+### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
+<pre class="fragment" data-fragment-index="1"><code class="java stretch" data-trim data-line-numbers="1-16|4-6,13">
+public Course announceCourse(CourseType courseType) throws Exception {
+    if (!introduced) introduce();
+
+    return ScopedValue
+            .where(AnnouncementId.scopedValue(), AnnouncementId.nextId())
+            .call(() -> announce(courseType));
+}
+
+private Course announce(CourseType courseType) throws OutOfStockException {
+    Course pickedCourse = Chef.pickCourse(name, courseType);
+
+    System.out.format("[%s] Announcement #%d: Today's %s will be '%s'.%n", name, 
+            AnnouncementId.scopedValue().get(), courseType.name().toLowerCase(), pickedCourse);
+
+    return pickedCourse;
+}
+</code></pre>
+
+---
+
+### Chef
+<pre><code class="java stretch" data-trim data-line-numbers="1-11|8">
+public static Course pickCourse(String waiterName, CourseType courseType) throws OutOfStockException {
+    // MENU is a pre-populated Map&lt;CourseType, List&lt;Course&gt;&gt;.
+    var courses = MENU.get(courseType);
+
+    System.out.format("[Chef] %s asked me to pick a %s, so that " + 
+            "announcement #%d can take place.%n",
+            waiterName, courseType.name().toLowerCase(), 
+            AnnouncementId.scopedValue().get());
+
+    return courses.get(new Random().nextInt(courses.size()));
+}
+</code></pre>
+
+---
+
 ## Rebinding Scoped Values
 
 <pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-15|4|8-10|9|14|10">
