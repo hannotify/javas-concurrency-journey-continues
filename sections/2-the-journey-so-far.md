@@ -101,7 +101,7 @@ class WaiterAnnounceCourseThread extends Thread {
 
 ### Pros ✅
 
-* we can announce multiple courses at the same time. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* doing multiple things at once. <!-- .element: class="fragment fade-in-then-semi-out" -->
 <br/>
 <br/>
 <br/>
@@ -112,6 +112,10 @@ class WaiterAnnounceCourseThread extends Thread {
 * unit-of-work and mechanism to run it are one and the same. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
+
+**Doing multiple things at once**
+
+We can announce multiple courses at the same time.
 
 **`Thread` can't return a value directly**
 
@@ -316,8 +320,8 @@ note:
 ### Cons ❌
 
 <ul>
-    <li class="fragment fade-in-then-semi-out">will wait for all tasks to terminate (even if one of them would fail or is cancelled);</li>
-    <li class="fragment fade-in-then-semi-out">based on <em>unstructured concurrency</em>, allowing unrestricted patterns of concurrency.</li>
+    <li class="fragment fade-in-then-semi-out">will wait for all tasks to terminate;</li>
+    <li class="fragment fade-in-then-semi-out">allows unrestricted patterns of concurrency.</li>
 </ul>
 
 note:
@@ -332,9 +336,10 @@ making it easy to run the workload on a different thread configuration
 
 **will wait for all tasks to terminate**
 
-even when we know for sure the desired result won't be achieved
+Even if one of them would fail or is cancelled!
+Also: when we know for sure the desired result won't be achieved.
 
-**based on unstructured concurrency, allowing unrestricted patterns of concurrency**
+**allows unrestricted patterns of concurrency**
 
 * it's very hard with ExecutorService to create relationships among tasks and subtasks
 * but that's a valid use case that occurs quite often!
@@ -441,7 +446,7 @@ note:
 
 Waiter and Chef could both easily read the same value.
 
-**elegant way to bind data**
+**elegant way to bind data that is unique to the current thread**
 
 Because it's bound to the thread by definition; no logic needed to achieve this.
 
@@ -460,6 +465,7 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 
 **memory-intensive**
 
+* Especially with many threads, or when inherited.
 * Thread-local variables can be made inheritable (class `InheritableThreadLocal`).
 * So if Thread A starts a thread called Thread B, then Thread B can access Thread A's inheritable thread-locals.
 * But in order to make this happen, the child thread (Thread B) has to allocate (redundant) storage for every thread-local variable previously written in the parent thread. 

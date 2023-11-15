@@ -69,7 +69,7 @@ note:
 
 Waiter and Chef could both easily read the same value.
 
-**are elegant way to bind data**
+**are elegant way to bind data that is unique to the current thread**
 
 Because it's bound to the thread by definition; no logic needed to achieve this.
 
@@ -296,13 +296,25 @@ Are scoped values always a better choice than thread-locals, or just in certain 
 
 ## To Summarize
 
+<h3>Thread-locals</h3>
 <ul>
-    <li class="fragment fade-in-then-semi-out"><em>Thread-locals</em> don't limit mutability and might perform badly when many (virtual) threads are involved, because of their unbounded lifetime and memory-intensity when inherited;</li>
-    <li class="fragment fade-in-then-semi-out"><em>Scoped values</em> support immutable values, and they come with both a strictly defined lifetime and an efficient way to be inherited (through structured concurrency).</li>
+    <li>don't limit mutability;</li>
+    <li>perform badly with many (virtual) threads.</li>
 </ul>
+<br/>
+<br/>
+<div class="fragment">
+    <h3>Scoped values</h3>
+    <ul>
+        <li>support immutable values;</li>
+        <li>come with a strictly defined lifetime;</li>
+        <li>can be inherited efficiently through <em>structured concurrency</em>.</li>
+    </ul>
+</div>
 
 notes: 
 
-In summary, thread-locals don't limit mutability and might perform badly when many (virtual) threads are involved, because of their unbounded lifetime and memory-intensity when inherited.
+In summary, thread-locals don't limit mutability and might perform badly when many (virtual) threads are involved, because of their unbounded lifetime and memory-intensity when inherited. 
+*(slide)*
 Scoped values support immutable values that come with both a strictly defined lifetime and an efficient way to inherit them (through structured concurrency).
 

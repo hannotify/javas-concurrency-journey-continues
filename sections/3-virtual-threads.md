@@ -60,7 +60,7 @@ note:
 
 note:
 
-Each virtual thread can be associated with multiple Platform (or Carrier) Threads during its lifetime — one at a time though. 
+Each virtual thread can be associated with multiple Platform (or Carrier) Threads during its lifetime — one at a time though. (could also be a single one, by the way)
 When a virtual thread executes multiple CPU operations, they may be executed by different carrier threads.
 
 ---
