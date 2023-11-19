@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/man-with-yellow-and-black-backpack-standing-near-train-1170181/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `3:00`.
+**Time Elapsed:** `2:00`.
 
 * Let's take a quick look at what concurrency features Java currently offers.
 * Now, Java has been on a journey towards better concurrency features since the very beginning of the language.
@@ -470,53 +470,6 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 * So if Thread A starts a thread called Thread B, then Thread B can access Thread A's inheritable thread-locals.
 * But in order to make this happen, the child thread (Thread B) has to allocate (redundant) storage for every thread-local variable previously written in the parent thread. 
 * This adds significant memory footprint.
-
----
-
-## Honourable Mentions
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>ReentrantLock</dt>
-    <dd>A more flexible and feature-rich alternative to the traditional <code>synchronized</code> keyword.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>ForkJoinPool</dt>
-    <dd>A specialized implementation of <code>Executor</code>, designed for divide-and-conquer-style parallelism for compute-intensive workloads. Used by parallel streams.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>CompletableFuture</dt>
-    <dd>Simplifies asynchronous programming by defining a <em>chain</em> of operations.</dl>
-
-notes:
-
-These might not be stations, but they certainly have been landmarks during Java's concurrency journey.
-
----
-
-## More Honourable Mentions
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>AtomicReference</dt>
-    <dd>Manages an object reference by ensuring atomic, thread-safe operations without requiring explicit synchronization through locks.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>Semaphore</dt>
-    <dd>Restricts thread access to a shared resource by handing out a limited number of permits.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>CountdownLatch</dt>
-    <dd>Enables one or more threads to wait for a set of operations to complete before proceeding.</dd>
-</dl>
-
-notes:
-
-**CountDownLatch**
-
-An elegant way to wait until all threads have completed their work, without the need to call `Thread.join()` and having a reference to all threads that were created..
 
 ---
 

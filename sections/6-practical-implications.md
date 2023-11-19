@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `54:00`.
+**Time Elapsed:** `42:00`.
 
 How will these features change your day-to-day life?
 That depends on what kind of Java developer you are:

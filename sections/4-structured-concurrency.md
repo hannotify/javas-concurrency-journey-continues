@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `24:30`.
+**Time Elapsed:** `20:00`.
 
 As we're leaving our current station 'Virtual Threads', let's see what the rest of the journey has in store for us.
 It looks like 'Structured Concurrency' is one of the upcoming stations.
@@ -118,7 +118,7 @@ note:
 * Elmo will announce the courses in exactly the right order, and if one subtask fails the remaining one(s) won’t even be started. 
 * And because all work runs in the same thread, there is no risk of thread leakage.
 
-It becomes clean from these examples that concurrenc programming would be a lot easier (and more intuitive) if the task structure used would reflect code structure, like with single-threaded code.
+It becomes clear from these examples that concurrent programming would be a lot easier (and more intuitive) if the task structure used would reflect code structure, like with single-threaded code.
 And *this* is where structured concurrency comes in!
 
 ---
@@ -247,19 +247,7 @@ Structured concurrency uses short-circuiting patterns to avoid doing unnecessary
 These patterns are supported by shutdown policies, implemented by subclasses of `StructuredTaskScope`.
 We've used the `ShutdownOnFailure` policy in the demo.
 A second subclass exists: `ShutdownOnSuccess`.
-Let me introduce a use case for that one first.
-
----
-
-<!-- .slide: data-background="img/background/bar-with-drinks.jpg" data-background-color="black" data-background-opacity="1.0"-->
-
-<https://www.pexels.com/photo/stylish-interior-of-bar-in-restaurant-5490965/> <!-- .element: class="attribution" -->
-
-note: 
-
-**Storytelling**
-
-Ordering a drink with my Java Community coworkers, but no menu available.
+Which would elegantly solve the scenario I shared with you at the very start of this talk.
 
 ---
 
@@ -377,58 +365,6 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 ---
 
 <!-- .slide: data-background="https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif?cid=ecf05e47sk6l7mtj7g0a6ezkktriqotxwju48ep1ydb2vkdw&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.6"-->
-
-## ...now wait a minute! <!-- .element: class="stroke" -->
-
-<blockquote class="explanation fragment">
-<code>ExecutorService</code> already supports <code>invokeAll(..)</code> and <code>invokeAny(..)</code>. Why would I need Structured Concurrency? 
-</blockquote>
-
-<https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif> <!-- .element: class="attribution" -->
-
-note:
-
-(slide)
-This is true, ExecutorService does support these operations:
-
-**`List<Future<T>> ExecutorService.invokeAll(Collection<Callable>)`**
-
-Executes the given tasks, returning a list of Futures when all complete (or failed).
-
-**`T ExecutorService.invokeAny(Collection<Callable>)`**
-
-Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled.
-
----
-
-### These two operations don't support:
-
-* creating a task hierarchy and limiting the scope of tasks; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* making the created tasks return to the same place and limiting resource leaks in the process; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* custom shutdown policies; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* virtual threads by default. <!-- .element: class="fragment fade-in-then-semi-out" -->
-
-<br/>
-<br/>
-<small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: <br/><a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
-</small>
-
-note:
-These two operations don't support:
-
-**creating a task hierarchy and limiting the scope of tasks** 
-parent tasks waiting for child tasks to complete
-
-**making the created tasks return to the same place**
-ES is still 'unstructured'
-
-**custom shutdown policies**
-**virtual threads by default**
-although you could configure ES to use them
-
----
-
-<!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif?cid=ecf05e47nzety4zj5qzhoe66og8xnltlk13aymuubq6jyhj6&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.5" data-background-size="75%"-->
 
 ## ...no really, wait a minute! <!-- .element: class="stroke" -->
 

@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/photo-of-train-station-1824169/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `17:00`.
+**Time Elapsed:** `14:00`.
 
 * The features I covered so far have been a part of Java for a while now.
 * They were part of 'our journey so far'.
