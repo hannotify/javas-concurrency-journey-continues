@@ -26,6 +26,7 @@ note:
 * Speaker notes on second screen
 * Code in IntelliJ checked out to the right Git tag (`0-demo-start`)
 * Terminal armed with `mirror` 
+* Logitech Spotlight ready to go
 
 *Intro*
 
