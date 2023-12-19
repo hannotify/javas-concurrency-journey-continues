@@ -23,7 +23,7 @@ note:
 
 <!-- .slide: data-background="img/background/grover.jpg" data-background-color="white" data-background-size="77%"-->
 
-<a href="#" class="attribution">(inspired by <em>Sesame Street</em>, hand-drawn by my wife Rianne)</a>
+<a href="#" class="attribution" style="color: navy !important">(inspired by <em>Sesame Street</em>, hand-drawn by my wife Rianne)</a>
 
 note:
 

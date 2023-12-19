@@ -12,7 +12,7 @@
     </tr>
 </table>
 <img data-src="img/logos/java-community-logo.png" width="9%" class="no-background" style="margin-right: 2em">
-<img data-src="img/logos/jcon-world-2023.png" width="15%" class="no-background"/>
+<img data-src="img/logos/info-support.png" width="15%" class="no-background"/>
 <br/>
 
 note:
