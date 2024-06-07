@@ -1,3 +1,5 @@
+<!-- .slide: data-background-color="#FFF" data-background-opacity="1.0" -->
+
 #### Java's Concurrency Journey Continues! Exploring
 ## Structured Concurrency 
 #### and
@@ -6,13 +8,13 @@
 <table>
     <tr>
         <td style="text-align: right; vertical-align: middle;" width="25%">Hanno Embregts</td>
-        <td style="text-align: left; padding: 0 0 0 0; vertical-align: middle;"><img width="16%" data-src="img/logos/ace-associate-spade.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/><img width="22%" data-src="img/logos/java-champion.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/></td>
-        <td style="text-align: right;"><img width="45%" data-src="img/icons/twitter-white.png" class="no-background" style="margin-top: 35px"/></td>
-        <td style="vertical-align: middle; padding: 0 0 0 0"><a href="https://www.twitter.com/hannotify">@hannotify</a></td>
+        <td style="text-align: left; padding: 0 0 0 0; vertical-align: middle;"><img width="16%" data-src="img/logos/ace-pro-spade.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/><img width="22%" data-src="img/logos/java-champion.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/></td>
+        <td style="text-align: right;"><img width="20%" data-src="img/icons/twitter.png" class="no-background" style="margin-top: 35px"/></td>
+        <td style="vertical-align: middle; padding: 0 0 0 0"><a href="https://www.twitter.com/hannotify" style="color: #BA2925 !important">@hannotify</a></td>
     </tr>
 </table>
 <img data-src="img/logos/java-community-logo.png" width="9%" class="no-background" style="margin-right: 2em">
-<img data-src="img/logos/info-support.png" width="15%" class="no-background"/>
+<img data-src="img/logos/amsterdamjug.webp" width="20%" class="no-background"/>
 <br/>
 
 note:
