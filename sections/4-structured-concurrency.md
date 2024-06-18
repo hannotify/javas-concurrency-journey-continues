@@ -35,10 +35,20 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Second Incubator <br/></td>
             <td><a href="https://openjdk.java.net/jeps/437">JEP 437</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>21</strong></td>
             <td>Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/453">JEP 453</a></td>
+        </tr>
+        <tr>
+            <td><strong>22</strong></td>
+            <td>Second Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/462">JEP 462</a></td>
+        </tr>
+        <tr class="fragment">
+            <td><strong>23</strong></td>
+            <td>Third Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/480">JEP 480</a></td>
         </tr>
     </tbody>
 </table>

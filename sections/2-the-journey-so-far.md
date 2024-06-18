@@ -15,9 +15,9 @@ note:
 
 ## Thread
 
+* since Java 1.0; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * models a thread of execution in a program; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* allows doing multiple things at the same time; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* since Java 1.0. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* allows doing multiple things at the same time. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
@@ -125,9 +125,9 @@ Of course, this situation has improved in Java 1.5 with the introduction of `Cal
 
 ## ExecutorService
 
+* since Java 1.5; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * executes tasks submitted to it; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* supports task queuing; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* since Java 1.5. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* supports task queuing. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
@@ -354,10 +354,10 @@ Also: when we know for sure the desired result won't be achieved.
 
 ## ThreadLocal
 
+* since Java 1.2; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * a variable that is unique to its thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * each thread has its own, independently initialized copy of the variable; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* can be used as the equivalent of a global variable in the threaded world; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* since Java 1.2. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* can be used as the equivalent of a global variable in the threaded world. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -484,6 +484,9 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
     </li>
     <li class="fragment">Article: "Java 21 Is Available Today, And It's Quite The Update"<br/>
         <small><a href="https://foojay.io/today/java-21-is-available-today-and-its-quite-the-update/">foojay.io/today/java-21-is-available-today-and-its-quite-the-update/</a></small>
+    </li>
+    <li class="fragment">Article: "Java 22 Is Here, And It's Ready To Rock"<br/>
+        <small><a href="https://foojay.io/today/java-22-is-here-and-its-ready-to-rock/">foojay.io/today/java-22-is-here-and-its-ready-to-rock/</a></small>
     </li>
 </ul>
 

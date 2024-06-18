@@ -48,12 +48,10 @@ Ensures that features are "done right" before they become final and permanent pa
 
 ## Developer (Spring)
 
-<ul>
-    <li class="fragment fade-in-then-semi-out"><code>SimpleTaskExecutor</code> can be configured to use virtual threads;</li>
-    <li class="fragment">This configuration will become a bit easier in the future
-        <small>through <code>SimpleTaskExecutor.setVirtualThreads(boolean virtual)</code><br/>(currently scheduled for Spring 6.1)</small>
-    </li>
-</ul>
+<div class="fragment">
+<code>SimpleTaskExecutor.setVirtualThreads(boolean virtual)</code>
+<small>(became available in Spring 6.1)</small>
+</div>
 
 <https://spring.io/blog/2022/10/11/embracing-virtual-threads> <!-- .element: class="attribution" -->
 

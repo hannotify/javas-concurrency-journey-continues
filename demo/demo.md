@@ -35,11 +35,13 @@ import java.util.concurrent.StructuredTaskScope;
 public class StructuredConcurrencyRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
+        // waiters
         Waiter grover = new Waiter("Grover");
         Waiter zoe = new Waiter("Zoe");
         Waiter rosita = new Waiter("Rosita");
 
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+            // announceCourses
             var starter = scope.fork(() -> grover.announceCourse(CourseType.STARTER));
             var main = scope.fork(() -> zoe.announceCourse(CourseType.MAIN));
             var dessert = scope.fork(() -> rosita.announceCourse(CourseType.DESSERT));

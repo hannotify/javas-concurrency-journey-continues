@@ -28,10 +28,20 @@ Another station that we'll visit today on our continued journey is 'Scoped Value
             <td>Incubator <br/></td>
             <td><a href="https://openjdk.java.net/jeps/429">JEP 429</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>21</strong></td>
             <td>Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/446">JEP 446</a></td>
+        </tr>
+        <tr>
+            <td><strong>22</strong></td>
+            <td>Second Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/464">JEP 464</a></td>
+        </tr>
+        <tr class="fragment">
+            <td><strong>23</strong></td>
+            <td>Third Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/481">JEP 481</a></td>
         </tr>
     </tbody>
 </table>
