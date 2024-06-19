@@ -40,7 +40,7 @@ public interface Restaurant {
 }
 </code></pre>
 
-<pre class="fragment"><code class="java stretch" data-trim data-line-numbers>
+<pre class="fragment"><code class="java" data-trim data-line-numbers>
 public class ThreadsMultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
@@ -74,7 +74,7 @@ note:
 
 ---
 
-<pre><code class="java stretch" data-trim data-line-numbers>
+<pre><code class="java" data-trim data-line-numbers>
 class WaiterAnnounceCourseThread extends Thread {
     private final Waiter waiter;
     private final CourseType courseType;
@@ -135,7 +135,7 @@ Of course, this situation has improved in Java 1.5 with the introduction of `Cal
 
 ### Modeling a Restaurant with Threads
 
-<pre data-id="restaurant-executorservice"><code class="java stretch" data-trim data-line-numbers>
+<pre data-id="restaurant-executorservice"><code class="java" data-trim data-line-numbers>
 public class ThreadsMultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
@@ -168,7 +168,7 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
 
 ### Modeling a Restaurant with ExecutorService
 
-<pre data-id="restaurant-executorservice"><code class="java stretch" data-trim data-line-numbers="1-16|8|9-11|13">
+<pre data-id="restaurant-executorservice"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
@@ -221,7 +221,7 @@ Sitting down for a three-course dinner, but some ingredients are out of stock.
 
 ### Modeling a Restaurant with ExecutorService
 
-<pre data-id="restaurant-executorservice"><code class="java stretch" data-trim data-line-numbers="1-16|10|9|13|10|13|9|1-16|9-11">
+<pre data-id="restaurant-executorservice"><code class="java" data-trim data-line-numbers="1-16|10|9|13|10|13|9|1-16|9-11">
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
@@ -281,7 +281,7 @@ Do we still think this piece of code is good enough?
 
 ### Modeling a Restaurant with ExecutorService
 
-<pre data-id="restaurant-executorservice"><code class="java stretch" data-trim data-line-numbers>
+<pre data-id="restaurant-executorservice"><code class="java" data-trim data-line-numbers>
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
@@ -374,7 +374,7 @@ note:
 
 ### Generating `announcementId`s with ThreadLocal
 
-<pre><code class="java stretch" data-trim data-line-numbers>
+<pre><code class="java" data-trim data-line-numbers>
 public class AnnouncementId {
     private static final AtomicInteger nextId = new AtomicInteger(1);
     private static final ThreadLocal&lt;Integer&gt; announcementId = 
@@ -397,7 +397,7 @@ Each thread holds an implicit reference to its copy of a thread-local variable a
 ---
 
 #### Waiter
-<pre><code class="java stretch" data-trim data-line-numbers="1-9|5">
+<pre><code class="java" data-trim data-line-numbers="1-9|5">
 public Course announceCourse(CourseType courseType) {
     Course pickedCourse = Chef.pickCourse(name, courseType);
 
@@ -410,7 +410,7 @@ public Course announceCourse(CourseType courseType) {
 </code></pre>
 
 #### Chef <!-- .element: class="fragment" data-fragment-index="1" -->
-<pre class="fragment" data-fragment-index="1"><code class="java stretch" data-trim data-line-numbers="1-11|8">
+<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-11|8">
 public static Course pickCourse(String waiterName, CourseType courseType) {
     // MENU is a pre-populated Map&lt;CourseType, List&lt;Course&gt;&gt;.
     var courses = MENU.get(courseType);

@@ -56,7 +56,7 @@ Ensures that features are "done right" before they become final and permanent pa
 <https://spring.io/blog/2022/10/11/embracing-virtual-threads> <!-- .element: class="attribution" -->
 
 note:
-When you use a Java application framework, you rarely create threads yourself. 
+When you use a Java application framsework, you rarely create threads yourself. 
 It is done for you by the framework.
 So it is important to know how you can configure the framework you're using to benefit from the new concurrency features.
 This is how you can use Virtual Threads with Spring.
@@ -89,7 +89,7 @@ to get a `ManagedExecutorService` with virtual threads.
 
 ## Developer (Jakarta EE)
 
-<pre><code class="java stretch" data-trim data-line-numbers="1-6|1">
+<pre><code class="java" data-trim data-line-numbers="1-6|1">
 try (var scope = new StructuredTaskScope&lt;Object&gt;("MyTaskScopeWithContext", managedThreadFactory) {
     var subtask1 = scope.fork(task1);
     var subtask2 = scope.fork(task2);

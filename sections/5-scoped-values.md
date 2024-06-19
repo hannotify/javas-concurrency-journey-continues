@@ -159,7 +159,7 @@ g
 ---
 
 ### AnnouncementId
-<pre><code class="java stretch" data-trim data-line-numbers="1-4|2,4">
+<pre><code class="java" data-trim data-line-numbers="1-4|2,4">
     private static final AtomicInteger nextId = new AtomicInteger(1);
     private static final ScopedValue&lt;Integer&gt; scopedValue = ScopedValue.newInstance();
     public static int nextId() { return nextId.getAndIncrement(); }
@@ -167,7 +167,7 @@ g
 </code></pre>
 
 ### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
-<pre class="fragment" data-fragment-index="1"><code class="java stretch" data-trim data-line-numbers="1-16|4-6,13">
+<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-16|4-6,13">
 public Course announceCourse(CourseType courseType) throws Exception {
     if (!introduced) introduce();
 
@@ -189,7 +189,7 @@ private Course announce(CourseType courseType) throws OutOfStockException {
 ---
 
 ### Chef
-<pre><code class="java stretch" data-trim data-line-numbers="1-11|8">
+<pre><code class="java" data-trim data-line-numbers="1-11|8">
 public static Course pickCourse(String waiterName, CourseType courseType) throws OutOfStockException {
     // MENU is a pre-populated Map&lt;CourseType, List&lt;Course&gt;&gt;.
     var courses = MENU.get(courseType);
@@ -207,7 +207,7 @@ public static Course pickCourse(String waiterName, CourseType courseType) throws
 
 ## Rebinding Scoped Values
 
-<pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-15|4|8-10|9|14|10">
+<pre class="fragment"><code class="java" data-trim data-line-numbers="1-15|4|8-10|9|14|10">
 private static final ScopedValue&lt;String&gt; X = ScopedValue.newInstance();
 
 void foo() {
@@ -240,7 +240,7 @@ note:
 
 ## Inheriting Scoped Values
 
-<pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-19|9|11-16|12-13">
+<pre class="fragment"><code class="java" data-trim data-line-numbers="1-19|9|11-16|12-13">
 public class StructuredConcurrencyBar implements Bar {
     private static final ScopedValue&lt;Integer&gt; drinkOrderId = ScopedValue.newInstance();
 
