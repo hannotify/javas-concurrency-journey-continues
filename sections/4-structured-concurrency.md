@@ -374,7 +374,55 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 
 ---
 
-<!-- .slide: data-background="https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif?cid=ecf05e47sk6l7mtj7g0a6ezkktriqotxwju48ep1ydb2vkdw&ep=v1_gifs_related&rid=giphy.gif&ct=g" data-background-color="black" data-background-opacity="0.6"-->
+<!-- .slide: data-background="https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif" data-background-color="black" data-background-opacity="0.6"-->
+
+## ...now wait a minute! <!-- .element: class="stroke" -->
+
+<blockquote class="explanation fragment"><code>ExecutorService</code> already supports <code>invokeAll(..)</code> and <code>invokeAny(..)</code>. Why would I need Structured Concurrency? </blockquote>
+
+<https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif> <!-- .element: class="attribution" -->
+
+note:
+(slide)
+This is true, ExecutorService does support these operations:
+**`List<Future<T>> ExecutorService.invokeAll(Collection<Callable>)`**
+Executes the given tasks, returning a list of Futures when all complete (or failed).
+**`T ExecutorService.invokeAny(Collection<Callable>)`**
+Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled.
+
+---
+
+### These two operations don't support:
+* creating a task hierarchy and limiting the scope of tasks; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* making the created tasks return to the same place and limiting resource leaks in the process; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* custom shutdown policies; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* virtual threads by default. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+<br/>
+<br/>
+
+<small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: 
+<br/>
+<a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
+</small>
+
+note:
+These two operations don't support:
+
+**creating a task hierarchy and limiting the scope of tasks** 
+parent tasks waiting for child tasks to complete
+
+**making the created tasks return to the same place**
+ES is still 'unstructured'
+
+**custom shutdown policies**
+
+**virtual threads by default**
+although you could configure ES to use them
+
+---
+
+<!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif" data-background-color="black" data-background-opacity="0.6" data-background-size="contain"-->
 
 ## ...no really, wait a minute! <!-- .element: class="stroke" -->
 
