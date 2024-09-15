@@ -34,3 +34,16 @@ The talk outline will be roughly as follows:
 `54:00` Practical Implications
 `56:00` Have We Come To Journey's End?
 `58:00` Wrap-up and Q&A
+
+### 75 min.
+
+The talk outline will be roughly as follows:
+
+`00:00` Introduction
+`03:00` Our Journey So Far
+`22:00` Virtual Threads
+`30:00` Structured Concurrency
+`54:00` Scoped Values
+`68:00` Practical Implications
+`71:00` Have We Come To Journey's End?
+`74:00` Wrap-up and Q&A

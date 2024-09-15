@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `44:00`.
+**Time Elapsed:** `71:00`.
 
 So is Java's concurrency journey over now?
 Have we come to journey's end?
