@@ -337,13 +337,14 @@ making it easy to run the workload on a different thread configuration
 **will wait for all tasks to terminate**
 
 Even if one of them would fail or is cancelled!
+The reason for this: the `submit()` method returns a `Future`, a Java construct that only supports blocking `get()`s.
 Also: when we know for sure the desired result won't be achieved.
 
 **allows unrestricted patterns of concurrency**
 
 * it's very hard with ExecutorService to create relationships among tasks and subtasks
 * but that's a valid use case that occurs quite often!
-* But ExecutorService doesn't enforce any task structure
+* Unfortunately, ExecutorService doesn't enforce any task structure
 * In theory, one thread could create an ExecutorService, a second thread could submit work to it.
 * And the threads which actually execute the work would have no relationship to either the first or second thread. 
 * They are *one-way jumps*, just like the notorious `goto` statement from the `BASIC` language.
@@ -361,7 +362,7 @@ Also: when we know for sure the desired result won't be achieved.
 
 note:
 
-**can be used as the equivalent of a global variale in the threaded world**
+**can be used as the equivalent of a global variable in the threaded world**
 
 * imagine you need a value in many places.
 * if you want to avoid cluttering up your method signatures by passing it around, you could use a global variable
@@ -470,6 +471,57 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 * So if Thread A starts a thread called Thread B, then Thread B can access Thread A's inheritable thread-locals.
 * But in order to make this happen, the child thread (Thread B) has to allocate (redundant) storage for every thread-local variable previously written in the parent thread. 
 * This adds significant memory footprint.
+
+---
+
+## Honourable Mentions
+
+<dl class="fragment fade-in-then-semi-out">
+    <dt>ReentrantLock</dt>
+    <dd>A more flexible and feature-rich alternative to the traditional <code>synchronized</code> keyword.</dd>
+</dl>
+
+<dl class="fragment fade-in-then-semi-out">
+    <dt>ForkJoinPool</dt>
+    <dd>A specialized implementation of <code>Executor</code>, designed for divide-and-conquer-style parallelism for compute-intensive workloads. Used by parallel streams.</dd>
+</dl>
+
+<dl class="fragment fade-in-then-semi-out">
+    <dt>CompletableFuture</dt>
+    <dd>Simplifies asynchronous programming by defining a <em>chain</em> of operations. Each subsequent operation starts running after the first one has completed.</dl>
+
+notes:
+
+These might not be stations, but they certainly have been landmarks during Java's concurrency journey.
+
+on **CompletableFuture**:
+
+CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever.
+
+---
+
+## Honourable Mentions
+
+<dl class="fragment fade-in-then-semi-out">
+    <dt>AtomicReference</dt>
+    <dd>Manages an object reference by ensuring atomic, thread-safe operations without requiring explicit synchronization through locks.</dd>
+</dl>
+
+<dl class="fragment fade-in-then-semi-out">
+    <dt>Semaphore</dt>
+    <dd>Restricts thread access to a shared resource by handing out a limited number of permits.</dd>
+</dl>
+
+<dl class="fragment fade-in-then-semi-out">
+    <dt>CountdownLatch</dt>
+    <dd>Enables one or more threads to wait for a set of operations to complete before proceeding.</dd>
+</dl>
+
+notes:
+
+**CountDownLatch**
+
+An elegant way to wait until all threads have completed their work, without the need to call `Thread.join()` and having a reference to all threads that were created..
 
 ---
 
