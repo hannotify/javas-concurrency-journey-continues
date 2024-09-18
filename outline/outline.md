@@ -4,7 +4,7 @@
 
 > A workshop that leads to a discussion about focus, focus span, disturbing factors, limit active work.
 
-- [ITP] ("If Time Permits") introduce the results of the three scenarios one-by-one (you have to split up the picture)
+- [ITP] ("If Time Permits") introduce the results of the three scenarios one-by-one (you'd have to split up the picture)
 - fortunately Java's concurrency features are more sophisticated!
 
 ## Sneak Preview
@@ -40,6 +40,127 @@ This talk will be about:
 * example code: serving meals
 * pros: 
 * cons: error propagation, communicating cancellation intent
+
+### [ITP] CompletableFuture
+
+* since Java 8; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* composes asynchronous operations; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* handles eventual results in a declarative way; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* aims to fix the problems that come with the `Future`. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+note:
+
+**aims to fix the problems that come with the `Future`**
+
+* it cannot be manually completed;
+* you cannot perform further action on a Future’s result without blocking;
+* multiple `Future`s cannot be chained together;
+* doesn't support exception handling.
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with ExecutorService
+
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+public class MultiWaiterRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        try (var executor = Executors.newFixedThreadPool(3)) {
+            Future&lt;Course&gt; starter = executor.submit(() -> grover.announceCourse(CourseType.STARTER));
+            Future&lt;Course&gt; main = executor.submit(() -> zoe.announceCourse(CourseType.MAIN));
+            Future&lt;Course&gt; dessert = executor.submit(() -> rosita.announceCourse(CourseType.DESSERT));
+
+            return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+        }
+    }
+}
+</code></pre>
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with CompletableFuture
+
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+public class CompletableFutureRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() throws Exception {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        var starter = asFuture(() -> grover.announceCourse(CourseType.STARTER));
+        var main = asFuture(() -> zoe.announceCourse(CourseType.MAIN));
+        var dessert = asFuture(() -> rosita.announceCourse(CourseType.DESSERT));
+
+        CompletableFuture.allOf(starter, main, dessert).join();
+
+        return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+    }
+
+    public static <T> CompletableFuture<T> asFuture(Callable<? extends T> callable) {
+        CompletableFuture<T> future = new CompletableFuture<>();
+        future.defaultExecutor().execute(() -> {
+            try {
+                future.complete(callable.call());
+            } catch (Throwable t) {
+                future.completeExceptionally(t);
+            }
+        });
+        return future;
+    }
+}
+</code></pre>
+
+note:
+
+ITP:
+From JEP 480: "CompletableFuture is designed for the asynchronous programming paradigm, whereas StructuredTaskScope encourages the blocking paradigm.
+
+Future and CompletableFuture are, in short, designed to offer degrees of freedom that are counterproductive in structured concurrency."
+
+ITP: doornemen: 
+* https://www.baeldung.com/java-executorservice-vs-completablefuture
+
+[Differences]
+
+* A CompletableFuture acts as a container that holds the eventual result of an asynchronous operation. It might not have a result immediately, but it provides methods to define what to do when the result becomes available. Unlike ExecutorService, where retrieving results can block the thread, CompletableFuture operates in a non-blocking manner.
+* Both ExecutorService and CompletableFuture offer mechanisms for chaining asynchronous tasks, but they take different approaches. 
+  * In ExecutorService, we typically submit tasks for execution and then use the Future objects returned by these tasks to handle dependencies and chain subsequent tasks. However, this involves blocking and waiting for the completion of each task before proceeding to the next, which can lead to inefficiencies in handling asynchronous workflows.
+  * On the other hand, CompletableFuture offers a more streamlined and expressive way to chain asynchronous tasks. It simplifies task chaining with built-in methods like thenApply(). These methods allow you to define a sequence of asynchronous tasks where the output of one task becomes the input for the next. **HE**: an available thread (by default in the ForkJoin.commonPool) is *woken up* when the input is available for the next task.
+
+[Error Management]
+
+* When using ExecutorService, errors can manifest in two ways:
+  * Exceptions thrown within the submitted tasks: These exceptions propagate back to the main thread when we attempt to retrieve the result using methods like get() on the returned Future object. This can lead to unexpected behavior if not handled appropriately.
+  * Unchecked exceptions during thread pool management: If an unchecked exception occurs during thread pool creation or shutdown, it’s typically thrown from the ExecutorService methods themselves. We need to catch and handle these exceptions in our code.
+* In contrast, CompletableFuture offers a more robust approach to error handling with methods like exceptionally() and handling exceptions within the chaining methods themselves. These methods allow us to define how to handle errors at different stages of the asynchronous workflow, without the need for explicit try-catch blocks.
+
+[Timeout Management]
+
+* ExecutorService doesn’t offer built-in timeout functionality. To implement timeouts, we need to work with Future objects and potentially interrupt tasks exceeding the deadline.
+* In Java 9, CompletableFuture offers a more streamlined approach to timeouts with methods like completeOnTimeout(). The completeOnTimeout() method will complete the CompletableFuture with a specified value if the original task isn’t complete within the specified timeout duration.
+
+[Summary]
+
+[This comparison table](https://www.baeldung.com/java-executorservice-vs-completablefuture#summary) looks useful, and we can extend it for the Deep-Dive version of this talk.
+
+The answers for Structured Concurrency:
+
+* Focus: ITP
+* Chaining: Hierarchical organization - Structured concurrency enforces parent-child relationships between tasks, requiring parent tasks to wait for child tasks to complete before finishing.
+* Error Handling: shutdown on failure
+* Timeout Management: ITP
+* Blocking vs. Non-blocking: blocking
+
+* https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3
 
 ### ThreadLocal
 
