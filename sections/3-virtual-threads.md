@@ -220,8 +220,7 @@ This is because the `LockSupport` class now supports *parking* and *unparking* v
 
 ---
 
-### What Drawbacks Are Amplified 
-### Now That Virtual Threads Are Available?
+### What Drawbacks Are Amplified Now That Virtual Threads Are Available?
 
 <li class="fragment fade-in-then-semi-out"><code>ExecutorService</code> allows unrestricted patterns of concurrency;
 <li class="fragment fade-in-then-semi-out">memory-intensity of thread-locals.

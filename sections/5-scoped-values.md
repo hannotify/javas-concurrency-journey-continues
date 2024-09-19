@@ -33,12 +33,12 @@ Another station that we'll visit today on our continued journey is 'Scoped Value
             <td>Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/446">JEP 446</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>22</strong></td>
             <td>Second Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/464">JEP 464</a></td>
         </tr>
-        <tr class="fragment">
+        <tr>
             <td><strong>23</strong></td>
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/481">JEP 481</a></td>
@@ -167,7 +167,7 @@ g
 </code></pre>
 
 ### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
-<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-16|4-6,13">
+<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-16|4-6,13|10">
 public Course announceCourse(CourseType courseType) throws Exception {
     if (!introduced) introduce();
 
