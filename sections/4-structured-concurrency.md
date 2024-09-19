@@ -40,12 +40,12 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/453">JEP 453</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>22</strong></td>
             <td>Second Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/462">JEP 462</a></td>
         </tr>
-        <tr class="fragment">
+        <tr>
             <td><strong>23</strong></td>
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/480">JEP 480</a></td>
@@ -392,13 +392,15 @@ Executes the given tasks, returning the result of one that has completed success
 
 ---
 
-### But there are differences!
+### Well, there are differences.
 
-* `ExecutorService.invokeAll(...)` doesn't support cancellation; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* creating a task hierarchy and limiting the scope of tasks; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* making the created tasks return to the same place and limiting resource leaks in the process; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* custom shutdown policies; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* virtual threads by default. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<ul>
+    <li class="fragment fade-in-then-semi-out">cancellation;</li>
+    <li class="fragment fade-in-then-semi-out">creating a task hierarchy and limiting the scope of tasks;</li>
+    <li class="fragment fade-in-then-semi-out">making the created tasks return to the same place and limiting resource leaks in the process;</li>
+    <li class="fragment fade-in-then-semi-out">custom shutdown policies;</li>
+    <li class="fragment fade-in-then-semi-out">virtual threads by default.</li>
+</ul>
 
 <br/>
 <br/>
@@ -409,10 +411,11 @@ Executes the given tasks, returning the result of one that has completed success
 </small>
 
 note:
-But there are differences!
+Well, there are differences.
 
-**ExecutorService.invokeAll(...) doesn't support cancellation**
-it can only wait until all tasks are finished (exceptionally).
+**cancellation**
+`ExecutorService.invokeAll(...)` doesn't support cancellation.
+It can only wait until all tasks have finished (exceptionally).
 
 **Time Elapsed:** `52:00`.
 
@@ -440,7 +443,7 @@ although you could configure ES to use them
 ## ...no really, wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
-I can create three `CompletableFuture`s and wrap them in a `CompletableFuture.allOf()`, right? Why would I need Structured Concurrency?
+I can create three <code>CompletableFuture</code>s and wrap them in a <code>CompletableFuture.allOf()</code>, right? Why would I need Structured Concurrency?
 </blockquote>
 
 note: 

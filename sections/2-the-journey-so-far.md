@@ -531,14 +531,11 @@ An elegant way to wait until all threads have completed their work, without the 
     <li class="fragment">Course: "Concurrency in Java"<br/>
         <small><a href="https://training.infosupport.com/en/trainingen/CONCURJAVA/concurrency-in-java/">training.infosupport.com/en/trainingen/CONCURJAVA/concurrency-in-java/</a></small>
     </li>
-    <li class="fragment">Article: "It's Java 20 Release Day! Here's What's New"<br/>
-        <small><a href="https://foojay.io/today/its-java-20-release-day-heres-whats-new/">foojay.io/today/its-java-20-release-day-heres-whats-new/</a></small>
-    </li>
-    <li class="fragment">Article: "Java 21 Is Available Today, And It's Quite The Update"<br/>
-        <small><a href="https://foojay.io/today/java-21-is-available-today-and-its-quite-the-update/">foojay.io/today/java-21-is-available-today-and-its-quite-the-update/</a></small>
-    </li>
-    <li class="fragment">Article: "Java 22 Is Here, And It's Ready To Rock"<br/>
-        <small><a href="https://foojay.io/today/java-22-is-here-and-its-ready-to-rock/">foojay.io/today/java-22-is-here-and-its-ready-to-rock/</a></small>
+    <li class="fragment">Articles on <a href="https://foojay.io">foojay.io</a>:<br/>
+        <small><a href="https://foojay.io/today/its-java-20-release-day-heres-whats-new/">foojay.io/today/its-java-20-release-day-heres-whats-new/</a></small><br/>
+        <small><a href="https://foojay.io/today/java-21-is-available-today-and-its-quite-the-update/">foojay.io/today/java-21-is-available-today-and-its-quite-the-update/</a></small><br/>
+        <small><a href="https://foojay.io/today/java-22-is-here-and-its-ready-to-rock/">foojay.io/today/java-22-is-here-and-its-ready-to-rock/</a></small><br/>
+        <small><a href="https://foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/">foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/</a></small><br/>        
     </li>
 </ul>
 
