@@ -19,6 +19,12 @@ note:
 * models a thread of execution in a program; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * allows doing multiple things at the same time. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
+note:
+
+* An easy-to-relate example domain always helps me to understand technical concepts.
+* So let's use the bar story I just told, and extend it with a restaurant.
+* We might become a bit hungry after we've had a few drinks, right?
+
 ---
 
 <!-- .slide: data-background="img/background/grover.jpg" data-background-color="white" data-background-size="77%"-->
@@ -27,8 +33,10 @@ note:
 
 note:
 
-* An easy-to-relate example domain always helps me to understand complex technical concepts.
-* Today we're using a restaurant and bar as example domain.
+* Our restaurant is not your basic restaurant, though. 
+* Things go wrong here.
+
+Hand-drawn by my wife, btw! She's awesome! (opposites attract, I guess, my drawing has always been terrible, that's why I went into IT)
 
 ---
 
@@ -559,11 +567,9 @@ But why does this stuff interest me?
 * Apart from the fact that it feels nice to be the concurrency expert somewhere...
 * My employer Info Support gives me the chance to combine Java consultancy with teaching courses.
 * Course: "Concurrency in Java"
-* New concurrency features in recent Java versions
-* Article: "It's Java 20 Release Day!" on FooJay
-* Article: "Java 21 Is Available Today!" on FooJay
+* New concurrency features in recent Java versions, on which I wrote a few articles.
 
-While we're on the subject, let's finish the introduction of myself...
+While we're on the subject, let's finish introducing myself...
 
 * I'm a Java Champion and an Oracle ACE.
 * I am @hannotify on Twitter, Mastodon or Bluesky.

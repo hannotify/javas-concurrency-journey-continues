@@ -369,7 +369,7 @@ note:
 (slide)
 The new class `StructuredTaskScope` enforces structure and order upon concurrent operations. 
 Thus it does not implement the ExecutorService or Executor interfaces since instances of those interfaces are commonly used in a non-structured way. 
-So they opted not to change the ExecutorService interface because of backwards compatibility.
+So they opted not to change the ExecutorService interface because of **backwards compatibility**.
 However, I expect it to be straightforward to migrate code that uses ExecutorService, but would benefit from structure, to use StructuredTaskScope.
 
 ---
@@ -385,8 +385,10 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 note:
 (slide)
 This is true, ExecutorService does support these operations:
+
 **`List<Future<T>> ExecutorService.invokeAll(Collection<Callable>)`**
 Executes the given tasks, returning a list of Futures when all complete (or failed).
+
 **`T ExecutorService.invokeAny(Collection<Callable>)`**
 Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled.
 
@@ -443,7 +445,7 @@ although you could configure ES to use them
 ## ...no really, wait a minute! <!-- .element: class="stroke" -->
 
 <blockquote class="explanation fragment">
-I can create three <code>CompletableFuture</code>s and wrap them in a <code>CompletableFuture.allOf()</code>, right? Why would I need Structured Concurrency?
+I can create multiple <code>CompletableFuture</code>s and wrap them in a <code>CompletableFuture.allOf()</code>, right? Why would I need Structured Concurrency?
 </blockquote>
 
 note: 
@@ -473,7 +475,7 @@ Doesn't <code>ForkJoinPool</code> also impose structure on concurrent tasks? Why
 note:
 (slide)
 Indeed, `ForkJoinPool` also imposes structure on concurrent tasks. 
-However, that API is designed for compute-intensive tasks, whereas Structured Concurrency is meant for tasks which involve I/O.
+However, that API is designed for compute-intensive tasks, whereas Structured Concurrency is specifically targeting towards tasks that involve I/O.
 
 ---
 
