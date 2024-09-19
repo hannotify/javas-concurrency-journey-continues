@@ -33,7 +33,9 @@ note:
 *Intro*
 
 * Hello, my name is Hanno, welcome to this talk!
-* Today I want to talk about concurrency.
+* Today I want to talk about Java's concurrency features.
+* How it all started in the 90s, how Java's support for concurrency improved over time.
+* And what is currently happening in Java's latest releases.
 * I actually got the idea for this talk on a Friday night, while I was out for drinks with a few friends.
 
 ---

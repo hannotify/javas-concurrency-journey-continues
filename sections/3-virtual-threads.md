@@ -188,7 +188,7 @@ The stacks grow and shrink as the application runs, enabling the creation of mil
 
 Virtual threads also allow a *thread-per-request* style, eliminating the need for thread-sharing mechanisms such as *thread pooling*.
 It can even be combined with the synchronous programming style that Java is famous for.
-(as opposed to the asynchronous programming style we have leared in the past ten years with frameworks like RxJava, for example)
+(as opposed to the asynchronous programming style we have leared in the past ten years with frameworks like RxJava or Akka, for example)
 
 In a way, virtual threads are Java's definitive answer to both thread pooling and the asynchronous programming style.
 
@@ -214,20 +214,22 @@ This is because the `LockSupport` class now supports *parking* and *unparking* v
 
 * virtual threads *do* support (inheritable) thread-locals.
 * but they should not be used to pool costly resources among multiple tasks.
-* in fact, virtual threads should never be pooled, since each is intended to run only a single task over its lifetime.
+* (in fact, virtual threads should never be pooled, since each is intended to run only a single task over its lifetime)
 * many thread-locals were removed from the `java.base` module in preparation for virtual threads in order to reduce memory footprint when running with millions of threads.
-* in fact, a system property `jdk.traceVirtualThreadLocals` was added for this very purpose. When set to `true`, it triggers a stack trace whenever a virtual thread sets the value of any thread-local variable.
+* in fact, a system property `jdk.traceVirtualThreadLocals` was added for this very purpose. (slide) When set to `true`, it triggers a stack trace whenever a virtual thread sets the value of any thread-local variable.
 
 ---
 
-### What Drawbacks Are Amplified Now That Virtual Threads Are Available?
+### What Drawbacks Mentioned Earlier Are Amplified Now That Virtual Threads Are Available?
 
-<li class="fragment fade-in-then-semi-out"><code>ExecutorService</code> allows unrestricted patterns of concurrency;
-<li class="fragment fade-in-then-semi-out">memory-intensity of thread-locals.
+<ul>
+    <li class="fragment fade-in-then-semi-out"><code>ExecutorService</code> allows unrestricted patterns of concurrency;
+    <li class="fragment fade-in-then-semi-out">memory-intensity of thread-locals.
+</ul>
 
 note: 
 
-These drawbacks all have to do with the increase in thread count that virtual threads will cause. 
+These drawbacks all have to do with the increase in thread count that virtual threads can cause. 
 
 **ExecutorService allows unrestricted patterns of concurrency**
 

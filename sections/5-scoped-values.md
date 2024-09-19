@@ -151,9 +151,11 @@ note:
 
 Let's see scoped values in action!
 
-- Let's migrate `AnnouncementId` from a thread-local to a scoped value
+- Let's migrate `AnnouncementId` from a thread-local to a scoped value.
+- Call `ScopedValue.where(..)` in `Waiter.announceCourse(courseType)`.
+
 - We see that scoped values can only be accessed within the defined scope, leading to a limited lifetime ('how long is it accessible?') and access ('by who is it accessible?').
-g
+
 *(tag `3-introduced-scoped-value`)*
 
 ---
@@ -272,7 +274,7 @@ note:
 * Scoped values in the parent thread are automatically inherited by child threads created with StructuredTaskScope.
 * Legacy thread management classes such as ForkJoinPool do not support inheritance of ScopedValues because they cannot guarantee that a child thread forked from some parent thread scope will exit before the parent leaves that scope.
 * With structured concurrency, this CAN be guaranteed, which is the reason scoped value inheriting is possible with this mechanism.
-* And I think it's nice to see these two new features work so well together.
+* It's very nice to see these two new features work so well together!
 
 ---
 
@@ -290,7 +292,8 @@ Are scoped values always a better choice than thread-locals, or just in certain 
 
 ### ✅ Migrate when...
 
-* your thread-local only deals with one-way transmission of unchanging data. <!-- .element: class="fragment fade-in-then-semi-out" data-fragment-index="2" -->
+* your thread-locals only deal with one-way transmission of unchanging data; <!-- .element: class="fragment fade-in-then-semi-out" data-fragment-index="1" -->
+* you expect to use many virtual threads. <!-- .element: class="fragment fade-in-then-semi-out" data-fragment-index="2" -->
 
 <br/>
 <br/>
@@ -299,7 +302,8 @@ Are scoped values always a better choice than thread-locals, or just in certain 
 ### ❌ Don't migrate when... <!-- .element: class="fragment" data-fragment-index="3" -->
 
 <ul>
-    <li class="fragment fade-in-then-semi-out" data-fragment-index="4">your thread-local is used in a two-way fashion.</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="4">your thread-local is used in a two-way fashion;</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="5">you don't expect to use virtual threads.</li>
 </ul>
 
 ---
