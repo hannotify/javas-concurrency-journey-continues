@@ -1,3 +1,7 @@
+:root {
+    --eventColor: #5d62fb
+}
+
 .slides img {
 	border:0 !important; 
 	box-shadow: none !important;
@@ -32,22 +36,22 @@ tr:hover .popup-image {
 }
 
 a {
-    color: #f68422 !important;
+    color: var(--eventColor) !important;
 }
 
 .reveal .progress span {
-    background: #f68422 !important;
+    background: var(--eventColor) !important;
 }
 
 .reveal ::selection {
     color: black;
-    background: #f68422;
+    background: var(--eventColor);
     text-shadow: none; 
 }
   
 .reveal ::-moz-selection {
     color: black;
-    background: #f68422;
+    background: var(--eventColor);
     text-shadow: none; 
 }
 
@@ -62,6 +66,10 @@ a {
     right: 0;
     font-size: 0.3em;
     text-shadow: none;
+}
+
+.reveal code {
+    font-family: 'Jetbrains Mono', monospace;
 }
 
 .print-pdf .reveal section .attribution {
