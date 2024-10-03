@@ -14,7 +14,7 @@
     </tr>
 </table>
 <img data-src="img/logos/java-community-logo.png" width="9%" class="no-background" style="margin-right: 2em">
-<img data-src="img/logos/trailblazers.webp" width="20%" class="no-background"/>
+<img data-src="img/logos/devoxx.png" width="20%" class="no-background"/>
 <br/>
 
 note:
