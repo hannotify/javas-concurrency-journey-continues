@@ -138,6 +138,22 @@ note:
 
 ---
 
+## And This Is How They Look!
+
+<pre class="fragment"><code class="java" data-trim>
+private static final ScopedValue&lt;String&gt; X = ScopedValue.newInstance();
+
+void foo() {
+    ScopedValue.where(X, "hello").run(() -> bar());
+}
+
+void bar() {
+    System.out.println(X.get()); // prints hello
+}
+</code></pre>
+
+---
+
 <!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
 
 ## Demo, Part 3
@@ -153,6 +169,7 @@ Let's see scoped values in action!
 
 - Let's migrate `AnnouncementId` from a thread-local to a scoped value.
 - Call `ScopedValue.where(..)` in `Waiter.announceCourse(courseType)`.
+- Call `ScopedValue.get()` outside of the scope to show what happens.
 
 - We see that scoped values can only be accessed within the defined scope, leading to a limited lifetime ('how long is it accessible?') and access ('by who is it accessible?').
 

@@ -117,7 +117,7 @@ class WaiterAnnounceCourseThread extends Thread {
 ### Cons ❌
 
 * we can't return a value directly; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* unit-of-work and mechanism to run it are one and the same. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* the workload and mechanism to run it are one and the same. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -128,6 +128,10 @@ We can announce multiple courses at the same time.
 **`Thread` can't return a value directly**
 
 Of course, this situation has improved in Java 1.5 with the introduction of `Callable<T>`
+
+**workload and mechanism to run it are one and the same**
+
+Workload (or: the task at hand, the unit-of-work)
 
 ---
 
@@ -320,7 +324,7 @@ note:
 ### Pros ✅
 
 * task can directly return a value; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* unit-of-work and run mechanism are separated. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* workload and run mechanism are separated. <!-- .element: class="fragment fade-in-then-semi-out" -->
 <br/>
 <br/>
 <br/>
@@ -338,7 +342,7 @@ note:
 
 because of the support for `Callable`.
 
-**unit-of-work and run mechanism are separated**
+**workload and run mechanism are separated**
 
 making it easy to run the workload on a different thread configuration
 
@@ -396,7 +400,7 @@ public class AnnouncementId {
 </code></pre>
 
 note:
-[ITP] Replace this by a live demo.
+[TODO] Replace this by a live demo.
 
 This class generates a unique `announcementId` local to each thread. 
 An announcementId is assigned the first time it invokes AnnouncementId.get() and remains unchanged on subsequent calls by the same thread.
@@ -560,8 +564,6 @@ They can be excellent for integration tests that use multithreading, as a way to
 <br/>
 
 note:
-[ITP] Foto van Hanno als achtergrond met opacity and the whole shebang.
-
 But why does this stuff interest me?
 
 * Apart from the fact that it feels nice to be the concurrency expert somewhere...
