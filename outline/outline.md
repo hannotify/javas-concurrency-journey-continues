@@ -41,7 +41,7 @@ This talk will be about:
 * pros: 
 * cons: error propagation, communicating cancellation intent
 
-### [ITP] CompletableFuture
+### [TODO] CompletableFuture
 
 * since Java 8; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * composes asynchronous operations; <!-- .element: class="fragment fade-in-then-semi-out" -->
@@ -121,7 +121,7 @@ public class CompletableFutureRestaurant implements Restaurant {
 
 note:
 
-ITP:
+TODO:
 From JEP 480: "CompletableFuture is designed for the asynchronous programming paradigm, whereas StructuredTaskScope encourages the blocking paradigm.
 
 Future and CompletableFuture are, in short, designed to offer degrees of freedom that are counterproductive in structured concurrency."
@@ -176,8 +176,6 @@ The answers for Structured Concurrency:
 
 Bottom line: ThreadLocals are memory-intensive & always mutable
 
-- [ITP]: demo the behavior of the ThreadLocal that holds the `announcementId`.
-
 ### Honourable Mentions
 
 * ForkJoinPool
@@ -186,8 +184,6 @@ Bottom line: ThreadLocals are memory-intensive & always mutable
 * AtomicReference<T>
 * Semaphore
 * CountDownLatch
-
-[ITP] Convert the slides in this section to the title-slide-with-background-and-opaque-description style.
 
 ## Why Does This Interest Me?
 
