@@ -36,20 +36,37 @@ note:
 * Today I want to talk about Java's concurrency features.
 * How it all started in the 90s, how Java's support for concurrency improved over time.
 * And what is currently happening in Java's latest releases.
-* I actually got the idea for this talk on a Friday night, while I was out for drinks with a few friends.
+* It's a topic that has always interested me, but that has also *scared* me from time to time.
+* Because of:
+  * The fact that you typically don't need intricate concurrency knowledge in the workplace.
+    * Unless you're a library developer
+    * Unless you run into race conditions
+    * Unless ... you name it.
+    * So you typically don't need intricate concurrency knowledge, until you do.
+* Concurrency also scares me because of its ability to improve things, but also to make things *a lot* worse.
+* Introducing concurrency can even make things *slower*.
 
 ---
 
-<!-- .slide: data-background="img/background/bar-with-drinks.jpg" data-background-color="black" data-background-opacity="1.0"-->
+<!-- .slide: data-background="img/background/the-illusion-of-multitasking.jpeg" data-background-color="black" data-background-opacity="1.0" data-background-size="contain" -->
 
-<https://www.pexels.com/photo/stylish-interior-of-bar-in-restaurant-5490965/> <!-- .element: class="attribution" -->
+note:
 
-note: 
+*Storytelling*
 
-**Storytelling**
-
-Ordering a drink with my Java Community coworkers, but no menu available.
-
-...tell the story...
-
-In Java 21, a few features were introduced that could very elegantly solve this particular situation.
+> A workshop that leads to a discussion about focus, focus span, disturbing factors, limit active work.
+* Earlier this year, the Scrum Master of an agile team I was a part of hosted an exercise he called "The Illusion of Multitasking".
+* With the purpose of making the team learn about focus span, disturbing factors and limit active work.
+* One *worker* (me), five *managers* (them).
+* Three scenarios:
+  * All managers shouted letters at me and use everything in their power to get my attention. 
+  * All managers formed a line and, when it was their turn, demanded the writing of a single letter on the sticky note that they bring.
+  * All managers formed a line and, when it was their turn, spelled out the entire name they wanted me to write.
+* Metrics:
+  * Time-to-first (T 1e.)
+  * Time-to-done (T tot.)
+* Conclusions:
+  * Almost nothing gets done when the manager:worker ratio is 5:1. :)
+  * A lot of time can be lost on context switching (see scenario 2).
+  * When only a single task can be executed at the same time, then concurrency will *definitely* make things slower.
+* Fortunately Java's concurrency features are a lot more sophisticated!

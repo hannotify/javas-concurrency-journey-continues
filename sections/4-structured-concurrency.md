@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `30:00`.
+**Time Elapsed:** `47:00`.
 
 As we're leaving our current station 'Virtual Threads', let's see what the rest of the journey has in store for us.
 It looks like 'Structured Concurrency' is one of the upcoming stations.
@@ -257,7 +257,23 @@ Structured concurrency uses short-circuiting patterns to avoid doing unnecessary
 These patterns are supported by shutdown policies, implemented by subclasses of `StructuredTaskScope`.
 We've used the `ShutdownOnFailure` policy in the demo.
 A second subclass exists: `ShutdownOnSuccess`.
-Which would elegantly solve the scenario I shared with you at the very start of this talk.
+Which would very elegantly solve the following scenario:
+
+---
+
+<!-- .slide: data-background="img/background/bar-with-drinks.jpg" data-background-color="black" data-background-opacity="1.0"-->
+
+<https://www.pexels.com/photo/stylish-interior-of-bar-in-restaurant-5490965/> <!-- .element: class="attribution" -->
+
+note: 
+
+(I actually got the idea for this talk on a Friday night, while I was out for drinks with a few friends.)
+
+**Storytelling**
+
+Ordering a drink with my Java Community coworkers, but no menu available.
+
+...tell the story...
 
 ---
 
@@ -419,7 +435,7 @@ Well, there are differences.
 `ExecutorService.invokeAll(...)` doesn't support cancellation.
 It can only wait until all tasks have finished (exceptionally).
 
-**Time Elapsed:** `52:00`.
+**Time Elapsed:** `1:15:00`. If so, then it's time for a break!
 
 If Time Permits: demonstrate this in the example domain by changing the following line in `StructuredConcurrencyRestaurant` and `MultiWaiterInvokeAllRestaurant`:
 

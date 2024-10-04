@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/man-with-yellow-and-black-backpack-standing-near-train-1170181/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `3:00`.
+**Time Elapsed:** `5:00`.
 
 * Let's take a quick look at what concurrency features Java currently offers.
 * Now, Java has been on a journey towards better concurrency features since the very beginning of the language.
@@ -500,11 +500,9 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 
 notes:
 
-These might not be stations, but they certainly have been landmarks during Java's concurrency journey.
-
 on **CompletableFuture**:
 
-CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever.
+CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever. It's a way to circumvent limitations classic threads currently have, such as specifically waiting for an asynchronous operation to complete. Reactive frameworks like Akka or RxJava are based on the same principles.
 
 ---
 
@@ -530,6 +528,8 @@ notes:
 **CountDownLatch**
 
 An elegant way to wait until all threads have completed their work, without the need to call `Thread.join()` and having a reference to all threads that were created..
+
+They can be excellent for integration tests that use multithreading, as a way to coordinate when it is time to run your assertions.
 
 ---
 

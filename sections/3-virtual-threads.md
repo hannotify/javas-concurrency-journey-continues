@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/photo-of-train-station-1824169/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `22:00`.
+**Time Elapsed:** `35:00`.
 
 * The features I covered so far have been a part of Java for a while now.
 * They were part of 'our journey so far'.
@@ -54,18 +54,23 @@ note:
 
 ---
 
-<!-- .slide: data-background="img/background/virtual-threads-graph.png" data-background-size="contain" data-background-color="black" -->
+<!-- .slide: data-background="img/background/virtual-threads-graph.png" data-background-size="contain" data-background-color="black" data-transition="none" -->
+
+<https://medium.com/@viraj_63415/java-virtual-threads-and-enterprise-scalability-603fce70930d> <!-- .element: class="attribution" -->
+
+---
+
+<!-- .slide: data-background="img/background/virtual-threads-graph-arrows.png" data-background-size="contain" data-background-color="black" data-transition="none" -->
 
 <https://medium.com/@viraj_63415/java-virtual-threads-and-enterprise-scalability-603fce70930d> <!-- .element: class="attribution" -->
 
 note:
 
-Each virtual thread can be associated with multiple Platform (or Carrier) Threads during its lifetime — one at a time though. (could also be a single one, by the way)
-When a virtual thread executes multiple CPU operations, they may be executed by different carrier threads.
+Each virtual thread is typically associated with a single Platform Thread during its lifetime.
 
 ---
 
-<!-- .slide: data-background="img/background/parallel-trains.jpg" data-background-color="black" data-background-opacity="0.8"-->
+<!-- .slide: data-background="img/background/parallel-trains.jpg" data-background-color="black" data-background-opacity="0.8" -->
 
 <https://www.pexels.com/photo/gray-trains-on-train-depot-near-buildings-14535103/> <!-- .element: class="attribution" -->
 
