@@ -419,7 +419,7 @@ Well, there are differences.
 `ExecutorService.invokeAll(...)` doesn't support cancellation.
 It can only wait until all tasks have finished (exceptionally).
 
-**Time Elapsed:** `52:00`.
+**Time Elapsed:** `1:15:00`. If so, then it's time for a break!
 
 If Time Permits: demonstrate this in the example domain by changing the following line in `StructuredConcurrencyRestaurant` and `MultiWaiterInvokeAllRestaurant`:
 

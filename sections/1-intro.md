@@ -52,4 +52,4 @@ Ordering a drink with my Java Community coworkers, but no menu available.
 
 ...tell the story...
 
-In Java 21, a few features were introduced that could very elegantly solve this particular situation.
+In recent Java versions, a few features were introduced that could very elegantly solve this particular situation.
