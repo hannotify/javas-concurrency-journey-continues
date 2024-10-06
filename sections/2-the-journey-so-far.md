@@ -22,8 +22,18 @@ note:
 note:
 
 * An easy-to-relate example domain always helps me to understand technical concepts.
-* So let's use the bar story I just told, and extend it with a restaurant.
-* We might become a bit hungry after we've had a few drinks, right?
+
+---
+
+<!-- .slide: data-background="img/background/summer-dinner.jpg" data-background-color="black" data-background-opacity="0.6"-->
+
+<https://www.pexels.com/photo/chairs-dining-room-food-furniture-460537/> <!-- .element: class="attribution" -->
+
+note: 
+
+**Storytelling**
+
+Let's sit down for a three-course dinner.
 
 ---
 
@@ -40,6 +50,65 @@ Hand-drawn by my wife, btw! She's awesome! (opposites attract, I guess, my drawi
 
 ---
 
+<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
+
+### Demo, Part 1
+
+- Let's create a `SingleWaiterRestaurant`
+
+<https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
+
+note:
+*(tag `0-deep-dive-demo-start`)*
+
+* SHOW: Restaurant interface
+* CREATE: Main, SingleWaiterRestaurant
+* RUN: Main
+* SHOW: Waiter, Chef, Course, Ingredient
+
+---
+
+### A Restaurant With a Single Waiter
+
+<pre><code class="java" data-trim data-line-numbers>
+public interface Restaurant {
+    MultiCourseMeal announceMenu();
+}
+</code></pre>
+
+<pre class="fragment"><code class="java" data-trim data-line-numbers>
+public class SingleWaiterRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() throws Exception {
+        var elmo = new Waiter("Elmo");
+
+        var starter = elmo.announceCourse(CourseType.STARTER);
+        var main = elmo.announceCourse(CourseType.MAIN);
+        var dessert = elmo.announceCourse(CourseType.DESSERT);
+
+        return new MultiCourseMeal(starter, main, dessert);
+    }
+}
+</code></pre>
+
+---
+
+<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
+
+### Demo, Part 2
+
+- Let's create a `MultiWaiterThreadsRestaurant`
+
+<https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
+
+note:
+*(tag `1-deep-dive-created-single-waiter-restaurant`)*
+
+* CREATE: MultiWaiterThreadsRestaurant, WaiterAnnounceCourseThread
+* RUN: Main
+
+---
+
 ### Modeling a Restaurant with Threads
 
 <pre><code class="java" data-trim data-line-numbers>
@@ -49,7 +118,7 @@ public interface Restaurant {
 </code></pre>
 
 <pre class="fragment"><code class="java" data-trim data-line-numbers>
-public class ThreadsMultiWaiterRestaurant implements Restaurant {
+public class MultiWaiterThreadsRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
         Waiter grover = new Waiter("Grover");
@@ -79,7 +148,6 @@ note:
 
 * Our restaurant serves a three-course meal that is announced by three waiters in separate Threads.
 
-
 ---
 
 <pre><code class="java" data-trim data-line-numbers>
@@ -103,7 +171,6 @@ class WaiterAnnounceCourseThread extends Thread {
     }
 }
 </code></pre>
-    
 
 ---
 
@@ -143,12 +210,28 @@ Workload (or: the task at hand, the unit-of-work)
 
 ---
 
+<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
+
+### Demo, Part 3
+
+- Let's create a `MultiWaiterExecutorServiceRestaurant`
+
+<https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
+
+note:
+*(tag `2-deep-dive-created-multi-waiter-threads-restaurant`)*
+
+* CREATE: MultiWaiterExecutorServiceRestaurant
+* RUN: Main
+
+---
+
 <!-- .slide: data-auto-animate" -->
 
 ### Modeling a Restaurant with Threads
 
 <pre data-id="restaurant-executorservice"><code class="java" data-trim data-line-numbers>
-public class ThreadsMultiWaiterRestaurant implements Restaurant {
+public class MultiWaiterThreadsRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
         Waiter grover = new Waiter("Grover");
@@ -181,7 +264,7 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
 ### Modeling a Restaurant with ExecutorService
 
 <pre data-id="restaurant-executorservice"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
-public class MultiWaiterRestaurant implements Restaurant {
+public class MultiWaiterExecutorServiceRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
         Waiter grover = new Waiter("Grover");
@@ -214,18 +297,6 @@ submitting three 'announceCourse' tasks here, that return Futures.
 calling a blocking 'get' on the Futures will yield the 3 results and allow us to construct a `MultiCourseMeal`.
 
 Looks good enough, right?
-
----
-
-<!-- .slide: data-background="img/background/summer-dinner.jpg" data-background-color="black" data-background-opacity="0.6"-->
-
-<https://www.pexels.com/photo/chairs-dining-room-food-furniture-460537/> <!-- .element: class="attribution" -->
-
-note: 
-
-**Storytelling**
-
-Sitting down for a three-course dinner, but some ingredients are out of stock.
 
 ---
 
@@ -365,6 +436,94 @@ Also: when we know for sure the desired result won't be achieved.
 
 ---
 
+## CompletableFuture
+
+* since Java 8; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* composes asynchronous operations; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* handles eventual results in a declarative way; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* aims to fix the problems that come with the `Future`. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+note:
+
+**aims to fix the problems that come with the `Future`**
+
+* it cannot be manually completed;
+* you cannot perform further action on a Future’s result without blocking;
+* multiple `Future`s cannot be chained together;
+* doesn't support exception handling.
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with ExecutorService
+
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+public class MultiWaiterRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        try (var executor = Executors.newFixedThreadPool(3)) {
+            Future&lt;Course&gt; starter = executor.submit(() -> grover.announceCourse(CourseType.STARTER));
+            Future&lt;Course&gt; main = executor.submit(() -> zoe.announceCourse(CourseType.MAIN));
+            Future&lt;Course&gt; dessert = executor.submit(() -> rosita.announceCourse(CourseType.DESSERT));
+
+            return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+        }
+    }
+}
+</code></pre>
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with CompletableFuture
+
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+public class CompletableFutureRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() throws Exception {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        var starter = asFuture(() -> grover.announceCourse(CourseType.STARTER));
+        var main = asFuture(() -> zoe.announceCourse(CourseType.MAIN));
+        var dessert = asFuture(() -> rosita.announceCourse(CourseType.DESSERT));
+
+        CompletableFuture.allOf(starter, main, dessert).join();
+
+        return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+    }
+
+    public static <T> CompletableFuture<T> asFuture(Callable<? extends T> callable) {
+        var future = new CompletableFuture<>();
+        future.defaultExecutor().execute(() -> {
+            try {
+                future.complete(callable.call());
+            } catch (Throwable t) {
+                future.completeExceptionally(t);
+            }
+        });
+        return future;
+    }
+}
+</code></pre>
+
+note:
+
+CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever. It's a way to circumvent limitations classic threads currently have, such as specifically waiting for an asynchronous operation to complete. Reactive frameworks like Akka or RxJava are based on the same principles.
+
+Both ExecutorService and CompletableFuture offer mechanisms for chaining asynchronous tasks, but they take different approaches. 
+  * In ExecutorService, we typically submit tasks for execution and then use the Future objects returned by these tasks to handle dependencies and chain subsequent tasks. However, this involves blocking and waiting for the completion of each task before proceeding to the next, which can lead to inefficiencies in handling asynchronous workflows.
+  * On the other hand, CompletableFuture offers a more streamlined and expressive way to chain asynchronous tasks. It simplifies task chaining with built-in methods like thenApply(). These methods allow you to define a sequence of asynchronous tasks where the output of one task becomes the input for the next. **HE**: an available thread (by default in the ForkJoin.commonPool) is *woken up* when the input is available for the next task.
+
+---
+
 ## ThreadLocal
 
 * since Java 1.2; <!-- .element: class="fragment fade-in-then-semi-out" -->
@@ -385,6 +544,23 @@ note:
 
 ---
 
+<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
+
+### Demo, Part 4
+
+- Let's generate a few `announcementId`s with a `ThreadLocal`
+
+<https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
+
+note:
+*(tag `3-deep-dive-created-multi-waiter-executor-service-restaurant`)*
+
+* CREATE: `AnnouncementId`
+* USE: `Waiter`, `Chef`
+* RUN: `Main`
+
+---
+
 ### Generating `announcementId`s with ThreadLocal
 
 <pre><code class="java" data-trim data-line-numbers>
@@ -400,7 +576,6 @@ public class AnnouncementId {
 </code></pre>
 
 note:
-[TODO] Replace this by a live demo.
 
 This class generates a unique `announcementId` local to each thread. 
 An announcementId is assigned the first time it invokes AnnouncementId.get() and remains unchanged on subsequent calls by the same thread.
@@ -497,16 +672,6 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
     <dt>ForkJoinPool</dt>
     <dd>A specialized implementation of <code>Executor</code>, designed for divide-and-conquer-style parallelism for compute-intensive workloads. Used by parallel streams.</dd>
 </dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>CompletableFuture</dt>
-    <dd>Simplifies asynchronous programming by defining a <em>chain</em> of operations. Each subsequent operation starts running after the first one has completed.</dl>
-
-notes:
-
-on **CompletableFuture**:
-
-CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever. It's a way to circumvent limitations classic threads currently have, such as specifically waiting for an asynchronous operation to complete. Reactive frameworks like Akka or RxJava are based on the same principles.
 
 ---
 

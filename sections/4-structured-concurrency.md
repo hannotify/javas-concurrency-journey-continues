@@ -202,22 +202,19 @@ To summarize:
 
 <!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
 
-## Demo, Part 1
+### Demo, Part 5
 
 - Let's create a `StructuredConcurrencyRestaurant`
 
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
 note:
-*(tag `0-demo-start`)*
+*(tag `4-deep-dive-generated-announcement-ids)`)*
 
-Let's see structured concurrency in action!
-
-- Let's create a `StructuredConcurrencyRestaurant`
-- explain that `join()` blocks, `throwIfFailed` optionally throws, `get()` always returns a valid result
-- explain the introduction of `Subtask` (meant for calling 'get()'s after a result is already known, unlike (Completable)Future)
-
-*(tag `1-created-sc-restaurant`)*
+* CREATE: `StructuredConcurrencyRestaurant`
+* EXPLAIN: `join()` blocks, `throwIfFailed` optionally throws, `get()` always returns a valid result
+* EXPLAIN: the introduction of `Subtask` (meant for calling 'get()'s after a result is already known, unlike (Completable)Future)
+* RUN: `Main`
 
 ---
 
@@ -279,21 +276,23 @@ Ordering a drink with my Java Community coworkers, but no menu available.
 
 <!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
 
-## Demo, Part 2
+### Demo, Part 6
 
 - Let's create a `StructuredConcurrencyBar`
 
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
 note:
-*(tag `1-created-sc-restaurant`)*
+*(tag `5-deep-dive-created-structured-concurrency-restaurant`)*
 
-- Let's create a `StructuredConcurrencyBar`
-- Again: `join()` blocks
-- `result()` returns the result of the first subtask that completed
-- Run it and explain the behavior.
-
-*(tag `2-created-sc-bar`)*
+- SHOW: `Waiter.getDrinkOrder()`
+- SHOW: `Guest`
+- CREATE: `MainBar`
+- CREATE: `StructuredConcurrencyBar`
+- EXPLAIN: `join()` blocks, again.
+- EXPLAIN: `result()` returns the result of the first subtask that completed.
+- RUN: `Main`
+- EXPLAIN: the behavior
 
 ---
 
@@ -437,11 +436,19 @@ It can only wait until all tasks have finished (exceptionally).
 
 **Time Elapsed:** `1:15:00`. If so, then it's time for a break!
 
-If Time Permits: demonstrate this in the example domain by changing the following line in `StructuredConcurrencyRestaurant` and `MultiWaiterInvokeAllRestaurant`:
+If Time Permits: demonstrate this in the example domain.
+### Demo, Part 7
+
+*(tag `6-deep-dive-created-structured-concurrency-bar`)*
+
+* CREATE: `MultiWaiterInvokeAllRestaurant`
+* RUN: `MainRestaurant`
+* CHANGE: the following line in both `StructuredConcurrencyRestaurant` and `MultiWaiterInvokeAllRestaurant`:
 
 ```java
 var starter = scope.fork(() -> { throw new RuntimeException("sorry, no starters today"); });
 ```
+* SHOW: how StructuredConcurrencyRestaurant supports cancellation, whereas ExecutorService.invokeAll() doesn't.
 
 **creating a task hierarchy and limiting the scope of tasks** 
 parent tasks waiting for child tasks to complete
@@ -475,6 +482,56 @@ Well, here I can simply list the same reasons I did for ExecutorService.invokeAl
 - no virtual threads by default (CF uses ForkJoinPool)
 
 On top of that, CompletableFuture is designed for the asynchronous programming paradigm, whereas StructuredTaskScope encourages the blocking paradigm. To summarize, it was designed to offer degrees of freedom that are counterproductive in structured concurrency.
+
+---
+
+<table style="font-size: 70%">
+    <thead>
+    <tr>
+        <th>Feature</th>
+        <th><em>ExecutorService</em></th>
+        <th><em>CompletableFuture</em></th>
+        <th><em>Structured Concurrency</em></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr class="fragment">
+            <th>Focus</th>
+            <td>Thread pool management and task execution</td>
+            <td>Composing asynchronous operations and handling eventual results</td>
+            <td>Running related tasks in a structured scope</td>
+        </tr>
+        <tr class="fragment">
+            <th>Chaining</th>
+            <td>Manual coordination with <code>Future</code> objects</td>
+            <td>Built-in methods like <code>thenApply()</code></td>
+            <td>Hierarchical organization, enforces parent-child relationships between tasks</td>
+        </tr>
+        <tr class="fragment">
+            <th>Error Handling</th>
+            <td>Manual try-catch blocks around <code>Future.get()</code></td>
+            <td><code>exceptionally()</code>, <code>whenComplete()</code>, handling within chaining methods</td>
+            <td>Shutdown on failure</td>
+        </tr>
+        <tr class="fragment">
+            <th>Timeout Management</th>
+            <td>Manual coordination with <code>Future.get(timeout)</code> and potential interruption</td>
+            <td>Built-in methods like <code>completeOnTimeout()</code></td>
+            <td><code>scope.joinUntil(Instant deadline)</code></td>
+        </tr>
+        <tr class="fragment">
+            <th>Blocking vs. Non-Blocking</th>
+            <td>Blocking (often waits for <code>Future.get()</code> to retrieve results)</td>
+            <td>Non-blocking (chains tasks without blocking the main thread)</td>
+            <td>Blocking, blocks until first failure/success</td>
+        </tr>
+    </tbody>
+</table>
+
+<small class="fragment">(<https://www.baeldung.com/java-executorservice-vs-completablefuture#summary>)</small>
+
+note:
+Got the table from Baelding.com, and extended it with the 'Structured Concurrency' column.
 
 ---
 

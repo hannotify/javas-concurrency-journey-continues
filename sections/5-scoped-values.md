@@ -156,24 +156,19 @@ void bar() {
 
 <!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
 
-## Demo, Part 3
+### Demo, Part 8
 
 - Let's migrate `AnnouncementId` from a thread-local to a scoped value
 
 <https://pxhere.com/en/photo/1458897> <!-- .element: class="attribution" -->
 
 note:
-*(tag `2-created-sc-bar`)*
+*(tag `7-deep-dive-created-multi-waiter-invoke-all-restaurant-demonstrated-cancellation`)*
 
-Let's see scoped values in action!
-
-- Let's migrate `AnnouncementId` from a thread-local to a scoped value.
-- Call `ScopedValue.where(..)` in `Waiter.announceCourse(courseType)`.
-- Call `ScopedValue.get()` outside of the scope to show what happens.
-
-- We see that scoped values can only be accessed within the defined scope, leading to a limited lifetime ('how long is it accessible?') and access ('by who is it accessible?').
-
-*(tag `3-introduced-scoped-value`)*
+* CHANGE: `AnnouncementId` to have a ScopedValue instead of a ThreadLocal
+* CALL: `ScopedValue.where(..)` in `Waiter.announceCourse(courseType)`.
+* CALL: `ScopedValue.get()` outside of the scope to show what happens.
+* EXPLAIN: We see that scoped values can only be accessed within the defined scope, leading to a limited lifetime ('how long is it accessible?') and access ('by who is it accessible?').
 
 ---
 
@@ -183,6 +178,7 @@ Let's see scoped values in action!
     private static final ScopedValue&lt;Integer&gt; scopedValue = ScopedValue.newInstance();
     public static int nextId() { return nextId.getAndIncrement(); }
     public static ScopedValue&lt;Integer&gt; scopedValue() { return scopedValue; }
+    public static int get() { return scopedValue.get(); }
 </code></pre>
 
 ### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -199,7 +195,7 @@ private Course announce(CourseType courseType) throws OutOfStockException {
     Course pickedCourse = Chef.pickCourse(name, courseType);
 
     System.out.format("[%s] Announcement #%d: Today's %s will be '%s'.%n", name, 
-            AnnouncementId.scopedValue().get(), courseType.name().toLowerCase(), pickedCourse);
+            AnnouncementId.get(), courseType.name().toLowerCase(), pickedCourse);
 
     return pickedCourse;
 }
@@ -216,7 +212,7 @@ public static Course pickCourse(String waiterName, CourseType courseType) throws
     System.out.format("[Chef] %s asked me to pick a %s, so that " + 
             "announcement #%d can take place.%n",
             waiterName, courseType.name().toLowerCase(), 
-            AnnouncementId.scopedValue().get());
+            AnnouncementId.get());
 
     return courses.get(new Random().nextInt(courses.size()));
 }
