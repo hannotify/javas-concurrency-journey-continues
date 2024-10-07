@@ -140,7 +140,7 @@ note:
 
 ## And This Is How They Look!
 
-<pre class="fragment"><code class="java" data-trim>
+<pre class="fragment"><code class="java" data-trim data-line-numbers>
 private static final ScopedValue&lt;String&gt; X = ScopedValue.newInstance();
 
 void foo() {
@@ -173,7 +173,7 @@ note:
 ---
 
 ### AnnouncementId
-<pre><code class="java" data-trim data-line-numbers="1-4|2,4">
+<pre><code class="java" data-trim data-line-numbers>
     private static final AtomicInteger nextId = new AtomicInteger(1);
     private static final ScopedValue&lt;Integer&gt; scopedValue = ScopedValue.newInstance();
     public static int nextId() { return nextId.getAndIncrement(); }
@@ -182,7 +182,7 @@ note:
 </code></pre>
 
 ### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
-<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-16|4-6,13|10">
+<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-16|4-6|9-16|13|10">
 public Course announceCourse(CourseType courseType) throws Exception {
     if (!introduced) introduce();
 

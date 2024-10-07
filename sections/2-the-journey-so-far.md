@@ -7,10 +7,12 @@
 note:
 **Time Elapsed:** `5:00`.
 
-* Let's take a quick look at what concurrency features Java currently offers.
-* Now, Java has been on a journey towards better concurrency features since the very beginning of the language.
-* Taking that analogy a bit further, let's see where this journey began and through what stations we have traveled so far!
-
+* Of course this talk will be about Structured Concurrency and Scoped Values, and we'll get to that.
+* But to fully appreciate these additions and why they were introduced in the first place, we're in need of some serious background information.
+* So what I want to do is alk you through the history of concurrency in Java and I'll try to make any positive or negative effects of the concurrency constructs that are available very explicit.
+* So it'll be a fair comparison between the mainstream stuff and what just has been added to Java.
+* Sounds good?
+* 
 ---
 
 ## Thread
@@ -43,8 +45,8 @@ Let's sit down for a three-course dinner.
 
 note:
 
-* Our restaurant is not your basic restaurant, though. 
-* Things go wrong here.
+* Our restaurant is not a very good restaurant, though!
+* Things go *wrong* here.
 
 Hand-drawn by my wife, btw! She's awesome! (opposites attract, I guess, my drawing has always been terrible, that's why I went into IT)
 
@@ -90,6 +92,9 @@ public class SingleWaiterRestaurant implements Restaurant {
     }
 }
 </code></pre>
+
+note:
+Poor Elmo! Instead of learning to fly (which I know he desperately wants to learn), he's stuck here being a waiter without any help from his coworkers.
 
 ---
 
@@ -194,11 +199,12 @@ We can announce multiple courses at the same time.
 
 **`Thread` can't return a value directly**
 
-Of course, this situation has improved in Java 1.5 with the introduction of `Callable<T>`
+We'd need a `Callable` to be able to do that (from Java 1.5)
 
 **workload and mechanism to run it are one and the same**
 
 Workload (or: the task at hand, the unit-of-work)
+One and the same, or to put it differently: they are tightly coupled
 
 ---
 
@@ -438,10 +444,12 @@ Also: when we know for sure the desired result won't be achieved.
 
 ## CompletableFuture
 
-* since Java 8; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* composes asynchronous operations; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* handles eventual results in a declarative way; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* aims to fix the problems that come with the `Future`. <!-- .element: class="fragment fade-in-then-semi-out" -->
+<ul>
+    <li class="fragment fade-in-then-semi-out">since Java 8; 
+    <li class="fragment fade-in-then-semi-out">composes asynchronous operations;
+    <li class="fragment fade-in-then-semi-out">handles eventual results in a declarative way;
+    <li class="fragment fade-in-then-semi-out">aims to fix the problems that come with the <code>Future</code>.
+</ul>
 
 note:
 
@@ -458,7 +466,7 @@ note:
 
 ### Modeling a Restaurant with ExecutorService
 
-<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers>
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
@@ -483,7 +491,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ### Modeling a Restaurant with CompletableFuture
 
-<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers>
 public class CompletableFutureRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws Exception {
@@ -500,8 +508,8 @@ public class CompletableFutureRestaurant implements Restaurant {
         return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
     }
 
-    public static <T> CompletableFuture<T> asFuture(Callable<? extends T> callable) {
-        var future = new CompletableFuture<>();
+    public static &lt;T&gt; CompletableFuture&lt;T&gt; asFuture(Callable&lt;? extends T&gt; callable) {
+        var future = new CompletableFuture&lt;&gt;();
         future.defaultExecutor().execute(() -> {
             try {
                 future.complete(callable.call());
@@ -520,7 +528,8 @@ CompletableFuture has specifically been designed for the asynchronous programmin
 
 Both ExecutorService and CompletableFuture offer mechanisms for chaining asynchronous tasks, but they take different approaches. 
   * In ExecutorService, we typically submit tasks for execution and then use the Future objects returned by these tasks to handle dependencies and chain subsequent tasks. However, this involves blocking and waiting for the completion of each task before proceeding to the next, which can lead to inefficiencies in handling asynchronous workflows.
-  * On the other hand, CompletableFuture offers a more streamlined and expressive way to chain asynchronous tasks. It simplifies task chaining with built-in methods like thenApply(). These methods allow you to define a sequence of asynchronous tasks where the output of one task becomes the input for the next. **HE**: an available thread (by default in the ForkJoin.commonPool) is *woken up* when the input is available for the next task.
+  * On the other hand, CompletableFuture offers a more streamlined and expressive way to chain asynchronous tasks. It simplifies task chaining with built-in methods like `thenApply()`. These methods allow you to define a sequence of asynchronous tasks where the output of one task becomes the input for the next. 
+  **An available thread (by default in the ForkJoin.commonPool) is *woken up* when the input is available for the next task.**
 
 ---
 
@@ -535,11 +544,10 @@ note:
 
 **can be used as the equivalent of a global variable in the threaded world**
 
-* imagine you need a value in many places.
+* imagine you need a certain value in many places that must be unique to the Thread that uses it.
 * if you want to avoid cluttering up your method signatures by passing it around, you could use a global variable
-* at least in the non-threaded world.
-* in the threaded world, such a value would be unique to each thread.
-* passing it to all methods where you need them is an option, but would again clutter your method signatures.
+* but that would only work in the non-threaded world.
+* passing it to all methods where you need them is an option, but would clutter your method signatures.
 * so use a ThreadLocal instead! 
 
 ---
@@ -741,9 +749,9 @@ While we're on the subject, let's finish introducing myself...
 * I'm a Java Champion and an Oracle ACE.
 * I am @hannotify on Twitter, Mastodon or Bluesky.
 
-(It'll always be called Twitter to me)
+(Let's keep calling it Twitter, just to annoy Elon)
 (About the handle: get notified of everything Hanno does. I thought it was rather clever - my wife disagrees with me though, she thinks I'm an major geek!)
 
 * I post about things I like, as everyone does I suppose.
 * Java Development, Concurrency, Version Control, Sustainability and making music.
-* If you're into that stuff, by all means give me a follow on one of your favourite social networks!
+* If you're into that stuff, by all means give me a follow wherever you like to keep track of your network!

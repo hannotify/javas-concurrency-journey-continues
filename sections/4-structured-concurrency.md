@@ -55,7 +55,6 @@ So all aboard! And let's check out what Structured Concurrency is all about.
 
 note:
 
-It's an *upcoming station* indeed, because it's in 'preview' in Java 21.
 Note that you need to pass the compiler option `--enable-preview` to be able to work with it.
 
 ---
@@ -98,7 +97,6 @@ note:
   * but these relationships exist only in the mind of the developer. 
   * We just had to accept the fact that Java's `ExecutorService` is based on *unstructured concurrency*.
 * In contrast, single-threaded code *always* enforces a hierarchy of tasks and subtasks.
-* Let's consider a single-threaded version of our restaurant example.
 
 ---
 
@@ -123,9 +121,10 @@ public class SingleWaiterRestaurant implements Restaurant {
 
 note:
 
-* Looks like the waiter on call today is Elmo.
-* And here we don’t have *any* of the problems we had before. 
+* Remember this code? 
+* Here we don’t have *any* of the problems we had before. 
 * Elmo will announce the courses in exactly the right order, and if one subtask fails the remaining one(s) won’t even be started. 
+* He'll be very busy, of course, but his hard work brings a lot of positives.
 * And because all work runs in the same thread, there is no risk of thread leakage.
 
 It becomes clear from these examples that concurrent programming would be a lot easier (and more intuitive) if the task structure used would reflect code structure, like with single-threaded code.
@@ -358,7 +357,8 @@ At least <code>ExecutorService</code> allowed me to pass a thread configuration.
 note:
 
 Ah, we've come to the section I like to call "Sanity Checks".
-Containing a few questions that I can imagine you have after hearing about all this.
+Which is one of my favorite sections.
+It contains a few questions that I can imagine you have after hearing about all this.
 
 (slide)
 
@@ -531,7 +531,7 @@ On top of that, CompletableFuture is designed for the asynchronous programming p
 <small class="fragment">(<https://www.baeldung.com/java-executorservice-vs-completablefuture#summary>)</small>
 
 note:
-Got the table from Baelding.com, and extended it with the 'Structured Concurrency' column.
+Got the table from Baeldung.com, and extended it with the 'Structured Concurrency' column.
 
 ---
 

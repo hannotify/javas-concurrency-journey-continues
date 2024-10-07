@@ -48,7 +48,7 @@ The talk outline will be roughly as follows:
 `71:00` Have We Come To Journey's End?
 `74:00` Wrap-up and Q&A
 
-### 180 mi.
+### 180 min.
 
 `00:00` Introduction
 `05:00` Our Journey So Far

@@ -79,7 +79,8 @@ by
 @ManagedExecutorDefinition(name = "java:app/concurrent/myExecutor", maxAsync = 3, virtual = true)
 private ManagedExecutorService managedExecutor;
 ```
-to get a `ManagedExecutorService` with virtual threads.
+
+<p>to get a <code><strong>ManagedExecutorService</strong></code> with virtual threads.</p>
 
 <https://blog.payara.fish/a-look-at-virtual-threads-in-a-jakarta-ee-managed-context> <!-- .element: class="attribution" -->
 

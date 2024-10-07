@@ -26,7 +26,8 @@ note:
 * Set the appropriate browser zoom level (`80%` will fit all code onto the MacBook screen).
 * Slides and IDE on projector screen
 * Speaker notes on second screen
-* Code in IntelliJ checked out to the right Git tag (`0-demo-start`)
+* Dark mode activated in IDE
+* Code in IDE checked out to the right Git tag (`0-deep-dive-demo-start`)
 * Terminal armed with `mirror` 
 * Logitech Spotlight ready to go
 
@@ -43,7 +44,7 @@ note:
     * Unless you run into race conditions
     * Unless ... you name it.
     * So you typically don't need intricate concurrency knowledge, until you do.
-* Concurrency also scares me because of its ability to improve things, but also to make things *a lot* worse.
+* So, concurrency sometime scares me. Not because it can improve things. Because it can make things *a lot* worse.
 * Introducing concurrency can even make things *slower*.
 
 ---
@@ -56,11 +57,11 @@ note:
 
 > A workshop that leads to a discussion about focus, focus span, disturbing factors, limit active work.
 * Earlier this year, the Scrum Master of an agile team I was a part of hosted an exercise he called "The Illusion of Multitasking".
-* With the purpose of making the team learn about focus span, disturbing factors and limit active work.
-* One *worker* (me), five *managers* (them).
-* Three scenarios:
-  * All managers shouted letters at me and use everything in their power to get my attention. 
-  * All managers formed a line and, when it was their turn, demanded the writing of a single letter on the sticky note that they bring.
+* With the purpose of making the team learn about focus span, disturbing factors and why you should limit active work.
+* One *worker* (me), armed with a Sharpie, and five *managers* (them), armed with sticky notes.
+* This exercise had three scenarios:
+  * All managers shouted letters at me and use everything in their power to get my attention to write letters on sticky notes.
+  * All managers formed a line and, when it was their turn, demanded the writing of a single letter on the sticky note that they brought.
   * All managers formed a line and, when it was their turn, spelled out the entire name they wanted me to write.
 * Metrics:
   * Time-to-first (T 1e.)
@@ -69,4 +70,4 @@ note:
   * Almost nothing gets done when the manager:worker ratio is 5:1. :)
   * A lot of time can be lost on context switching (see scenario 2).
   * When only a single task can be executed at the same time, then concurrency will *definitely* make things slower.
-* Fortunately Java's concurrency features are a lot more sophisticated!
+  * Concurrency can have both positive and negative effects.
