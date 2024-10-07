@@ -5,6 +5,7 @@
 <https://www.pexels.com/photo/man-with-yellow-and-black-backpack-standing-near-train-1170181/> <!-- .element: class="attribution" -->
 
 note:
+
 **Time Elapsed:** `5:00`.
 
 * Of course this talk will be about Structured Concurrency and Scoped Values, and we'll get to that.
@@ -12,7 +13,7 @@ note:
 * So what I want to do is alk you through the history of concurrency in Java and I'll try to make any positive or negative effects of the concurrency constructs that are available very explicit.
 * So it'll be a fair comparison between the mainstream stuff and what just has been added to Java.
 * Sounds good?
-* 
+
 ---
 
 ## Thread
