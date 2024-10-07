@@ -41,7 +41,7 @@ This talk will be about:
 * pros: 
 * cons: error propagation, communicating cancellation intent
 
-### [TODO] CompletableFuture
+### CompletableFuture
 
 * since Java 8; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * composes asynchronous operations; <!-- .element: class="fragment fade-in-then-semi-out" -->
