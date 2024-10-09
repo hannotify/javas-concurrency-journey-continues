@@ -63,7 +63,7 @@ Note that you need to pass the compiler option `--enable-preview` to be able to 
 
 ## What Problem Are We Trying To Solve?
 
-<pre class="fragment" data-id="restaurant-single-threaded"><code class="java" data-trim data-line-numbers>
+<pre class="fragment" data-id="restaurant-single-threaded"><code class="java stretch" data-trim data-line-numbers>
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
@@ -105,7 +105,7 @@ note:
 
 ## Modeling a Restaurant With a Single Thread
 
-<pre data-id="restaurant-single-threaded"><code class="java" data-trim data-line-numbers>
+<pre data-id="restaurant-single-threaded"><code class="java stretch" data-trim data-line-numbers>
 public class SingleWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws OutOfStockException {
@@ -223,7 +223,7 @@ Let's see structured concurrency in action!
 
 ### Modeling a Restaurant with Structured Concurrency
 
-<pre><code class="java" data-trim data-line-numbers="1-19">
+<pre><code class="java stretch" data-trim data-line-numbers="1-19">
 public class StructuredConcurrencyRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
@@ -283,7 +283,7 @@ note:
 
 ## Modeling a Bar With Structured Concurrency
 
-<pre><code class="java" data-trim data-line-numbers>
+<pre><code class="java stretch" data-trim data-line-numbers>
 public class StructuredConcurrencyBar implements Bar {
     @Override
     public DrinkOrder determineDrinkOrder(Guest guest) throws InterruptedException, ExecutionException {

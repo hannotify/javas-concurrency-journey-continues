@@ -63,7 +63,7 @@ note:
 
 ### Modeling a Restaurant with ExecutorService
 
-<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+<pre data-id="restaurant-completablefuture"><code class="java stretch" data-trim data-line-numbers="1-16|8|9-11|13">
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() {
@@ -88,7 +88,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ### Modeling a Restaurant with CompletableFuture
 
-<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers="1-16|8|9-11|13">
+<pre data-id="restaurant-completablefuture"><code class="java stretch" data-trim data-line-numbers="1-16|8|9-11|13">
 public class CompletableFutureRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws Exception {

@@ -90,7 +90,7 @@ private ManagedExecutorService managedExecutor;
 
 ## Developer (Jakarta EE)
 
-<pre><code class="java" data-trim data-line-numbers="1-6|1">
+<pre><code class="java stretch" data-trim data-line-numbers="1-6|1">
 try (var scope = new StructuredTaskScope&lt;Object&gt;("MyTaskScopeWithContext", managedThreadFactory) {
     var subtask1 = scope.fork(task1);
     var subtask2 = scope.fork(task2);

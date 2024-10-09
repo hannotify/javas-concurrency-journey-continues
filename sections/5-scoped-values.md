@@ -140,7 +140,7 @@ note:
 
 ## And This Is What They Look Like!
 
-<pre class="fragment"><code class="java" data-trim data-line-numbers>
+<pre class="fragment"><code class="java stretch" data-trim data-line-numbers>
 private static final ScopedValue&lt;String&gt; X = ScopedValue.newInstance();
 
 void foo() {
@@ -178,15 +178,16 @@ Let's see scoped values in action!
 ---
 
 ### AnnouncementId
-<pre><code class="java" data-trim data-line-numbers>
+<pre><code class="java stretch" data-trim data-line-numbers>
     private static final AtomicInteger nextId = new AtomicInteger(1);
     private static final ScopedValue&lt;Integer&gt; scopedValue = ScopedValue.newInstance();
     public static int nextId() { return nextId.getAndIncrement(); }
     public static ScopedValue&lt;Integer&gt; scopedValue() { return scopedValue; }
+    public static int get() { return scopedValue.get(); }
 </code></pre>
 
 ### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
-<pre class="fragment" data-fragment-index="1"><code class="java" data-trim data-line-numbers="1-16|4-6|9-16|13|10">
+<pre class="fragment" data-fragment-index="1"><code class="java stretch" data-trim data-line-numbers="1-16|4-6|9-16|13|10">
 public Course announceCourse(CourseType courseType) throws Exception {
     if (!introduced) introduce();
 
@@ -199,7 +200,7 @@ private Course announce(CourseType courseType) throws OutOfStockException {
     Course pickedCourse = Chef.pickCourse(name, courseType);
 
     System.out.format("[%s] Announcement #%d: Today's %s will be '%s'.%n", name, 
-            AnnouncementId.scopedValue().get(), courseType.name().toLowerCase(), pickedCourse);
+            AnnouncementId.get(), courseType.name().toLowerCase(), pickedCourse);
 
     return pickedCourse;
 }
@@ -208,7 +209,7 @@ private Course announce(CourseType courseType) throws OutOfStockException {
 ---
 
 ### Chef
-<pre><code class="java" data-trim data-line-numbers="1-11|8">
+<pre><code class="java stretch" data-trim data-line-numbers="1-11|8">
 public static Course pickCourse(String waiterName, CourseType courseType) throws OutOfStockException {
     // MENU is a pre-populated Map&lt;CourseType, List&lt;Course&gt;&gt;.
     var courses = MENU.get(courseType);
@@ -216,7 +217,7 @@ public static Course pickCourse(String waiterName, CourseType courseType) throws
     System.out.format("[Chef] %s asked me to pick a %s, so that " + 
             "announcement #%d can take place.%n",
             waiterName, courseType.name().toLowerCase(), 
-            AnnouncementId.scopedValue().get());
+            AnnouncementId.get());
 
     return courses.get(new Random().nextInt(courses.size()));
 }
@@ -226,7 +227,7 @@ public static Course pickCourse(String waiterName, CourseType courseType) throws
 
 ## Rebinding Scoped Values
 
-<pre class="fragment"><code class="java" data-trim data-line-numbers="1-15|4|8-10|9|14|10">
+<pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-15|4|8-10|9|14|10">
 private static final ScopedValue&lt;String&gt; X = ScopedValue.newInstance();
 
 void foo() {
@@ -259,7 +260,7 @@ note:
 
 ## Inheriting Scoped Values
 
-<pre class="fragment"><code class="java" data-trim data-line-numbers="1-19|9|11-16|12-13">
+<pre class="fragment"><code class="java stretch" data-trim data-line-numbers="1-19|9|11-16|12-13">
 public class StructuredConcurrencyBar implements Bar {
     private static final ScopedValue&lt;Integer&gt; drinkOrderId = ScopedValue.newInstance();
 

@@ -119,7 +119,7 @@ In these situations, virtual threads can offer significantly *higher throughput*
 
 ### Modeling a Restaurant with ExecutorService
 
-<pre data-id="restaurant-virtual-threads"><code class="java" data-trim data-line-numbers>
+<pre data-id="restaurant-virtual-threads"><code class="java stretch" data-trim data-line-numbers>
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
@@ -144,7 +144,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ### Modeling a Restaurant with Virtual Threads
 
-<pre data-id="restaurant-virtual-threads"><code class="java" data-trim data-line-numbers="8">
+<pre data-id="restaurant-virtual-threads"><code class="java stretch" data-trim data-line-numbers="8">
 public class MultiWaiterRestaurant implements Restaurant {
     @Override
     public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
