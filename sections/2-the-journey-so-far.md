@@ -510,33 +510,6 @@ CompletableFuture has specifically been designed for the asynchronous programmin
 
 ---
 
-## Honourable Mentions
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>AtomicReference</dt>
-    <dd>Manages an object reference by ensuring atomic, thread-safe operations without requiring explicit synchronization through locks.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>Semaphore</dt>
-    <dd>Restricts thread access to a shared resource by handing out a limited number of permits.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>CountdownLatch</dt>
-    <dd>Enables one or more threads to wait for a set of operations to complete before proceeding.</dd>
-</dl>
-
-notes:
-
-**CountDownLatch**
-
-An elegant way to wait until all threads have completed their work, without the need to call `Thread.join()` and having a reference to all threads that were created..
-
-They can be excellent for integration tests that use multithreading, as a way to coordinate when it is time to run your assertions.
-
----
-
 ### Why Does This Stuff Interest Me?
 
 <ul>
@@ -566,13 +539,9 @@ They can be excellent for integration tests that use multithreading, as a way to
 note:
 But why does this stuff interest me?
 
-* Apart from the fact that it feels nice to be the concurrency expert somewhere...
 * My employer Info Support gives me the chance to combine Java consultancy with teaching courses.
 * Course: "Concurrency in Java"
 * New concurrency features in recent Java versions, on which I wrote a few articles.
-
-While we're on the subject, let's finish introducing myself...
-
 * I'm a Java Champion and an Oracle ACE.
 * I am @hannotify on Twitter, Mastodon or Bluesky.
 

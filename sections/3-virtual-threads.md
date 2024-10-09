@@ -180,6 +180,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 ### Cons ❌
 
 * pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* not suitable for running CPU-intensive workloads; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * thread-local variables don't perform well with many threads. <!-- .element: class="fragment fade-in" -->
 <small class="fragment fade-in-then-semi-out">(the system property <code>jdk.traceVirtualThreadLocals</code> can help)</small>
 
@@ -214,6 +215,10 @@ There are two scenarios in which a virtual thread cannot be unmounted during blo
 
 (!) You can mitigate this drawback by replacing `synchronized` blocks with `ReentrantLock`s or `CountDownLatch`es - using them won't cause the *thread pinning*.
 This is because the `LockSupport` class now supports *parking* and *unparking* virtual threads. JEP 444 has more details on this.
+
+**not suited for CPU-intensive workloads**
+
+TODO
 
 **thread-local variables don't perform well with many threads**
 
