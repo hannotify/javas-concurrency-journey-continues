@@ -33,7 +33,7 @@ note:
 
 note:
 
-* Our restaurant is not your basic restaurant, though. 
+* But our restaurant is not a very good one. 
 * Things go wrong here.
 
 Hand-drawn by my wife, btw! She's awesome! (opposites attract, I guess, my drawing has always been terrible, that's why I went into IT)
@@ -127,11 +127,12 @@ We can announce multiple courses at the same time.
 
 **`Thread` can't return a value directly**
 
-Of course, this situation has improved in Java 1.5 with the introduction of `Callable<T>`
+We'd need a `Callable` to be able to do that (from Java 1.5)
 
 **workload and mechanism to run it are one and the same**
 
 Workload (or: the task at hand, the unit-of-work)
+One and the same, or to put it differently: they are tightly coupled
 
 ---
 
@@ -376,11 +377,10 @@ note:
 
 **can be used as the equivalent of a global variable in the threaded world**
 
-* imagine you need a value in many places.
-* if you want to avoid cluttering up your method signatures by passing it around, you could use a global variable
-* at least in the non-threaded world.
-* in the threaded world, such a value would be unique to each thread.
-* passing it to all methods where you need them is an option, but would again clutter your method signatures.
+* imagine you need a certain value in many places that must be unique to the Thread that uses it.
+* if you want to avoid cluttering up your method signatures by passing it around, you could use a global variable.
+* but that would only work in the non-threaded world.
+* passing it to all methods where you need them is an option, but would clutter your method signatures.
 * so use a ThreadLocal instead! 
 
 ---
@@ -576,9 +576,8 @@ While we're on the subject, let's finish introducing myself...
 * I'm a Java Champion and an Oracle ACE.
 * I am @hannotify on Twitter, Mastodon or Bluesky.
 
-(It'll always be called Twitter to me)
-(About the handle: get notified of everything Hanno does. I thought it was rather clever - my wife disagrees with me though, she thinks I'm an major geek!)
+(Let's keep calling it Twitter, just to annoy Elon)
 
 * I post about things I like, as everyone does I suppose.
 * Java Development, Concurrency, Version Control, Sustainability and making music.
-* If you're into that stuff, by all means give me a follow on one of your favourite social networks!
+* If you're into that stuff, give me a follow!

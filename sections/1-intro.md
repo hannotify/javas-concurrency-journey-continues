@@ -26,7 +26,8 @@ note:
 * Set the appropriate browser zoom level (`80%` will fit all code onto the MacBook screen).
 * Slides and IDE on projector screen
 * Speaker notes on second screen
-* Code in IntelliJ checked out to the right Git tag (`0-demo-start`)
+* Dark mode activated in IDE
+* Code in IDE checked out to the right Git tag (`0-demo-start`)
 * Terminal armed with `mirror` 
 * Logitech Spotlight ready to go
 
