@@ -462,6 +462,56 @@ On top of that, CompletableFuture is designed for the asynchronous programming p
 
 ---
 
+<table style="font-size: 70%">
+    <thead>
+    <tr>
+        <th>Feature</th>
+        <th><em>ExecutorService</em></th>
+        <th><em>CompletableFuture</em></th>
+        <th><em>Structured Concurrency</em></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr class="fragment">
+            <th>Focus</th>
+            <td>Thread pool management and task execution</td>
+            <td>Composing asynchronous operations and handling eventual results</td>
+            <td>Running related tasks in a structured scope</td>
+        </tr>
+        <tr class="fragment">
+            <th>Chaining</th>
+            <td>Manual coordination with <code>Future</code> objects</td>
+            <td>Built-in methods like <code>thenApply()</code></td>
+            <td>Hierarchical organization, enforces parent-child relationships between tasks</td>
+        </tr>
+        <tr class="fragment">
+            <th>Error Handling</th>
+            <td>Manual try-catch blocks around <code>Future.get()</code></td>
+            <td><code>exceptionally()</code>, <code>whenComplete()</code>, handling within chaining methods</td>
+            <td>Shutdown on failure</td>
+        </tr>
+        <tr class="fragment">
+            <th>Timeout Management</th>
+            <td>Manual coordination with <code>Future.get(timeout)</code> and potential interruption</td>
+            <td>Built-in methods like <code>completeOnTimeout()</code></td>
+            <td><code>scope.joinUntil(Instant deadline)</code></td>
+        </tr>
+        <tr class="fragment">
+            <th>Blocking vs. Non-Blocking</th>
+            <td>Blocking (often waits for <code>Future.get()</code> to retrieve results)</td>
+            <td>Non-blocking (chains tasks without blocking the main thread)</td>
+            <td>Blocking, blocks until first failure/success</td>
+        </tr>
+    </tbody>
+</table>
+
+<small class="fragment">(<https://www.baeldung.com/java-executorservice-vs-completablefuture#summary>)</small>
+
+note:
+Got the table from Baelding.com, and extended it with the 'Structured Concurrency' column.
+
+---
+
 <!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif" data-background-color="black" data-background-opacity="0.6" data-background-size="contain"-->
 
 ## ...seriously man, wait a minute! <!-- .element: class="stroke" -->
