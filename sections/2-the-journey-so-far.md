@@ -10,18 +10,7 @@ note:
 * Let's take a quick look at what concurrency features Java currently offers.
 * Now, Java has been on a journey towards better concurrency features since the very beginning of the language.
 * Taking that analogy a bit further, let's see where this journey began and through what stations we have traveled so far!
-
----
-
-## Thread
-
-* since Java 1.0; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* models a thread of execution in a program; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* allows doing multiple things at the same time. <!-- .element: class="fragment fade-in-then-semi-out" -->
-
-note:
-
-* An easy-to-relate example domain always helps me to understand technical concepts.
+* Now, an easy-to-relate example domain always helps me to understand technical concepts.
 * So let's use the bar story I just told, and extend it with a restaurant.
 * We might become a bit hungry after we've had a few drinks, right?
 
@@ -78,7 +67,7 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
 note:
 
 * Our restaurant serves a three-course meal that is announced by three waiters in separate Threads.
-
+* The Thread is the basic building block of concurrency features in Java.
 
 ---
 
@@ -109,15 +98,15 @@ class WaiterAnnounceCourseThread extends Thread {
 
 ### Pros ✅
 
-* doing multiple things at once. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* doing multiple things at once.
 <br/>
 <br/>
 <br/>
 
 ### Cons ❌
 
-* we can't return a value directly; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* the workload and mechanism to run it are one and the same. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* we can't return a value directly;
+* the workload and mechanism to run it are one and the same.
 
 note:
 
@@ -133,14 +122,6 @@ We'd need a `Callable` to be able to do that (from Java 1.5)
 
 Workload (or: the task at hand, the unit-of-work)
 One and the same, or to put it differently: they are tightly coupled
-
----
-
-## ExecutorService
-
-* since Java 1.5; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* executes tasks submitted to it; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* supports task queuing. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 ---
 
@@ -174,6 +155,9 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
     }
 }
 </code></pre>
+
+note:
+So let's introduce something more sophisticated: the ExcecutorService, introduced in Java 1.5.
 
 ---
 
@@ -226,7 +210,7 @@ note:
 
 **Storytelling**
 
-Sitting down for a three-course dinner, but some ingredients are out of stock.
+What if some ingredients are out of stock?
 
 ---
 
@@ -324,18 +308,16 @@ note:
 
 ### Pros ✅
 
-* task can directly return a value; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* workload and run mechanism are separated. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* task can directly return a value;
+* workload and run mechanism are separated.
 <br/>
 <br/>
 <br/>
 
 ### Cons ❌
 
-<ul>
-    <li class="fragment fade-in-then-semi-out">will wait for all tasks to terminate;</li>
-    <li class="fragment fade-in-then-semi-out">allows unrestricted patterns of concurrency.</li>
-</ul>
+* will wait for all tasks to terminate;
+* allows unrestricted patterns of concurrency.
 
 note:
 
@@ -355,33 +337,25 @@ Also: when we know for sure the desired result won't be achieved.
 
 **allows unrestricted patterns of concurrency**
 
-* it's very hard with ExecutorService to create relationships among tasks and subtasks
-* but that's a valid use case that occurs quite often!
-* Unfortunately, ExecutorService doesn't enforce any task structure
+* ExecutorService doesn't enforce any task structure
 * In theory, one thread could create an ExecutorService, a second thread could submit work to it.
 * And the threads which actually execute the work would have no relationship to either the first or second thread. 
-* They are *one-way jumps*, just like the notorious `goto` statement from the `BASIC` language.
-* If threads are spawned in an unstructured way, they are like the concurrent equivalent of `goto`!
-* To conclude: **ExecutorService allows unrestricted patterns of concurrency.**
+* Who remembers the classic programming language `BASIC`? And what's the most famous statement in that language?
+* `goto`. It's a *one-way jump*.
+* Spawning threads from an ExecutorService is like doing one-way jumps.
+* They are like the concurrent equivalent of the `goto` statement.
+* This is what I mean when I say: **ExecutorService allows unrestricted patterns of concurrency.**
 
 ---
 
 ## ThreadLocal
 
-* since Java 1.2; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* a variable that is unique to its thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* each thread has its own, independently initialized copy of the variable; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* can be used as the equivalent of a global variable in the threaded world. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* since Java 1.2; 
+* a variable that is unique to its thread;
+* each thread has its own, independently initialized copy of the variable.
 
 note:
-
-**can be used as the equivalent of a global variable in the threaded world**
-
-* imagine you need a certain value in many places that must be unique to the Thread that uses it.
-* if you want to avoid cluttering up your method signatures by passing it around, you could use a global variable.
-* but that would only work in the non-threaded world.
-* passing it to all methods where you need them is an option, but would clutter your method signatures.
-* so use a ThreadLocal instead! 
+Many frameworks use ThreadLocals to identify a user's request using a requestId, for example.
 
 ---
 
@@ -400,8 +374,6 @@ public class AnnouncementId {
 </code></pre>
 
 note:
-[TODO] Replace this by a live demo.
-
 This class generates a unique `announcementId` local to each thread. 
 An announcementId is assigned the first time it invokes AnnouncementId.get() and remains unchanged on subsequent calls by the same thread.
 
@@ -441,17 +413,17 @@ public static Course pickCourse(String waiterName, CourseType courseType) {
 
 ### Pros ✅
 
-* avoids cluttering method signatures; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* elegant way to bind data that is unique to the current thread. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* avoids cluttering method signatures;
+* elegant way to bind data that is unique to the current thread.
 <br/>
 <br/>
 <br/>
 
 ### Cons ❌
 
-* always mutable; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* unbounded lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* memory-intensive, especially with many threads, or when inherited. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* always mutable;
+* unbounded lifetime;
+* memory-intensive, especially with many threads, or when inherited.
 
 note:
 
@@ -539,7 +511,8 @@ CompletableFuture has specifically been designed for the asynchronous programmin
 note:
 But why does this stuff interest me?
 
-* My employer Info Support gives me the chance to combine Java consultancy with teaching courses.
+* My employer Info Support gives me the chance to combine Java development with teaching courses.
+* (visit our booth to learn more)
 * Course: "Concurrency in Java"
 * New concurrency features in recent Java versions, on which I wrote a few articles.
 * I'm a Java Champion and an Oracle ACE.
