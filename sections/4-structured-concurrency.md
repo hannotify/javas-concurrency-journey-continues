@@ -379,23 +379,17 @@ However, I expect it to be straightforward to migrate code that uses ExecutorSer
 
 ## ...now wait a minute! <!-- .element: class="stroke" -->
 
-<blockquote class="explanation fragment">I know for a fact that <code>ExecutorService</code> already supports <code>invokeAll(..)</code> and <code>invokeAny(..)</code>. Why would I need Structured Concurrency? </blockquote>
+<blockquote class="explanation fragment"><code>ExecutorService</code> already supports <code>invokeAll(..)</code>, and <code>CompletableFuture</code> offers <code>CompletableFuture.allOf(...)</code>. Why would I need Structured Concurrency?</blockquote>
 
 <https://media.giphy.com/media/l0Iy6nCgWE0b5Jh96/giphy.gif> <!-- .element: class="attribution" -->
 
 note:
 (slide)
-This is true, ExecutorService does support these operations:
-
-**`List<Future<T>> ExecutorService.invokeAll(Collection<Callable>)`**
-Executes the given tasks, returning a list of Futures when all complete (or failed).
-
-**`T ExecutorService.invokeAny(Collection<Callable>)`**
-Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled.
+This is true, both ExecutorService and CompletableFuture support this.
 
 ---
 
-### Well, there are differences.
+### But there are differences.
 
 <ul>
     <li class="fragment fade-in-then-semi-out">cancellation;</li>
@@ -414,19 +408,11 @@ Executes the given tasks, returning the result of one that has completed success
 </small>
 
 note:
-Well, there are differences.
+But there are differences.
 
 **cancellation**
-`ExecutorService.invokeAll(...)` doesn't support cancellation.
-It can only wait until all tasks have finished (exceptionally).
-
-**Time Elapsed:** `1:15:00`. If so, then it's time for a break!
-
-If Time Permits: demonstrate this in the example domain by changing the following line in `StructuredConcurrencyRestaurant` and `MultiWaiterInvokeAllRestaurant`:
-
-```java
-var starter = scope.fork(() -> { throw new RuntimeException("sorry, no starters today"); });
-```
+Both `ExecutorService.invokeAll(...)` and `CompletableFuture.allOf(...) don't support cancellation.
+They can only wait until all tasks have finished (exceptionally).
 
 **creating a task hierarchy and limiting the scope of tasks** 
 parent tasks waiting for child tasks to complete
@@ -437,29 +423,7 @@ ES is still 'unstructured'
 **custom shutdown policies**
 
 **virtual threads by default**
-although you could configure ES to use them
-
----
-
-<!-- .slide: data-background="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3d0NHdsb2p4d3d3YjEzenJuaG1qbjE0NHhseHRueDMzNGEyenk1MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9dg/A19tglYyfc7JPQYwNi/giphy.gif" data-background-color="black" data-background-opacity="0.6" data-background-size="contain"-->
-
-## ...no really, wait a minute! <!-- .element: class="stroke" -->
-
-<blockquote class="explanation fragment">
-I can create multiple <code>CompletableFuture</code>s and wrap them in a <code>CompletableFuture.allOf()</code>, right? Why would I need Structured Concurrency?
-</blockquote>
-
-note: 
-
-Well, here I can simply list the same reasons I did for ExecutorService.invokeAll():
-
-- doesn't support cancellation
-- can't create a task hierarchy / limit the scope of tasks
-- can't make the created tasks return to the same place
-- no custom shutdown policies
-- no virtual threads by default (CF uses ForkJoinPool)
-
-On top of that, CompletableFuture is designed for the asynchronous programming paradigm, whereas StructuredTaskScope encourages the blocking paradigm. To summarize, it was designed to offer degrees of freedom that are counterproductive in structured concurrency.
+although you could configure ES/CF to use them
 
 ---
 
@@ -510,23 +474,6 @@ On top of that, CompletableFuture is designed for the asynchronous programming p
 
 note:
 Got the table from Baeldung.com, and extended it with the 'Structured Concurrency' column.
-
----
-
-<!-- .slide: data-background="https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif" data-background-color="black" data-background-opacity="0.6" data-background-size="contain"-->
-
-## ...seriously man, wait a minute! <!-- .element: class="stroke" -->
-
-<blockquote class="explanation fragment">
-Doesn't <code>ForkJoinPool</code> also impose structure on concurrent tasks? Why would I need Structured Concurrency?
-</blockquote>
-
-<https://media.giphy.com/media/7Rlt5qEC1BlSXbSpae/giphy.gif> <!-- .element: class="attribution" -->
-
-note:
-(slide)
-Indeed, `ForkJoinPool` also imposes structure on concurrent tasks. 
-However, that API is designed for compute-intensive tasks, whereas Structured Concurrency is specifically targeting towards tasks that involve I/O.
 
 ---
 
