@@ -163,7 +163,10 @@ note:
 * Spawning a thread is a 'one-way jump'.
 * Structured Concurrency is a way to turn this into a 'two-way jump'.
 * Threads in a Structured Concurrency context run in their own *scope* (the grey area to the right).
-* They have clear *entry and exit points* (and only one of each).
+* They have clear *entry and exit points*.
+
+While looking at this this picture, an alternative definition of Structured Concurrency may resonate with you more:
+"When a main tasks splits into several concurrent subtasks, then the subtasks must complete before the main task continues."
 
 ---
 

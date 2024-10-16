@@ -246,6 +246,7 @@ There are two scenarios in which a virtual thread cannot be unmounted during blo
 * When it executes a native method or a foreign function.
 
 ...harming scalability in the process.
+The reason for pinning inside `synchronized` is that the *monitors* that are associated with the synchronized instance are currently held by carrier threads, not by virtual threads.
 
 (!) You can mitigate this drawback by replacing `synchronized` blocks with `ReentrantLock`s or `CountDownLatch`es - using them won't cause the *thread pinning*.
 This is because the `LockSupport` class now supports *parking* and *unparking* virtual threads. JEP 444 has more details on this.

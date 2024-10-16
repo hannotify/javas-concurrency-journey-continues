@@ -41,7 +41,7 @@ This talk will be about:
 * pros: 
 * cons: error propagation, communicating cancellation intent
 
-### [TODO] CompletableFuture
+### CompletableFuture
 
 * since Java 8; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * composes asynchronous operations; <!-- .element: class="fragment fade-in-then-semi-out" -->
@@ -121,7 +121,6 @@ public class CompletableFutureRestaurant implements Restaurant {
 
 note:
 
-TODO:
 From JEP 480: "CompletableFuture is designed for the asynchronous programming paradigm, whereas StructuredTaskScope encourages the blocking paradigm.
 
 Future and CompletableFuture are, in short, designed to offer degrees of freedom that are counterproductive in structured concurrency."
