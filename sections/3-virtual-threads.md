@@ -118,6 +118,27 @@ In these situations, virtual threads can offer significantly *higher throughput*
 
 ---
 
+<!-- .slide: data-background="img/background/wide-bridge.jpg" data-background-color="black" data-background-opacity="0.5"-->
+
+<figure class="fragment">
+    <blockquote class="explanation">
+    <h3>
+    "Wider bridges, <br/>not faster cars."</h3>
+    <em>Gregor Hohpe</em>
+    </blockquote>
+</figure>
+
+<https://www.pexels.com/photo/aerial-view-of-roads-9369843/> <!-- .element: class="attribution" -->
+
+note:
+
+Or, to use the words of Gregor Hohpe: (slide)
+"Wider bridges, not faster cars."
+
+I was at one of his talks on Enterprise Integration Patterns recently, and this is how he explained higher throughput. I like the analogy a lot.
+
+---
+
 <!-- .slide: data-auto-animate" -->
 
 ### Modeling a Restaurant with ExecutorService
