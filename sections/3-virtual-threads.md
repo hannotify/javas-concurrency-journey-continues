@@ -68,6 +68,9 @@ note:
 
 Each virtual thread is typically associated with a single Platform Thread during its lifetime.
 
+Virtual threads are like virtual memory.
+To simulate a lot of memory, an operating system maps a large virtual address space to a limited amount of RAM. Similarly, to simulate a lot of threads, the Java runtime maps a large number of virtual threads to a small number of OS threads.
+
 ---
 
 <!-- .slide: data-background="img/background/parallel-trains.jpg" data-background-color="black" data-background-opacity="0.8" -->
@@ -179,8 +182,8 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ### Cons ❌
 
+* not suitable for long-running CPU-intensive workloads; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* not suitable for running CPU-intensive workloads; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * thread-local variables don't perform well with many threads. <!-- .element: class="fragment fade-in" -->
 <small class="fragment fade-in-then-semi-out">(the system property <code>jdk.traceVirtualThreadLocals</code> can help)</small>
 
@@ -200,9 +203,19 @@ In a way, virtual threads are Java's definitive answer to both thread pooling an
 
 **better throughput**
 
-Because unlike platform threads, virtual threads release the underlying carrier thread when I/O is performed.
-We saw this in the sequence diagram, and it results in better throughput when tasks are I/O-heavy.
-(this also means that virtual threads will not significantly improve performance when tasks are CPU-heavy!)
+* Virtual threads perform best when running tasks that spend most of their time *blocked*. 
+* This is because virtual threads release the underlying carrier thread when I/O is performed. 
+* We saw this in the sequence diagram, and it results in better throughput when tasks are I/O-heavy.
+* It also means that virtual threads will not significantly improve performance when tasks are CPU-heavy, especially when they are long-running tasks.
+
+**not suitable for long-running CPU-intensive workloads**
+
+Virtual threads don't make code run any faster than platform threads, and they have some added overhead. Such as:
+
+* **Mounting & unmounting** at blocking points and emitting JVM Tool Interface notifications for each mount/unmount;
+* Extra **garbage collection** for each virtual thread object that is created;
+* **Multiplexing**: many virtual threads could be competing for a smaller pool of platform threads, which creates scheduling overhead;
+* **Starvation** of other virtual threads that are scheduled on the same carrier thread (especially when the active virtual thread is running a long-running CPU-intensive task).
 
 **pinned threads**
 
@@ -215,10 +228,6 @@ There are two scenarios in which a virtual thread cannot be unmounted during blo
 
 (!) You can mitigate this drawback by replacing `synchronized` blocks with `ReentrantLock`s or `CountDownLatch`es - using them won't cause the *thread pinning*.
 This is because the `LockSupport` class now supports *parking* and *unparking* virtual threads. JEP 444 has more details on this.
-
-**not suited for CPU-intensive workloads**
-
-TODO
 
 **thread-local variables don't perform well with many threads**
 
