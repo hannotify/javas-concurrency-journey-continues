@@ -185,6 +185,35 @@ note:
 
 ---
 
+## Modeling a Bar With Structured Concurrency
+
+(JDK 24, probably)
+
+<pre id="new-sc-api-bar"><code class="java stretch" data-trim data-line-numbers="7-9">
+public class StructuredConcurrencyBar implements Bar {
+    @Override
+    public DrinkOrder determineDrinkOrder(Guest guest) throws InterruptedException, ExecutionException {
+        Waiter zoe = new Waiter("Zoe");
+        Waiter elmo = new Waiter("Elmo");
+
+        try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulResultOrThrow(),
+                                                  cf -> cf.withThreadFactory(Thread.ofPlatform().factory())
+                                                          .withTimeout(Duration.ofMinutes(2)))) {
+            scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
+            scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
+
+            return scope.join();
+        }
+    }
+}
+</code></pre>
+
+note:
+* `open()` can also take a second argument, a 'config function', which allows you to configure an alternate thread factory or a timeout, for example.
+
+
+---
+
 ## Joiners
 
 A **`Joiner<T,R>`** handles subtask completion and produces the result for the **`join`** method.
@@ -197,7 +226,7 @@ A **`Joiner<T,R>`** handles subtask completion and produces the result for the *
     <li><code>awaitAll()</code></li>
     <li><code>awaitAllSuccessfulOrThrow()</code></li>
     <li><code>allUntil(Predicate&lt;Subtask&lt;T&gt;&gt; isDone)</code></li>
-    <li class="fragment">...or create your own!</li>
+    <li class="fragment">...or create your own: just implement the <code>Joiner</code> interface!</li>
 </ul>
 
 <small>(<a href="https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html">https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html</a>)</small>
