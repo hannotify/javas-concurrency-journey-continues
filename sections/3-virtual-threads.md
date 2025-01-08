@@ -189,6 +189,8 @@ public class MultiWaiterRestaurant implements Restaurant {
 
 ---
 
+## Using Virtual Threads
+
 ### Pros ✅
 
 <ul>

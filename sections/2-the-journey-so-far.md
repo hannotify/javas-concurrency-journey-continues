@@ -96,6 +96,8 @@ class WaiterAnnounceCourseThread extends Thread {
 
 ---
 
+## Using Threads
+
 ### Pros ✅
 
 * doing multiple things at once.
@@ -306,6 +308,8 @@ note:
 
 ---
 
+## Using ExecutorService
+
 ### Pros ✅
 
 * task can directly return a value;
@@ -411,6 +415,8 @@ public static Course pickCourse(String waiterName, CourseType courseType) {
 
 ---
 
+## Using ThreadLocals
+
 ### Pros ✅
 
 * avoids cluttering method signatures;
@@ -455,30 +461,6 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
 * So if Thread A starts a thread called Thread B, then Thread B can access Thread A's inheritable thread-locals.
 * But in order to make this happen, the child thread (Thread B) has to allocate (redundant) storage for every thread-local variable previously written in the parent thread. 
 * This adds significant memory footprint.
-
----
-
-## Honourable Mentions
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>ReentrantLock</dt>
-    <dd>A more flexible and feature-rich alternative to the traditional <code>synchronized</code> keyword.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>ForkJoinPool</dt>
-    <dd>A specialized implementation of <code>Executor</code>, designed for divide-and-conquer-style parallelism for compute-intensive workloads. Used by parallel streams.</dd>
-</dl>
-
-<dl class="fragment fade-in-then-semi-out">
-    <dt>CompletableFuture</dt>
-    <dd>Simplifies asynchronous programming by defining a <em>chain</em> of operations. Each subsequent operation starts running after the first one has completed.</dl>
-
-notes:
-
-on **CompletableFuture**:
-
-CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever. It's a way to circumvent limitations classic threads currently have, such as specifically waiting for an asynchronous operation to complete. Reactive frameworks like Akka or RxJava are based on the same principles.
 
 ---
 

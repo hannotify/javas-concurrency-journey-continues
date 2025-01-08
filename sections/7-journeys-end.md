@@ -127,7 +127,7 @@ public class StructuredConcurrencyRestaurant implements Restaurant {
 note:
 * avoids using constructors like `new ShutdownOnFailure()` or `new ShutdownOnSuccess()`
 * static factory method called `open()`
-* no need for 'opting in' to throw Expection on failure; `join()` now throws any Exception that might be encountered.
+* no need for 'opting in' to throw Exception on failure; `join()` now throws any Exception that might be encountered.
 * `open()` without arguments behaves like `ShutdownOnFailure`, but optionally takes a `Joiner` that determines the *policies* and *outcome* of this StructuredTaskScope.
 
 ---
@@ -181,7 +181,7 @@ public class StructuredConcurrencyBar implements Bar {
 note:
 
 * here we pass a Joiner to the `open(..)` method to configure how the results should be handled.
-* `scope.join()` immediately returns the result (or throws an Expection), a chaining `result()` method call is no longer necessary.
+* `scope.join()` immediately returns the result (or throws an Exception), a chaining `result()` method call is no longer necessary.
 
 ---
 
