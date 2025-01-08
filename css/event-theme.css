@@ -1,5 +1,5 @@
 :root {
-    --eventColor: #F39000
+    --eventColor: #c70039
 }
 
 .slides img {
@@ -36,11 +36,25 @@ tr:hover .popup-image {
 }
 
 a {
-    color: var(--eventColor) !important;
+    /* color: var(--eventColor) !important; */
+
+    background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
+    background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
+    background: -o-linear-gradient(left, #c70039, #ff5733 70%);
+    background: linear-gradient(to right, #c70039, #ff5733 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .reveal .progress span {
-    background: var(--eventColor) !important;
+    /* background: var(--eventColor) !important; */
+
+    background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733)) !important;
+    background: -webkit-linear-gradient(left, #c70039, #ff5733 70%) !important;
+    background: -o-linear-gradient(left, #c70039, #ff5733 70%) !important;
+    background: linear-gradient(to right, #c70039, #ff5733 70%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
 }
 
 .reveal ::selection {
@@ -89,4 +103,17 @@ a {
   bottom: 1em;
   left: 1em;
   font-size: 0.5em;
+}
+
+.jChampionsConf {
+    font-family: 'Monaco', monospace;
+}
+
+.jChampionsConf .red {
+    background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
+    background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
+    background: -o-linear-gradient(left, #c70039, #ff5733 70%);
+    background: linear-gradient(to right, #c70039, #ff5733 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
