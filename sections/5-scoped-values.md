@@ -43,6 +43,11 @@ Another station that we'll visit today on our continued journey is 'Scoped Value
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/481">JEP 481</a></td>
         </tr>
+        <tr class="greyed-out">
+            <td><strong>24</strong></td>
+            <td>Fourth Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/487">JEP 487</a></td>
+        </tr>
     </tbody>
 </table>
 
@@ -154,7 +159,7 @@ void bar() {
 
 ---
 
-<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
+<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" data-visibility="hidden" -->
 
 ## Demo, Part 3
 
@@ -244,8 +249,6 @@ void baz() {
     System.out.println(X.get()); // prints goodbye
 }
 </code></pre>
-
-<https://openjdk.org/jeps/446#Rebinding-scoped-values> <!-- .element: class="attribution" -->
 
 note:
 

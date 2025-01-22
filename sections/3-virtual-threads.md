@@ -206,7 +206,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 ### Cons ❌
 
 * not suitable for long-running CPU-intensive workloads; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" --> (but [JEP 491](https://openjdk.org/jeps/491) will fix this) 
 * thread-local variables don't perform well with many threads. <!-- .element: class="fragment fade-in" -->
 <small class="fragment fade-in-then-semi-out">(the system property <code>jdk.traceVirtualThreadLocals</code> can help)</small>
 
@@ -248,10 +248,12 @@ There are two scenarios in which a virtual thread cannot be unmounted during blo
 * When it executes a native method or a foreign function.
 
 ...harming scalability in the process.
-The reason for pinning inside `synchronized` is that the *monitors* that are associated with the synchronized instance are currently held by carrier threads, not by virtual threads.
+The reason for pinning inside `synchronized` is that the *monitors* that are associated with the synchronized instance are currently held by platform threads, not by virtual threads.
 
-(!) You can mitigate this drawback by replacing `synchronized` blocks with `ReentrantLock`s or `CountDownLatch`es - using them won't cause the *thread pinning*.
-This is because the `LockSupport` class now supports *parking* and *unparking* virtual threads. JEP 444 has more details on this.
+(!) You can mitigate this drawback by either:
+
+* replacing `synchronized` blocks with `ReentrantLock`s or `CountDownLatch`es - using them won't cause the *thread pinning*. This is because the `LockSupport` class now supports *parking* and *unparking* virtual threads. JEP 444 has more details on this.
+* OR: wait for Java 24 to be released, because JEP 491 will fix the problem. It will change the JVM's implementation of the synchronized keyword so that not only platform threads, but also virtual threads can acquire, hold, and release monitors, independently of their carriers.
 
 **thread-local variables don't perform well with many threads**
 

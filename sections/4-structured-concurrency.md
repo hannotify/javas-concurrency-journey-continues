@@ -50,6 +50,11 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/480">JEP 480</a></td>
         </tr>
+        <tr class="greyed-out">
+            <td><strong>24</strong></td>
+            <td>Fourth Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/499">JEP 499</a></td>
+        </tr>
     </tbody>
 </table>
 
@@ -205,7 +210,7 @@ To summarize:
 
 <!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
 
-## Demo, Part 1
+## Demo
 
 - Let's create a `StructuredConcurrencyRestaurant`
 
@@ -264,7 +269,7 @@ Which would elegantly solve the scenario I shared with you at the very start of 
 
 ---
 
-<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" -->
+<!-- .slide: data-background="img/background/binary-code.jpg" data-background-color="black" data-background-opacity="0.3" data-visibility="hidden" -->
 
 ## Demo, Part 2
 

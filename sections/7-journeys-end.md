@@ -64,7 +64,7 @@ This will be done by allowing virtual threads to acquire, hold and release monit
 - **evolution of the Structured Concurrency API**
 
 The Loom Early-Access Builds has a few improvements that are now summarized in a JEP draft (8340343).
-Both features will probably be a part of JDK 24.
+Both features will probably be a part of a future JDK.
 
 ---
 
@@ -101,7 +101,7 @@ public class StructuredConcurrencyRestaurant implements Restaurant {
 
 ### Modeling a Restaurant with Structured Concurrency 
 
-(JDK 24, probably)
+(JDK 25, probably)
 
 <pre data-id="new-sc-api-restaurant"><code class="java stretch" data-trim data-line-numbers="8,13">
 public class StructuredConcurrencyRestaurant implements Restaurant {
@@ -159,7 +159,7 @@ public class StructuredConcurrencyBar implements Bar {
 
 ## Modeling a Bar With Structured Concurrency
 
-(JDK 24, probably)
+(JDK 25, probably)
 
 <pre id="new-sc-api-bar"><code class="java stretch" data-trim data-line-numbers="7,11">
 public class StructuredConcurrencyBar implements Bar {
@@ -187,7 +187,7 @@ note:
 
 ## Modeling a Bar With Structured Concurrency
 
-(JDK 24, probably)
+(JDK 25, probably)
 
 <pre id="new-sc-api-bar"><code class="java stretch" data-trim data-line-numbers="7-9">
 public class StructuredConcurrencyBar implements Bar {
