@@ -228,7 +228,5 @@ A **`Joiner<T,R>`** handles subtask completion and produces the result for the *
     <li><code>allUntil(Predicate&lt;Subtask&lt;T&gt;&gt; isDone)</code></li>
     <li class="fragment">...or create your own: just implement the <code>Joiner</code> interface!</li>
 </ul>
-
 <small>(<a href="https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html">https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html</a>)</small>
 </span>
-

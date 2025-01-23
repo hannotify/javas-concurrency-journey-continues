@@ -409,7 +409,6 @@ This is true, both ExecutorService and CompletableFuture support this.
 
 <br/>
 <br/>
-
 <small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: 
 <br/>
 <a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
@@ -476,9 +475,8 @@ although you could configure ES/CF to use them
             <td>Blocking, blocks until first failure/success</td>
         </tr>
     </tbody>
-</table>
-
-<small class="fragment">(<https://www.baeldung.com/java-executorservice-vs-completablefuture#summary>)</small>
+</table><br/>
+<small class="fragment">(<a href="https://www.baeldung.com/java-executorservice-vs-completablefuture#summary">https://www.baeldung.com/java-executorservice-vs-completablefuture#summary</a>)</small>
 
 note:
 Got the table from Baeldung.com, and extended it with the 'Structured Concurrency' column.
