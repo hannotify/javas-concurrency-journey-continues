@@ -206,7 +206,7 @@ public class MultiWaiterRestaurant implements Restaurant {
 ### Cons ❌
 
 * not suitable for long-running CPU-intensive workloads; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" --> (but [JEP 491](https://openjdk.org/jeps/491) will fix this) 
+* pinned threads; <!-- .element: class="fragment fade-in-then-semi-out" --> (but [JEP 491](https://openjdk.org/jeps/491) has fixed this) 
 * thread-local variables don't perform well with many threads. <!-- .element: class="fragment fade-in" -->
 <small class="fragment fade-in-then-semi-out">(the system property <code>jdk.traceVirtualThreadLocals</code> can help)</small>
 
@@ -253,7 +253,7 @@ The reason for pinning inside `synchronized` is that the *monitors* that are ass
 (!) You can mitigate this drawback by either:
 
 * replacing `synchronized` blocks with `ReentrantLock`s or `CountDownLatch`es - using them won't cause the *thread pinning*. This is because the `LockSupport` class now supports *parking* and *unparking* virtual threads. JEP 444 has more details on this.
-* OR: wait for Java 24 to be released, because JEP 491 will fix the problem. It will change the JVM's implementation of the synchronized keyword so that not only platform threads, but also virtual threads can acquire, hold, and release monitors, independently of their carriers.
+* OR: upgrade to Java 24, because in that version the problem has been fixed. It will change the JVM's implementation of the synchronized keyword so that not only platform threads, but also virtual threads can acquire, hold, and release monitors, independently of their carriers.
 
 **thread-local variables don't perform well with many threads**
 

@@ -45,12 +45,12 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Second Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/462">JEP 462</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>23</strong></td>
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/480">JEP 480</a></td>
         </tr>
-        <tr class="greyed-out">
+        <tr>
             <td><strong>24</strong></td>
             <td>Fourth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/499">JEP 499</a></td>

@@ -474,7 +474,8 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
         <small><a href="https://foojay.io/today/its-java-20-release-day-heres-whats-new/">foojay.io/today/its-java-20-release-day-heres-whats-new/</a></small><br/>
         <small><a href="https://foojay.io/today/java-21-is-available-today-and-its-quite-the-update/">foojay.io/today/java-21-is-available-today-and-its-quite-the-update/</a></small><br/>
         <small><a href="https://foojay.io/today/java-22-is-here-and-its-ready-to-rock/">foojay.io/today/java-22-is-here-and-its-ready-to-rock/</a></small><br/>
-        <small><a href="https://foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/">foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/</a></small><br/>        
+        <small><a href="https://foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/">foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/</a></small><br/>
+        <small><a href="https://foojay.io/today/java-24-rolls-out-today-find-out-why-its-aptly-named/">foojay.io/today/java-24-rolls-out-today-find-out-why-its-aptly-named/</a></small><br/>      
     </li>
 </ul>
 
@@ -501,9 +502,6 @@ But why does this stuff interest me?
 * Course: "Concurrency in Java"
 * New concurrency features in recent Java versions, on which I wrote a few articles.
 * I'm a Java Champion and an Oracle ACE.
-* I am @hannotify on Twitter, Mastodon or Bluesky.
-
-(Let's keep calling it Twitter, just to annoy Elon)
 
 * I post about things I like, as everyone does I suppose.
 * Java Development, Concurrency, Version Control, Sustainability and making music.

@@ -1,5 +1,5 @@
 :root {
-    --eventColor: #c70039
+    --eventColor: #58C4F1
 }
 
 .slides img {
@@ -16,15 +16,13 @@
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000 !important;
+    letter-spacing: -6px !important;
 }
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
     text-transform: none;
+    letter-spacing: -1px !important;
 }
 input { font-size: 27px; }
-
-tr:hover {
-	background-color: #333;
-}
 
 tr .popup-image {
 	display: none ;
@@ -36,35 +34,21 @@ tr:hover .popup-image {
 }
 
 a {
-    /* color: var(--eventColor) !important; */
-
-    background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
-    background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
-    background: -o-linear-gradient(left, #c70039, #ff5733 70%);
-    background: linear-gradient(to right, #c70039, #ff5733 70%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--eventColor) !important;
 }
 
 .reveal .progress span {
-    /* background: var(--eventColor) !important; */
-
-    background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733)) !important;
-    background: -webkit-linear-gradient(left, #c70039, #ff5733 70%) !important;
-    background: -o-linear-gradient(left, #c70039, #ff5733 70%) !important;
-    background: linear-gradient(to right, #c70039, #ff5733 70%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+    background: var(--eventColor) !important;
 }
 
 .reveal ::selection {
-    color: black;
+    color: white;
     background: var(--eventColor);
     text-shadow: none; 
 }
   
 .reveal ::-moz-selection {
-    color: black;
+    color: white;
     background: var(--eventColor);
     text-shadow: none; 
 }

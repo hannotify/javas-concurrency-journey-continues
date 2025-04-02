@@ -192,9 +192,7 @@ Bottom line: ThreadLocals are memory-intensive & always mutable
   So, my name is Hanno. 
   From the Netherlands, and I work at Info Support as an IT consultant.
   I'm a Java Champion and an Oracle ACE.
-  I am @hannotify on Twitter, Mastodon or Bluesky.
-  (It'll always be called Twitter to me)
-  (About the handle: get notified of everything Hanno does. I thought it was rather clever - my wife disagrees with me though, she thinks I'm an major geek!)
+
   I post about things I like, as everyone does I suppose.
   Java Development, Version Control, Sustainability and making music.
   If you're into that stuff, by all means give me a follow on your favourite social network!

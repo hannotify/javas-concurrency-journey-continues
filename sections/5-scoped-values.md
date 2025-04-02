@@ -38,12 +38,12 @@ Another station that we'll visit today on our continued journey is 'Scoped Value
             <td>Second Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/464">JEP 464</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>23</strong></td>
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/481">JEP 481</a></td>
         </tr>
-        <tr class="greyed-out">
+        <tr>
             <td><strong>24</strong></td>
             <td>Fourth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/487">JEP 487</a></td>

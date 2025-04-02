@@ -43,10 +43,6 @@ Both topics were mentioned in JEP 480 ('Structured Concurrency') as possible fut
 ## Confirmed Future Features
 
 <ul>
-    <li class="fragment fade-in-then-semi-out" data-fragment-index="1">synchronize virtual threads without pinning;</li>
-        <small class="fragment fade-in-then-semi-out" data-fragment-index="1">
-        (<a href="https://openjdk.org/jeps/491">https://openjdk.org/jeps/491</a>)
-        </small>    
     <li class="fragment fade-in-then-semi-out" data-fragment-index="2">improvements to the Structured Concurrency API.</li>
         <small class="fragment fade-in-then-semi-out" data-fragment-index="2">
         (<a href="https://openjdk.org/jeps/8340343">https://openjdk.org/jeps/8340343</a>)

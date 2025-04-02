@@ -5,6 +5,7 @@
 #### and
 ## Scoped Values
 
+<br/>
 <table>
     <tr>
         <td style="text-align: right; vertical-align: middle;" width="36%">Hanno Embregts</td>
@@ -17,8 +18,8 @@
     </tr>
 </table>
 <br/>
-<div class="jChampionsConf" style="vertical-align: middle;">jChampions<span class="red">Conference</span></div>
-<br/>
+<img data-src="img/logos/voxxed-days-amsterdam.png" width="50%" class="no-background"/>
+
 
 note:
 **Time Elapsed:** `0:00`.
