@@ -192,7 +192,9 @@ Let's see scoped values in action!
 </code></pre>
 
 ### Waiter <!-- .element: class="fragment" data-fragment-index="1" -->
-<pre class="fragment" data-fragment-index="1"><code class="java stretch" data-trim data-line-numbers="1-16|4-6|9-16|13|10">
+<pre class="fragment" data-fragment-index="1"><code class="java stretch" data-trim data-line-numbers="1-18|6-8|11-18|15|12">
+private boolean introduced = false;
+
 public Course announceCourse(CourseType courseType) throws Exception {
     if (!introduced) introduce();
 
