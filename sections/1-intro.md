@@ -26,7 +26,8 @@ note:
 
 *Preparations*
 
-* Watch your pronounciation (British English is your _superpower_, so act like it)
+* append `?controls=false` to the URL
+* Watch your pronunciation
 * Set the appropriate browser zoom level (`80%` will fit all code onto the MacBook screen).
 * Slides and IDE on projector screen
 * Speaker notes on second screen
