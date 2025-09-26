@@ -43,10 +43,15 @@ Another station that we'll visit today on our continued journey is 'Scoped Value
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/481">JEP 481</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>24</strong></td>
             <td>Fourth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/487">JEP 487</a></td>
+        </tr>
+        <tr>
+            <td><strong>25</strong></td>
+            <td>Final<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/506">JEP 506</a></td>
         </tr>
     </tbody>
 </table>
@@ -276,11 +281,11 @@ public class StructuredConcurrencyBar implements Bar {
 
         return ScopedValue.where(drinkOrderId, 1)
             .call(() -> {
-                try (var scope = new StructuredTaskScope.ShutdownOnSuccess&lt;DrinkOrder&gt;()) {
+                try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulResultOrThrow()) {
                     scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
                     scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
 
-                    return scope.join().result();
+                    return scope.join();
                 }
             });
     }

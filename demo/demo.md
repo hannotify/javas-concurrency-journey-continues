@@ -40,13 +40,13 @@ public class StructuredConcurrencyRestaurant implements Restaurant {
         Waiter zoe = new Waiter("Zoe");
         Waiter rosita = new Waiter("Rosita");
 
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+        try (var scope = StructuredTaskScope.open()) {
             // announceCourses
             var starter = scope.fork(() -> grover.announceCourse(CourseType.STARTER));
             var main = scope.fork(() -> zoe.announceCourse(CourseType.MAIN));
             var dessert = scope.fork(() -> rosita.announceCourse(CourseType.DESSERT));
 
-            scope.join().throwIfFailed();
+            scope.join();
 
             return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
         }
@@ -74,11 +74,11 @@ public class StructuredConcurrencyBar implements Bar {
 
         return ScopedValue.where(drinkOrderId, 1)
                 .call(() -> {
-                    try (var scope = new StructuredTaskScope.ShutdownOnSuccess<DrinkOrder>()) {
+                    try (var scope = StructuredTaskScope.open(Joiner.<DrinkOrder>anySuccessfulResultOrThrow())) {
                         scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
                         scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
 
-                        return scope.join().result();
+                        return scope.join();
                     }
                 });
     }

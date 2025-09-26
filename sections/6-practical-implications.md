@@ -28,8 +28,8 @@ You can just get started trying them out and talking about them! ☺️
 ## Developer (framework or library)
 
 * You can start using the features to enhance your product; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* Keep in mind that Virtual Threads is the only feature that is finalized; <!-- .element: class="fragment fade-in-then-semi-out" -->
-* Structured Concurrency and Scoped Values are both still in preview, so they're not permanent parts of the language yet. <!-- .element: class="fragment fade-in-then-semi-out" -->
+* Keep in mind that Virtual Threads & Scoped Values are the only finalized features; <!-- .element: class="fragment fade-in-then-semi-out" -->
+* Structured Concurrency is still in preview, so it's not a permanent part of the language yet. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 note:
 
@@ -90,8 +90,9 @@ private ManagedExecutorService managedExecutor;
 
 ## Developer (Jakarta EE)
 
-<pre><code class="java stretch" data-trim data-line-numbers="1-6|1">
-try (var scope = new StructuredTaskScope&lt;Object&gt;("MyTaskScopeWithContext", managedThreadFactory) {
+<pre><code class="java stretch" data-trim data-line-numbers="1-6|1-2">
+try (var scope = StructuredTaskScope.open(Joiner.allSuccessfulOrThrow(), 
+        cf -> cf.withThreadFactory(managedThreadFactory).withName("MyTaskScopeWithContext")) {
     var subtask1 = scope.fork(task1);
     var subtask2 = scope.fork(task2);
     scope.join();

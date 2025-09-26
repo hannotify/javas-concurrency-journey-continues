@@ -50,10 +50,15 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Third Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/480">JEP 480</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>24</strong></td>
             <td>Fourth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/499">JEP 499</a></td>
+        </tr>
+        <tr>
+            <td><strong>25</strong></td>
+            <td>Fifth Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/505">JEP 505</a></td>
         </tr>
     </tbody>
 </table>
@@ -234,17 +239,17 @@ Let's see structured concurrency in action!
 <pre><code class="java stretch" data-trim data-line-numbers="1-19">
 public class StructuredConcurrencyRestaurant implements Restaurant {
     @Override
-    public MultiCourseMeal announceMenu() throws ExecutionException, InterruptedException {
+    public MultiCourseMeal announceMenu() throws InterruptedException {
         Waiter grover = new Waiter("Grover");
         Waiter zoe = new Waiter("Zoe");
         Waiter rosita = new Waiter("Rosita");
 
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+        try (var scope = StructuredTaskScope.open()) {
             var starter = scope.fork(() -> grover.announceCourse(CourseType.STARTER));
             var main = scope.fork(() -> zoe.announceCourse(CourseType.MAIN));
             var dessert = scope.fork(() -> rosita.announceCourse(CourseType.DESSERT));
 
-            scope.join().throwIfFailed();
+            scope.join();
 
             return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
         }
@@ -254,17 +259,36 @@ public class StructuredConcurrencyRestaurant implements Restaurant {
 
 ---
 
-## ShutdownOnFailure
+## StructuredTaskScope.open()
 
 - Shuts down the scope when the first subtask fails;
-- Also known as *invokeAll*.
+- A pattern that's also known as *invoke all*;
+- The `open()` factory method defaults to the *awaitAllSuccessfulOrThrow* policy, meaning that:
+
+<span class="fragment">
+<br/>
+<br/>
+<pre><code class="java stretch" data-trim>
+try (var scope = StructuredTaskScope.open()) {
+    // ...
+}
+</code></pre>
+
+is equivalent to:
+
+<pre><code class="java stretch" data-trim>
+try (var scope = StructuredTaskScope.open(Joiner.awaitAllSuccessfulOrThrow())) {
+    // ...
+}
+</code></pre>
+</span>
 
 note:
 
 Structured concurrency uses short-circuiting patterns to avoid doing unnecessary work.
 These patterns are supported by shutdown policies, implemented by subclasses of `StructuredTaskScope`.
-We've used the `ShutdownOnFailure` policy in the demo.
-A second subclass exists: `ShutdownOnSuccess`.
+We've used the `awaitAllSuccessfulOrThrow()` policy in this demo.
+More policies exist, like `awaitAnySuccessfulResultOrThrow()`, for example.
 Which would elegantly solve the scenario I shared with you at the very start of this talk.
 
 ---
@@ -281,9 +305,8 @@ note:
 *(tag `1-created-sc-restaurant`)*
 
 - Let's create a `StructuredConcurrencyBar`
-- Again: `join()` blocks
-- `result()` returns the result of the first subtask that completed
-- Run it and explain the behavior.
+- Again: `join()` blocks, and returns the result of the first subtask that completed
+- Run it and explain the behaviour.
 
 *(tag `2-created-sc-bar`)*
 
@@ -298,11 +321,11 @@ public class StructuredConcurrencyBar implements Bar {
         Waiter zoe = new Waiter("Zoe");
         Waiter elmo = new Waiter("Elmo");
 
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess&lt;DrinkOrder&gt;()) {
+        try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulResultOrThrow()) {
             scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
             scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
 
-            return scope.join().result();
+            return scope.join();
         }
     }
 }
@@ -310,10 +333,10 @@ public class StructuredConcurrencyBar implements Bar {
 
 ---
 
-## ShutdownOnSuccess
+## anySuccessfulResultOrThrow()
 
 - Shuts down the scope and returns the result when the first subtask succeeds;
-- Also known as *invokeAny*.
+- A pattern that's also known as *invoke any*.
 
 note:
 
@@ -321,17 +344,28 @@ It effectively cancels any remaining tasks in the scope.
 
 ---
 
-## Custom Shutdown Policies
+## Joiners
 
-<ul>
-    <li class="fragment fade-in-then-semi-out">create your own shutdown policies by extending the class <code>StructuredTaskScope</code>;</li>
-    <li class="fragment fade-in-then-semi-out">then implement the <code>handleComplete(..)</code> method;</li>
-    <li class="fragment fade-in-then-semi-out">this allows you to have full control over when the scope shuts down and what results will be collected.</li>
+A **`Joiner<T,R>`** handles subtask completion and produces the result for the **`join`** method.
+
+<span class="fragment">
+<h3>Built-in joiners</h3>
+<ul> 
+    <li><code>anySuccessfulOrThrow()</code></li>
+    <li><code>allSuccessfulOrThrow()</code></li>
+    <li><code>awaitAll()</code></li>
+    <li><code>awaitAllSuccessfulOrThrow()</code></li>
+    <li><code>allUntil(Predicate&lt;Subtask&lt;T&gt;&gt; isDone)</code></li>
+    <li class="fragment">...or create your own: just implement the <code>Joiner</code> interface!</li>
 </ul>
+<small>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html">https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html</a>)</small>
+</span>
 
 note:
 
-Use case for a custom shutdown policy:
+Custom shutdown policies allow you to have full control over when the scope shuts down and what results will be collected.
+
+Use cases:
 
 * collect results that succeed, ignore results that fail;
 * more use cases are listed in the JEP.

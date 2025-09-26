@@ -206,11 +206,13 @@ public class MultiWaiterRestaurant implements Restaurant {
 ### Cons ❌
 
 <ul>
+    <li class="fragment fade-in-then-semi-out">pinned threads; (but this was fixed in Java 24 via <a href="https://openjdk.org/jeps/491">JEP 491</a>) 
     <li class="fragment fade-in-then-semi-out">not suitable for long-running CPU-intensive workloads;</li>
-    <li class="fragment fade-in-then-semi-out">pinned threads; (but <a href="https://openjdk.org/jeps/491">JEP 491</a> has fixed this) 
     <li class="fragment fade-in">thread-local variables don't perform well with many threads.</li>
     <small class="fragment fade-in-then-semi-out">(the system property <code>jdk.traceVirtualThreadLocals</code> can help)</small>
 </ul>
+
+note:
 
 **millions of threads can run**
 
