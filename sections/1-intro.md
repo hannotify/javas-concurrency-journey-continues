@@ -1,5 +1,3 @@
-<!-- .slide: data-background-color="white" -->
-
 #### Java's Concurrency Journey Continues! Exploring
 ## Structured Concurrency 
 #### and
@@ -18,7 +16,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/apeldoornjug.avif" width="30%" class="no-background"/>
+<img data-src="img/logos/hbo-i.webp" width="30%" class="no-background"/>
 
 
 note:

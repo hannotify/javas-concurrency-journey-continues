@@ -1,5 +1,5 @@
 :root {
-    --eventColor: #e92625
+    --eventColor: #4daae8
 }
 
 .slides img {
@@ -22,6 +22,10 @@
     text-transform: none;
     letter-spacing: -1px !important;
 }
+.reveal .controls .controls-arrow:before, .reveal .controls .controls-arrow:after {
+    background-color: var(--eventColor);
+}
+
 input { font-size: 27px; }
 
 tr .popup-image {
