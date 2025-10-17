@@ -16,7 +16,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/hbo-i.webp" width="30%" class="no-background"/>
+<img data-src="img/logos/devoxx-ma-dark.png" width="40%" class="no-background"/>
 
 
 note:
