@@ -21,7 +21,7 @@ What new features are expected to be developed after these?
     <li class="fragment fade-in-then-semi-out" data-fragment-index="2">a new thread cancellation mechanism.
         <br/>
         <small class="fragment fade-in-then-semi-out" data-fragment-index="2">
-        (both mentioned in <a href="https://openjdk.org/jeps/480">https://openjdk.org/jeps/480</a>)
+        (both mentioned in <a href="https://openjdk.org/jeps/525">https://openjdk.org/jeps/525</a>)
         </small>    
     </li>
 </ul>

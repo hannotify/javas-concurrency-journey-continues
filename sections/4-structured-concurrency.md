@@ -60,6 +60,11 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Fifth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/505">JEP 505</a></td>
         </tr>
+        <tr class="greyed-out">
+            <td><strong>26</strong></td>
+            <td>Sixth Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/525">JEP 525</a></td>
+        </tr>
     </tbody>
 </table>
 
@@ -335,8 +340,11 @@ public class StructuredConcurrencyBar implements Bar {
 
 ## anySuccessfulResultOrThrow()
 
-- Shuts down the scope and returns the result when the first subtask succeeds;
-- A pattern that's also known as *invoke any*.
+<ul>
+    <li>Shuts down the scope and returns the result when the first subtask succeeds;
+    <li>A pattern that's also known as <em>invoke any</em>.
+    <li class="fragment"><strong>Note</strong> – This method will be renamed to <code>anySuccessfulOrThrow()</code> in JDK 26. <br/> (see <a href="https://openjdk.org/jeps/525">JEP 525</a>) 
+</ul>
 
 note:
 
@@ -434,16 +442,16 @@ This is true, both ExecutorService and CompletableFuture support this.
 ### But there are differences.
 
 <ul>
-    <li class="fragment fade-in-then-semi-out">cancellation;</li>
-    <li class="fragment fade-in-then-semi-out">creating a task hierarchy and limiting the scope of tasks;</li>
-    <li class="fragment fade-in-then-semi-out">making the created tasks return to the same place and limiting resource leaks in the process;</li>
-    <li class="fragment fade-in-then-semi-out">custom shutdown policies;</li>
-    <li class="fragment fade-in-then-semi-out">virtual threads by default.</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="1">cancellation;</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="2">creating a task hierarchy and limiting the scope of tasks;</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="3">making the created tasks return to the same place and limiting resource leaks in the process;</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="4">custom shutdown policies;</li>
+    <li class="fragment fade-in-then-semi-out" data-fragment-index="5">virtual threads by default.</li>
 </ul>
 
 <br/>
 <br/>
-<small class="fragment">A more detailed comparison of ExecutorService and Structured Concurrency: 
+<small class="fragment" data-fragment-index="5">A more detailed comparison of ExecutorService and Structured Concurrency: 
 <br/>
 <a href="https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3">https://medium.com/@lavneesh.chandna/structured-concurrency-in-java-7a10b36ce0a3</a>
 </small>
@@ -478,31 +486,31 @@ although you could configure ES/CF to use them
     </tr>
     </thead>
     <tbody>
-        <tr class="fragment">
+        <tr class="fragment" data-fragment-index="1">
             <th>Focus</th>
             <td>Thread pool management and task execution</td>
             <td>Composing asynchronous operations and handling eventual results</td>
             <td>Running related tasks in a structured scope</td>
         </tr>
-        <tr class="fragment">
+        <tr class="fragment" data-fragment-index="2">
             <th>Chaining</th>
             <td>Manual coordination with <code>Future</code> objects</td>
             <td>Built-in methods like <code>thenApply()</code></td>
             <td>Hierarchical organization, enforces parent-child relationships between tasks</td>
         </tr>
-        <tr class="fragment">
+        <tr class="fragment" data-fragment-index="3">
             <th>Error Handling</th>
             <td>Manual try-catch blocks around <code>Future.get()</code></td>
             <td><code>exceptionally()</code>, <code>whenComplete()</code>, handling within chaining methods</td>
             <td>Shutdown on failure</td>
         </tr>
-        <tr class="fragment">
+        <tr class="fragment" data-fragment-index="4">
             <th>Timeout Management</th>
             <td>Manual coordination with <code>Future.get(timeout)</code> and potential interruption</td>
             <td>Built-in methods like <code>completeOnTimeout()</code></td>
             <td><code>scope.joinUntil(Instant deadline)</code></td>
         </tr>
-        <tr class="fragment">
+        <tr class="fragment" data-fragment-index="5">
             <th>Blocking vs. Non-Blocking</th>
             <td>Blocking (often waits for <code>Future.get()</code> to retrieve results)</td>
             <td>Non-blocking (chains tasks without blocking the main thread)</td>
@@ -510,7 +518,7 @@ although you could configure ES/CF to use them
         </tr>
     </tbody>
 </table><br/>
-<small class="fragment">(<a href="https://www.baeldung.com/java-executorservice-vs-completablefuture#summary">https://www.baeldung.com/java-executorservice-vs-completablefuture#summary</a>)</small>
+<small class="fragment" data-fragment-index="5">(<a href="https://www.baeldung.com/java-executorservice-vs-completablefuture#summary">https://www.baeldung.com/java-executorservice-vs-completablefuture#summary</a>)</small>
 
 note:
 Got the table from Baeldung.com, and extended it with the 'Structured Concurrency' column.
