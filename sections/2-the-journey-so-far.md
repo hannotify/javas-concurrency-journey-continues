@@ -25,6 +25,8 @@ note:
 * But our restaurant is not a very good one. 
 * Things go wrong here.
 
+(Sesame Street in Arabic: "Iftah Ya Simsim")
+
 Hand-drawn by my wife, btw! She's awesome! (opposites attract, I guess, my drawing has always been terrible, that's why I went into IT)
 
 ---
