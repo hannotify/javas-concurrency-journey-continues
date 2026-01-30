@@ -5,7 +5,7 @@
 <https://www.pexels.com/photo/photo-of-train-station-1824169/> <!-- .element: class="attribution" -->
 
 note:
-**Time Elapsed:** `14:00`.
+**Time Elapsed:** `22:00`.
 
 * The features I covered so far have been a part of Java for a while now.
 * They were part of 'our journey so far'.
@@ -50,7 +50,8 @@ note:
 * lightweight thread implementation; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * no explicit mapping to an OS thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * intended to run only a single task over its lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
-<li class="fragment fade-in-then-semi-out">scheduled by the JVM to run on a <em>carrier thread</em>.
+<li class="fragment fade-in-then-semi-out">scheduled by the JVM to run on a <em>carrier thread</em>;</li>
+<li class="fragment fade-in-then-semi-out">allow you to (still) write imperative code.</li>
 
 ---
 
@@ -197,7 +198,8 @@ public class MultiWaiterRestaurant implements Restaurant {
     <li class="fragment fade-in-then-semi-out" data-fragment-index="1">millions of threads can run;</li>
     <small class="fragment fade-in-then-semi-out" data-fragment-index="1">(allowing the <em>thread-per-request</em> style instead of the <em>thread-sharing</em> style)</small>
     <li class="fragment fade-in-then-semi-out">creating them and disposing of them is cheap and fast;</li>
-    <li class="fragment fade-in-then-semi-out">better throughput with high number of concurrent I/O-heavy tasks.</li>
+    <li class="fragment fade-in-then-semi-out">better throughput with high number of concurrent I/O-heavy tasks;</li>
+    <li class="fragment fade-in-then-semi-out">allow you to (still) write imperative code.</li>
 </ul>
 <br/>
 <br/>

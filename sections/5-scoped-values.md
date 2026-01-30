@@ -6,7 +6,7 @@
 
 note: 
 
-**Time Elapsed:** `36:00`.
+**Time Elapsed:** `54:00`.
 
 Another station that we'll visit today on our continued journey is 'Scoped Values'.
 

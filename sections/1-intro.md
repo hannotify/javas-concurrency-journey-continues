@@ -16,7 +16,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/devoxx-ma-dark.png" width="40%" class="no-background"/>
+<img data-src="img/logos/jfokus-2026.svg" width="40%" class="no-background"/>
 
 
 note:

@@ -6,7 +6,7 @@
 
 note:
 
-**Time Elapsed:** `20:00`.
+**Time Elapsed:** `30:00`.
 
 As we're leaving our current station 'Virtual Threads', let's see what the rest of the journey has in store for us.
 It looks like 'Structured Concurrency' is one of the upcoming stations.
