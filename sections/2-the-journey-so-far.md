@@ -490,6 +490,7 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
         <td style="text-align: left; padding: 0 0 0 0; vertical-align: middle;">
             <img width="16%" data-src="img/logos/ace-pro-spade.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/>
             <img width="20%" data-src="img/logos/java-champion.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/>
+            <img width="15%" data-src="img/logos/nljug.png" class="no-background" style="margin-top: 30px; vertical-align: middle;"/>
         </td>
         <td style="vertical-align: middle; text-align: right;"><img width="35%" data-src="img/icons/bluesky.png" class="no-background" style="margin-top: 35px"/></td>
         <td style="vertical-align: middle; padding: 0 0 0 0"><a href="https://bsky.app/profile/hanno.codes">@hanno.codes</a></td>
@@ -509,3 +510,14 @@ But why does this stuff interest me?
 * I post about things I like, as everyone does I suppose.
 * Java Development, Concurrency, Version Control, Sustainability and making music.
 * If you're into that stuff, give me a follow!
+
+---
+
+<img data-src="img/logos/jspring.png" width="25%" class="no-background">
+<p>
+June 4, 2026<br/>
+Utrecht, The Netherlands
+</p>
+<br/>
+<small>CfP is open until the end of March!<br/>
+(<a href="https://sessionize.com/jspring26">sessionize.com/jspring26</a>)</small>
