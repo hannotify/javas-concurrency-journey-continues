@@ -50,8 +50,7 @@ note:
 * lightweight thread implementation; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * no explicit mapping to an OS thread; <!-- .element: class="fragment fade-in-then-semi-out" -->
 * intended to run only a single task over its lifetime; <!-- .element: class="fragment fade-in-then-semi-out" -->
-<li class="fragment fade-in-then-semi-out">scheduled by the JVM to run on a <em>carrier thread</em>;</li>
-<li class="fragment fade-in-then-semi-out">allow you to (still) write imperative code.</li>
+<li class="fragment fade-in-then-semi-out">scheduled by the JVM to run on a <em>carrier thread</em>.</li>
 
 ---
 
@@ -223,10 +222,6 @@ Virtual threads' stacks are stored in Java's garbage-collected heap as *stack ch
 The stacks grow and shrink as the application runs, enabling the creation of millions of virtual threads.
 
 Virtual threads also allow a *thread-per-request* style, eliminating the need for thread-sharing mechanisms such as *thread pooling*.
-It can even be combined with the synchronous programming style that Java is famous for.
-(as opposed to the asynchronous programming style we have leared in the past ten years with frameworks like RxJava or Akka, for example)
-
-In a way, virtual threads are Java's definitive answer to both thread pooling and the asynchronous programming style.
 
 **better throughput**
 
@@ -234,6 +229,13 @@ In a way, virtual threads are Java's definitive answer to both thread pooling an
 * This is because virtual threads release the underlying carrier thread when I/O is performed. 
 * We saw this in the sequence diagram, and it results in better throughput when tasks are I/O-heavy.
 * It also means that virtual threads will not significantly improve performance when tasks are CPU-heavy, especially when they are long-running tasks.
+
+**still write imperative code**
+
+* Virtual threads can be combined with the synchronous programming style that Java is famous for.
+(as opposed to the asynchronous programming style we have leared in the past ten years with frameworks like RxJava or Akka, for example, where you would have to learn to use an intrucate API)
+
+In a way, virtual threads are Java's definitive answer to both thread pooling and the asynchronous programming style.
 
 **not suitable for long-running CPU-intensive workloads**
 

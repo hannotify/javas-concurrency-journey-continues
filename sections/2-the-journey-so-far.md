@@ -25,8 +25,6 @@ note:
 * But our restaurant is not a very good one. 
 * Things go wrong here.
 
-(Sesame Street in Arabic: "Iftah Ya Simsim")
-
 Hand-drawn by my wife, btw! She's awesome! (opposites attract, I guess, my drawing has always been terrible, that's why I went into IT)
 
 ---
@@ -161,7 +159,7 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
 </code></pre>
 
 note:
-So let's introduce something more sophisticated: the ExcecutorService, introduced in Java 1.5.
+So let's introduce something more sophisticated: the ExecutorService, introduced in Java 1.5.
 
 ---
 
@@ -354,6 +352,98 @@ Also: when we know for sure the desired result won't be achieved.
 
 ---
 
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with ExecutorService
+
+<pre data-id="restaurant-completablefuture"><code class="java stretch" data-trim data-line-numbers>
+public class MultiWaiterRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        try (var executor = Executors.newFixedThreadPool(3)) {
+            Future&lt;Course&gt; starter = executor.submit(() -> grover.announceCourse(CourseType.STARTER));
+            Future&lt;Course&gt; main = executor.submit(() -> zoe.announceCourse(CourseType.MAIN));
+            Future&lt;Course&gt; dessert = executor.submit(() -> rosita.announceCourse(CourseType.DESSERT));
+
+            return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+        }
+    }
+}
+</code></pre>
+
+---
+
+<!-- .slide: data-auto-animate" -->
+
+### Modeling a Restaurant with CompletableFuture
+
+<pre data-id="restaurant-completablefuture"><code class="java" data-trim data-line-numbers>
+public class CompletableFutureRestaurant implements Restaurant {
+    @Override
+    public MultiCourseMeal announceMenu() throws Exception {
+        Waiter grover = new Waiter("Grover");
+        Waiter zoe = new Waiter("Zoe");
+        Waiter rosita = new Waiter("Rosita");
+
+        var starter = asFuture(() -> grover.announceCourse(CourseType.STARTER));
+        var main = asFuture(() -> zoe.announceCourse(CourseType.MAIN));
+        var dessert = asFuture(() -> rosita.announceCourse(CourseType.DESSERT));
+
+        CompletableFuture.allOf(starter, main, dessert).join();
+
+        return new MultiCourseMeal(starter.get(), main.get(), dessert.get());
+    }
+
+    public static &lt;T&gt; CompletableFuture&lt;T&gt; asFuture(Callable&lt;? extends T&gt; callable) {
+        var future = new CompletableFuture&lt;&gt;();
+        future.defaultExecutor().execute(() -> {
+            try {
+                future.complete(callable.call());
+            } catch (Throwable t) {
+                future.completeExceptionally(t);
+            }
+        });
+        return future;
+    }
+}
+</code></pre>
+
+note:
+
+CompletableFuture has specifically been designed for the asynchronous programming paradigm, where no blocking operations occur whatsoever. It's a way to circumvent limitations classic threads currently have, such as specifically waiting for an asynchronous operation to complete. Reactive frameworks like Akka or RxJava are based on the same principles.
+
+Both ExecutorService and CompletableFuture offer mechanisms for chaining asynchronous tasks, but they take different approaches. 
+  * In ExecutorService, we typically submit tasks for execution and then use the Future objects returned by these tasks to handle dependencies and chain subsequent tasks. However, this involves blocking and waiting for the completion of each task before proceeding to the next, which can lead to inefficiencies in handling asynchronous workflows.
+  * On the other hand, CompletableFuture offers a more streamlined and expressive way to chain asynchronous tasks. It simplifies task chaining with built-in methods like `thenApply()`. These methods allow you to define a sequence of asynchronous tasks where the output of one task becomes the input for the next. 
+  **An available thread (by default in the ForkJoin.commonPool) is *woken up* when the input is available for the next task.**
+
+---
+
+## Using CompletableFuture
+
+### Pros ✅
+
+* no need to write blocking logic;
+* allows you to build an asynchronous task pipeline.
+
+<br/>
+<br/>
+<br/>
+
+### Cons ❌
+
+* not well-suited for the restaurant problem, as all tasks can run independently;
+* requires you to learn an intricate API, if you're not familiar with it already;
+* will wait for all tasks to terminate.
+
+note:
+
+---
+
 ## ThreadLocal
 
 * since Java 1.2; 
@@ -502,7 +592,6 @@ note:
 But why does this stuff interest me?
 
 * My employer Info Support gives me the chance to combine Java development with teaching courses.
-* (visit our booth to learn more)
 * Course: "Concurrency in Java"
 * New concurrency features in recent Java versions, on which I wrote a few articles.
 * I'm a Java Champion and an Oracle ACE.
