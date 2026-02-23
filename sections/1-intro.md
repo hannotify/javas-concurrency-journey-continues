@@ -32,7 +32,7 @@ note:
 * Speaker notes on second screen
 * Dark mode activated in IDE
 * Code in IDE checked out to the right Git tag (`0-demo-start`)
-* Terminal armed with `mirror` 
+* Cmd+F1 to switch from mirror to extend
 * Logitech Spotlight ready to go
 
 *Intro*

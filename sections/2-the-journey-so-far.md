@@ -161,7 +161,7 @@ public class ThreadsMultiWaiterRestaurant implements Restaurant {
 </code></pre>
 
 note:
-So let's introduce something more sophisticated: the ExcecutorService, introduced in Java 1.5.
+So let's introduce something more sophisticated: the ExecutorService, introduced in Java 1.5.
 
 ---
 

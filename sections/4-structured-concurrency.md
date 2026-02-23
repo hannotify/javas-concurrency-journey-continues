@@ -232,7 +232,7 @@ note:
 Let's see structured concurrency in action!
 
 - Let's create a `StructuredConcurrencyRestaurant`
-- explain that `join()` blocks, `throwIfFailed` optionally throws, `get()` always returns a valid result
+- explain that `join()` blocks and optionally throws, `get()` always returns a valid result
 - explain the introduction of `Subtask` (meant for calling 'get()'s after a result is already known, unlike (Completable)Future)
 
 *(tag `1-created-sc-restaurant`)*
@@ -373,6 +373,9 @@ note:
 
 Custom shutdown policies allow you to have full control over when the scope shuts down and what results will be collected.
 
+<code>awaitAllSuccessfulOrThrow()</code>: when subtasks return void.
+<code>allSuccessfulOrThrow()</code>: when subtasks return a result (of the same type), as a Stream of Subtasks.
+
 Use cases:
 
 * collect results that succeed, ignore results that fail;
@@ -508,7 +511,7 @@ although you could configure ES/CF to use them
             <th>Timeout Management</th>
             <td>Manual coordination with <code>Future.get(timeout)</code> and potential interruption</td>
             <td>Built-in methods like <code>completeOnTimeout()</code></td>
-            <td><code>scope.joinUntil(Instant deadline)</code></td>
+            <td><code>cf -> cf.withTimeout(duration)</code></td>
         </tr>
         <tr class="fragment" data-fragment-index="5">
             <th>Blocking vs. Non-Blocking</th>
