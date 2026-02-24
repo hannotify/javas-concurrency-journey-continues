@@ -17,7 +17,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/devoxx-ma-dark.png" width="40%" class="no-background"/>
+<img data-src="img/logos/javaland.png" width="20%" class="no-background"/>
 
 
 note:

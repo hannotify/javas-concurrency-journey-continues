@@ -1,5 +1,10 @@
 :root {
-    --eventColor: #e17f25
+    --solidEventColor: #2596be;
+    
+    /* Uncomment this block to use gradient colors. When activated, they will override the solid color defined above. */
+    --gradientEventColor1: #0b8e8c;
+    --gradientEventColor2: #2596be;
+    --gradient-text-fill: transparent;
 }
 
 .slides img {
@@ -23,7 +28,7 @@
     letter-spacing: -1px !important;
 }
 .reveal .controls .controls-arrow:before, .reveal .controls .controls-arrow:after {
-    background-color: var(--eventColor);
+    background-color: var(--solidEventColor);
 }
 
 input { font-size: 27px; }
@@ -37,23 +42,19 @@ tr:hover .popup-image {
 	width: 100px;
 }
 
-a {
-    color: var(--eventColor) !important;
-}
-
 .reveal .progress span {
-    background: var(--eventColor) !important;
+    background: var(--solidEventColor) !important;
 }
 
 .reveal ::selection {
     color: white;
-    background: var(--eventColor);
+    background: var(--solidEventColor);
     text-shadow: none; 
 }
   
 .reveal ::-moz-selection {
     color: white;
-    background: var(--eventColor);
+    background: var(--solidEventColor);
     text-shadow: none; 
 }
 
@@ -93,15 +94,17 @@ a {
   font-size: 0.5em;
 }
 
-.jChampionsConf {
-    font-family: 'Monaco', monospace;
+a {
+    color: var(--solidEventColor) !important;
 }
 
-.jChampionsConf .red {
-    background: -webkit-gradient(linear, left top, right top, from(#c70039), color-stop(70%, #ff5733));
-    background: -webkit-linear-gradient(left, #c70039, #ff5733 70%);
-    background: -o-linear-gradient(left, #c70039, #ff5733 70%);
-    background: linear-gradient(to right, #c70039, #ff5733 70%);
+a {
+    background: -webkit-gradient(linear, left top, right top, from(var(--gradientEventColor1)), color-stop(70%, var(--gradientEventColor2, var(--gradientEventColor1))));
+    background: -webkit-linear-gradient(left, var(--gradientEventColor1), var(--gradientEventColor2, var(--gradientEventColor1)) 70%);
+    background: -o-linear-gradient(left, var(--gradientEventColor1), var(--gradientEventColor2, var(--gradientEventColor1)) 70%);
+    background: linear-gradient(to right, var(--gradientEventColor1), var(--gradientEventColor2, var(--gradientEventColor1)) 70%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Only make text transparent if --gradient-text-fill is set to transparent */
+    -webkit-text-fill-color: var(--gradient-text-fill, currentColor);
 }
