@@ -1,7 +1,7 @@
-#### Java's Concurrency Journey Continues! Exploring
-## Structured Concurrency 
-#### and
+### Exploring
+## Structured Concurrency &
 ## Scoped Values
+#### in Java 25
 
 <br/>
 <table>
