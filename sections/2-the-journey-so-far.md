@@ -521,3 +521,5 @@ Utrecht, The Netherlands
 <br/>
 <small>CfP is open until the end of March!<br/>
 (<a href="https://sessionize.com/jspring26">sessionize.com/jspring26</a>)</small>
+<br/><br/>
+Tickets at <a href="https://www.jspring.nl/">jspring.nl</a></small>

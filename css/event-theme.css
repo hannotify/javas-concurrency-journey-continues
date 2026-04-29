@@ -1,10 +1,10 @@
 :root {
-    --solidEventColor: #2596be;
+    --solidEventColor: #cf1212;
     
     /* Uncomment this block to use gradient colors. When activated, they will override the solid color defined above. */
-    --gradientEventColor1: #0b8e8c;
+    /* --gradientEventColor1: #0b8e8c;
     --gradientEventColor2: #2596be;
-    --gradient-text-fill: transparent;
+    --gradient-text-fill: transparent; */
 }
 
 .slides img {

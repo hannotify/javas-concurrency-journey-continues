@@ -17,7 +17,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/javaland.png" width="20%" class="no-background"/>
+<img data-src="img/logos/tunisia-jug.png" width="15%" class="no-background"/>
 
 
 note:
@@ -34,6 +34,7 @@ note:
 * Code in IDE checked out to the right Git tag (`0-demo-start`)
 * Cmd+F1 to switch from mirror to extend
 * Logitech Spotlight ready to go
+* For JavaLand: short & succinct plz, you need to finish a bit earlier than 46:00
 
 *Intro*
 
