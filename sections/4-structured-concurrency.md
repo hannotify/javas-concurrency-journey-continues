@@ -55,16 +55,21 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Fourth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/499">JEP 499</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>25</strong></td>
             <td>Fifth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/505">JEP 505</a></td>
         </tr>
-        <tr class="greyed-out">
+        <tr>
             <td><strong>26</strong></td>
             <td>Sixth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/525">JEP 525</a></td>
         </tr>
+        <tr class="greyed-out">
+            <td><strong>27</strong></td>
+            <td>Seventh Preview<br/></td>
+            <td><a href="https://openjdk.java.net/jeps/533">JEP 533</a></td>
+        </tr>        
     </tbody>
 </table>
 
@@ -293,7 +298,7 @@ note:
 Structured concurrency uses short-circuiting patterns to avoid doing unnecessary work.
 These patterns are supported by shutdown policies, implemented by subclasses of `StructuredTaskScope`.
 We've used the `awaitAllSuccessfulOrThrow()` policy in this demo.
-More policies exist, like `awaitAnySuccessfulResultOrThrow()`, for example.
+More policies exist, like `awaitAnySuccessfulOrThrow()`, for example.
 Which would elegantly solve the scenario I shared with you at the very start of this talk.
 
 ---
@@ -326,7 +331,7 @@ public class StructuredConcurrencyBar implements Bar {
         Waiter zoe = new Waiter("Zoe");
         Waiter elmo = new Waiter("Elmo");
 
-        try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulResultOrThrow()) {
+        try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulOrThrow()) {
             scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
             scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
 
@@ -338,12 +343,11 @@ public class StructuredConcurrencyBar implements Bar {
 
 ---
 
-## anySuccessfulResultOrThrow()
+## anySuccessfulOrThrow()
 
 <ul>
     <li>Shuts down the scope and returns the result when the first subtask succeeds;
     <li>A pattern that's also known as <em>invoke any</em>.
-    <li class="fragment"><strong>Note</strong> – This method will be renamed to <code>anySuccessfulOrThrow()</code> in JDK 26. <br/> (see <a href="https://openjdk.org/jeps/525">JEP 525</a>) 
 </ul>
 
 note:
@@ -361,12 +365,11 @@ A **`Joiner<T,R>`** handles subtask completion and produces the result for the *
 <ul> 
     <li><code>anySuccessfulOrThrow()</code></li>
     <li><code>allSuccessfulOrThrow()</code></li>
-    <li><code>awaitAll()</code></li>
     <li><code>awaitAllSuccessfulOrThrow()</code></li>
     <li><code>allUntil(Predicate&lt;Subtask&lt;T&gt;&gt; isDone)</code></li>
     <li class="fragment">...or create your own: just implement the <code>Joiner</code> interface!</li>
 </ul>
-<small>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html">https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html</a>)</small>
+<small>(<a href="https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html">https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html</a>)</small>
 </span>
 
 note:
@@ -380,6 +383,28 @@ Use cases:
 
 * collect results that succeed, ignore results that fail;
 * more use cases are listed in the JEP.
+
+---
+
+## Upcoming Changes
+
+<small>(planned for Java 27)</small>
+
+**`Joiner<T,R>`** -> **`Joiner<T,R,R_X>`**
+
+<span class="fragment">
+
+* `R_X` is the type of exception that `join()` can throw
+* most built-in joiners will throw `ExecutionException` by default
+* you'll be able to override this behaviour by using an overload that maps to a different exception type:
+
+</span>
+
+<code class="fragment">Joiner.allSuccessfulOrThrow(MyCustomException::new)</code>
+
+note:
+
+`allUntil` throws a `RuntimeException`, everything else throws an `ExecutionException`.
 
 ---
 

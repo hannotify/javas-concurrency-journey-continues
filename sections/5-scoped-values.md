@@ -281,7 +281,7 @@ public class StructuredConcurrencyBar implements Bar {
 
         return ScopedValue.where(drinkOrderId, 1)
             .call(() -> {
-                try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulResultOrThrow()) {
+                try (var scope = StructuredTaskScope.open(Joiner.&lt;DrinkOrder&gt;anySuccessfulOrThrow()) {
                     scope.fork(() -> zoe.getDrinkOrder(guest, BEER, WINE, JUICE));
                     scope.fork(() -> elmo.getDrinkOrder(guest, COFFEE, TEA, COCKTAIL, DISTILLED));
 
