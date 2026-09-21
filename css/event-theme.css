@@ -1,9 +1,9 @@
 :root {
-    --solidEventColor: #cf1212;
+    --solidEventColor: #009A9A;
     
     /* Uncomment this block to use gradient colors. When activated, they will override the solid color defined above. */
-    /* --gradientEventColor1: #0b8e8c;
-    --gradientEventColor2: #2596be;
+    /* --gradientEventColor1: #009A9A;
+    --gradientEventColor2: #90D032;
     --gradient-text-fill: transparent; */
 }
 

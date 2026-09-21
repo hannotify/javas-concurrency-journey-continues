@@ -17,7 +17,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/tunisia-jug.png" width="15%" class="no-background"/>
+<img data-src="img/logos/datev.png" width="12%" class="no-background"/>
 
 
 note:
