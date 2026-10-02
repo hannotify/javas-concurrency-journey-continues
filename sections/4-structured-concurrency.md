@@ -60,12 +60,12 @@ So all aboard! And let's check out what Structured Concurrency is all about.
             <td>Fifth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/505">JEP 505</a></td>
         </tr>
-        <tr>
+        <tr class="greyed-out">
             <td><strong>26</strong></td>
             <td>Sixth Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/525">JEP 525</a></td>
         </tr>
-        <tr class="greyed-out">
+        <tr>
             <td><strong>27</strong></td>
             <td>Seventh Preview<br/></td>
             <td><a href="https://openjdk.java.net/jeps/533">JEP 533</a></td>
@@ -386,9 +386,7 @@ Use cases:
 
 ---
 
-## Upcoming Changes
-
-<small>(planned for Java 27)</small>
+## Changes in Java 27
 
 **`Joiner<T,R>`** -> **`Joiner<T,R,R_X>`**
 

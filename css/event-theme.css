@@ -2,9 +2,11 @@
     --solidEventColor: #009A9A;
     
     /* Uncomment this block to use gradient colors. When activated, they will override the solid color defined above. */
-    /* --gradientEventColor1: #009A9A;
-    --gradientEventColor2: #90D032;
+    /* --gradientEventColor1: #2899B0;
+    --gradientEventColor2: #9D3092;
     --gradient-text-fill: transparent; */
+
+
 }
 
 .slides img {

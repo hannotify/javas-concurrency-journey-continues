@@ -479,6 +479,8 @@ Every thread-local variable is mutable: any code that can call the `get()` metho
         <small><a href="https://foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/">foojay.io/today/java-23-has-arrived-and-it-brings-a-truckload-of-changes/</a></small><br/>
         <small><a href="https://foojay.io/today/java-24-rolls-out-today-find-out-why-its-aptly-named/">foojay.io/today/java-24-rolls-out-today-find-out-why-its-aptly-named/</a></small><br/>
         <small><a href="https://foojay.io/today/heres-java-25-ready-to-perform-to-the-limit/">foojay.io/today/heres-java-25-ready-to-perform-to-the-limit/</a></small><br/>      
+        <small><a href="https://foojay.io/today/java-26-is-here-and-with-it-a-solid-foundation-for-the-future/">foojay.io/today/java-26-is-here-and-with-it-a-solid-foundation-for-the-future/</a></small><br/>      
+        <small><a href="https://foojay.io/today/hello-java-27-have-you-been-working-out/">foojay.io/today/hello-java-27-have-you-been-working-out/</a></small><br/>      
     </li>
 </ul>
 
