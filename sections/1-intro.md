@@ -17,8 +17,7 @@
     </tr>
 </table>
 <br/>
-<img data-src="img/logos/datev.png" width="12%" class="no-background"/>
-
+<img data-src="img/logos/jug-munster.avif" width="30%" class="no-background"/>
 
 note:
 **Time Elapsed:** `0:00`.
